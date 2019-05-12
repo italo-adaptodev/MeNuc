@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "600320456886",
+    "firebase_url": "https://fireprot3-f1c01.firebaseio.com",
+    "project_id": "fireprot3-f1c01",
+    "storage_bucket": "fireprot3-f1c01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600320456886:android:5e76a5185a05c840",
+        "android_client_info": {
+          "package_name": "prototipo.italoluis.com.fireprot3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600320456886-sv097mj0dp5qheklu1fa129b3e8pma14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "prototipo.italoluis.com.fireprot3",
+            "certificate_hash": "dfc30523d2d8701bacdf19bae209a1e43e0e74b7"
+          }
+        },
+        {
+          "client_id": "600320456886-rlnit010of9iua22g9edc51co8jc5bce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "prototipo.italoluis.com.fireprot3",
+            "certificate_hash": "1c4bcb0d8704e793098aa96bcff3c24e9de958f3"
+          }
+        },
+        {
+          "client_id": "600320456886-cd2jh2kd2rvv7q3vh7gm2scg5qcho2nu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMqKZArXSOmR_NQdYYg3q7DS7DFcVc42g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600320456886-cd2jh2kd2rvv7q3vh7gm2scg5qcho2nu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
