@@ -38,6 +38,7 @@ public class postDetalhe extends AppCompatActivity {
         webView.getSettings().setSavePassword(true);
 
 
+
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient(){
 

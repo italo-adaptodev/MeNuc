@@ -42,6 +42,8 @@ public class Login2 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         tabs = new Intent(this, Home.class);
 
+
+
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

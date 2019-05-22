@@ -27,6 +27,7 @@ public class PostList {
     }
 
     public List<Item> getItems() {
+
         return items;
     }
 
@@ -41,5 +42,7 @@ public class PostList {
     public void setEtag(String etag) {
         this.etag = etag;
     }
+
+
 
 }

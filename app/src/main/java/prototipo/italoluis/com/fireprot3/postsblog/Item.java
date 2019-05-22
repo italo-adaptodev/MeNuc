@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Item {
 
+    private static final String key1 = "/revert?key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+
     @SerializedName("kind")
     @Expose
     private String kind;
@@ -123,7 +125,8 @@ public class Item {
         this.content = content;
     }
 
-    public Author getAuthor() {
+    public Author getAuthor()  {
+
         return author;
     }
 
@@ -138,5 +141,6 @@ public class Item {
     public void setReplies(Replies replies) {
         this.replies = replies;
     }
+
 
 }

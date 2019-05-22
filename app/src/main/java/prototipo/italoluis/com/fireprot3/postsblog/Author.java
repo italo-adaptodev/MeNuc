@@ -20,6 +20,7 @@ public class Author {
     private Image image;
 
     public String getId() {
+
         return id;
     }
 
