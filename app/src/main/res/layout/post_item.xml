@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:elevation="7dp">
+    android:elevation="7dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#D8EEEAEA"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -22,7 +24,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Titulo da postagem"
-            android:textColor="@color/colordrawer"
+            android:textColor="#00a800"
             android:textStyle="bold"
             app:fontFamily="sans-serif-smallcaps" />
 

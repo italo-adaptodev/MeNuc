@@ -12,4 +12,13 @@
     <string name="questionario">Questionário</string>
     <string name="convidar">Convidar</string>
     <string name="autores">Autores</string>
+    <string name="nome_indicado">Nome do indicado</string>
+    <string name="email_indicado">Email do indicado</string>
+    <string name="digite_o_email_da_pessoa_que_deseja_indicar_para_autor">Digite o email da pessoa que deseja indicar para autor</string>
+    <string name="digite_o_nome_da_pessoa_que_deseja_indicar_para_autor">Digite o nome da pessoa que deseja indicar para autor</string>
+    <string name="todo">TODO</string>
+    <string name="expli_invite">Nesta tela você irá indicar uma pessoa para ter o cargo de Autor. Importante que o email seja do domínio gmail, caso contrário será necessário que a pessoa crie um Gmail para ganhar autorização.</string>
+    <string name="hint_nome">Nome e sobrenome</string>
+    <string name="hint_email">exemplo@gmail.com (somente gmail!)</string>
+    <string name="aviso_hint">Aviso!</string>
 </resources>

@@ -1,5 +1,6 @@
 package prototipo.italoluis.com.fireprot3.postsblog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,6 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import prototipo.italoluis.com.fireprot3.Invite;
 import prototipo.italoluis.com.fireprot3.PostAdapter;
 import prototipo.italoluis.com.fireprot3.R;
 import retrofit2.Call;
@@ -74,6 +76,14 @@ public class Home extends AppCompatActivity {
 
         getData();
         getFabMain();
+
+        fab2_invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Invite.class);
+                startActivity(intent);
+            }
+        });
 
 
 
