@@ -1,9 +1,10 @@
 package prototipo.italoluis.com.fireprot3;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ public class Login extends AppCompatActivity {
     Button criarlogin;
     TextView textologin;
 
+
     private FirebaseAuth mAuth;
 
 
@@ -46,20 +48,21 @@ public class Login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
         criarlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String username = nome.getText().toString();
+
                 final String userEmail = email.getText().toString();
                 final  String password = senha.getText().toString();
+                final String username = nome.getText().toString();
+
+                saveusername(username);
 
                 if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(password)){
 
                     CriarConta(username, userEmail, password, view);
-
-
-
-
 
                 }else{
                     Toast.makeText(Login.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
@@ -79,10 +82,12 @@ public class Login extends AppCompatActivity {
     }
 
     private void CriarConta(String username, String userEmail, String password, final View view) {
+
+
         mAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete( Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login.this, "Conta criada", Toast.LENGTH_LONG).show();
                             showAlertDialogButtonClicked(view);
@@ -119,6 +124,14 @@ public class Login extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void saveusername(String user){
+       SharedPreferences preferences = getSharedPreferences("prototipo.italoluis.com.fireprot3", Context.MODE_PRIVATE);
+       SharedPreferences.Editor editor = preferences.edit();
+       editor.putString("nome_usuario", user);
+       editor.commit();
+
     }
 
 

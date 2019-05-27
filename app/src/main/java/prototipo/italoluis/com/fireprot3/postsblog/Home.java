@@ -43,6 +43,7 @@ public class Home extends AppCompatActivity {
     int numberItem, Itemtotal, scrollItem;
     AsyncHttpClient client = new AsyncHttpClient();
     Author autor = new Author();
+    TextView receive;
 
 
 
@@ -57,6 +58,8 @@ public class Home extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         final Boolean Scroll = false;
         int numberItem, Itemtotal, scrollItem;
+        receive = findViewById(R.id.receive);
+        receive.setText(getIntent().getStringExtra("valor"));
 
         fab_main = findViewById(R.id.fab);
         fab1_quest = findViewById(R.id.fab1);
@@ -81,6 +84,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Invite.class);
+                intent.putExtra("valor", receive.getText().toString());
                 startActivity(intent);
             }
         });
