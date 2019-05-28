@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".postDetalhe">
+    tools:context="prototipo.italoluis.com.fireprot3.postDetalhe">
 
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/detalhestela"
-         />
+        />
 
     <ProgressBar
         android:layout_width="wrap_content"

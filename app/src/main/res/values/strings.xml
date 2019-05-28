@@ -21,4 +21,6 @@
     <string name="hint_nome">Nome e sobrenome</string>
     <string name="hint_email">exemplo@gmail.com (somente gmail!)</string>
     <string name="aviso_hint">Aviso!</string>
+    <string name="page_titulo">Autorizações Pendentes</string>
+    <string name="lembrete">Lembre-se!</string>
 </resources>
