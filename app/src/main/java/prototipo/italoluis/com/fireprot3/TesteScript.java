@@ -2,13 +2,16 @@ package prototipo.italoluis.com.fireprot3;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+
+import prototipo.italoluis.com.fireprot3.postsblog.Home;
 
 
 public class TesteScript extends AppCompatActivity {
@@ -33,7 +36,7 @@ public class TesteScript extends AppCompatActivity {
         mWebView = findViewById(R.id.web_view);
 
         // The target url to surf using web view
-        String url = "https://www.blogger.com/u/1/blogger.g?blogID=537701014572510680#basicsettings";
+        String url = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
 
         /*
             WebView
@@ -52,7 +55,7 @@ public class TesteScript extends AppCompatActivity {
         // The java script string to execute in web view after page loaded
         // First line put a value in input box
         // Second line submit the form
-        final String js = "javascript:document.querySelector('K3JSBVB-mb-a').click()";
+        final String js = "javascript:document.document.getElementsByName('M2UYVd').click()";
 
 
         // Set a web view client for web view
@@ -78,5 +81,12 @@ public class TesteScript extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 }

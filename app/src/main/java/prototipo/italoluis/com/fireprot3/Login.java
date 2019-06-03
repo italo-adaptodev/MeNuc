@@ -19,8 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import prototipo.italoluis.com.fireprot3.postsblog.Home;
-
 
 public class Login extends AppCompatActivity {
 
@@ -29,6 +27,7 @@ public class Login extends AppCompatActivity {
     EditText email;
     Button criarlogin;
     TextView textologin;
+    Button logoutbtn;
 
 
     private FirebaseAuth mAuth;
@@ -45,10 +44,19 @@ public class Login extends AppCompatActivity {
         senha =  findViewById(R.id.senhaText);
         criarlogin = (Button) findViewById(R.id.button);
         textologin = findViewById(R.id.textView4);
+        logoutbtn = findViewById(R.id.logout);
 
         mAuth = FirebaseAuth.getInstance();
 
 
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+
+                Toast.makeText(Login.this, "Logout", Toast.LENGTH_LONG).show();
+            }
+        });
 
         criarlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +126,7 @@ public class Login extends AppCompatActivity {
 
                 // When the user click yes button
                 // then app will close
-                Intent intent = new Intent(Login.this, Home.class);
+                Intent intent = new Intent(Login.this, TesteScript.class);
                 startActivity(intent);
             }
         });
