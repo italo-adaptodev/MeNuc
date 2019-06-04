@@ -61,7 +61,7 @@ public class Home extends AppCompatActivity {
         receive = findViewById(R.id.receive);
         receive.setText(getIntent().getStringExtra("valor"));
 
-        fab_main = findViewById(R.id.fab);
+        fab_main = findViewById(R.id.fabback);
         fab1_quest = findViewById(R.id.fab1);
         fab2_invite = findViewById(R.id.fab2);
         fab3_author = findViewById(R.id.fab3);

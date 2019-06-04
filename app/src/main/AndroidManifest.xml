@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".AutorizacaoActivity"></activity>
         <activity android:name=".Invite" />
         <activity android:name=".TesteScript" />
         <activity android:name=".postsblog.Home" />

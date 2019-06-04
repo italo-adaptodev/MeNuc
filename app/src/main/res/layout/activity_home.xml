@@ -80,7 +80,7 @@
         android:backgroundTint="#00a800"
         app:backgroundTint=" #FFD700"
         app:borderWidth="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/fab"
+        app:layout_constraintBottom_toTopOf="@+id/fabback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +138,7 @@
         android:backgroundTint="#00a800"
         app:backgroundTint=" #FFD700"
         app:borderWidth="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/fab"
+        app:layout_constraintBottom_toTopOf="@+id/fabback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +196,7 @@
         android:backgroundTint="#00a800"
         app:backgroundTint=" #FFD700"
         app:borderWidth="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/fab"
+        app:layout_constraintBottom_toTopOf="@+id/fabback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,7 +208,7 @@
         tools:targetApi="lollipop" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fabback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
