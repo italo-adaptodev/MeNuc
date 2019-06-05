@@ -25,6 +25,18 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacao);
@@ -34,6 +46,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Indicados");
+        databaseReference.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(databaseReference, FirebaseDataAuth.class).build();
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
@@ -52,6 +65,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
             }
         };
+
+        recyclerView.setAdapter(adapter);
 
     }
 }

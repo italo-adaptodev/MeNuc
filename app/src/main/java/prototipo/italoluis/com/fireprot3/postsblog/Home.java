@@ -18,6 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.Invite;
 import prototipo.italoluis.com.fireprot3.PostAdapter;
 import prototipo.italoluis.com.fireprot3.R;
@@ -85,6 +86,14 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Invite.class);
                 intent.putExtra("valor", receive.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        fab3_author.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, AutorizacaoActivity.class);
                 startActivity(intent);
             }
         });

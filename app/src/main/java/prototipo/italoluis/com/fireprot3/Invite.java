@@ -52,7 +52,7 @@ public class Invite extends AppCompatActivity {
                 indicados.setEmailPadrinho(user.getEmail());
 
                 //reference.push().setValue(indicados);
-                reference.child(user.getUid()).push().setValue(indicados);
+                reference.push().setValue(indicados);
                 Toast.makeText(Invite.this, "ok!",Toast.LENGTH_LONG).show();
             }
         });
