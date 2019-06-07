@@ -56,8 +56,9 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="3dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Indicado por"
-            android:textColor="#FF029E02" />
+            android:text="@string/indicado_por"
+            android:textColor="#FF029E02"
+            android:layout_marginStart="15dp" />
 
 
         <LinearLayout
@@ -76,12 +77,12 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:paddingStart="10sp"
                 android:paddingLeft="10sp"
-                android:text="Quem indicou"
+                android:text="@string/quem_indicou"
                 android:textColor="#000000"
                 android:textSize="17sp" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBox"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -89,9 +90,10 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:text="Autorizar"
+                android:text="@string/autorizar"
                 android:textColor="#029E02"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:onClick="onCheckboxClicked"/>
 
         </LinearLayout>
 

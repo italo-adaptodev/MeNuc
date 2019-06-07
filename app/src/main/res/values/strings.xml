@@ -21,4 +21,7 @@
     <string name="hint_nome">Nome e sobrenome</string>
     <string name="hint_email">exemplo@gmail.com (somente gmail!)</string>
     <string name="aviso_hint">Aviso!</string>
+    <string name="indicado_por">Indicado por</string>
+    <string name="quem_indicou">Quem indicou</string>
+    <string name="autorizar">Autorizar</string>
 </resources>
