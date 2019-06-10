@@ -7,32 +7,32 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public class ApiBloggerQuestionário {
-    private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private static final String url = "https://www.googleapis.com/blogger/v3/blogs/4680066170031091498/posts/";
+  private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+  private static final String url = "https://www.googleapis.com/blogger/v3/blogs/4680066170031091498/posts/";
 
-    public static PostService postService = null;
+  public static PostService postService = null;
 
-    public static PostService getService(){
+  public static PostService getService(){
 
-        if(postService == null){
+    if(postService == null){
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+      Retrofit retrofit = new Retrofit.Builder()
+              .baseUrl(url)
+              .addConverterFactory(GsonConverterFactory.create())
+              .build();
 
-            postService = retrofit.create(PostService.class);
-        }
-        return postService;
+      postService = retrofit.create(PostService.class);
     }
+    return postService;
+  }
 
-    public interface PostService {
-        @GET("?key="+key)
-        Call<PostList> getPostList();
+  public interface PostService {
+    @GET("?key="+key)
+    Call<PostList> getPostList();
 
-        @GET("{postId}/?key="+key)
-        Call<Item> getPostById(@Path("postId") String id);
-    }
+    @GET("{postId}/?key="+key)
+    Call<Item> getPostById(@Path("postId") String id);
+  }
 
 }
 

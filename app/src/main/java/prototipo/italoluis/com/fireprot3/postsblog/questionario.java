@@ -23,63 +23,63 @@ import retrofit2.Response;
 
 public class questionario extends AppCompatActivity {
 
-    private SwipeRefreshLayout swipeContainer;
+  private SwipeRefreshLayout swipeContainer;
 
-    FloatingActionButton fab;
-    RecyclerView recyclerView;
-    LinearLayoutManager manager;
-    PostAdapter adapter;
-    List<Item> items = new ArrayList<>();
-    Boolean Scroll = false;
+  FloatingActionButton fab;
+  RecyclerView recyclerView;
+  LinearLayoutManager manager;
+  PostAdapter adapter;
+  List<Item> items = new ArrayList<>();
+  Boolean Scroll = false;
+  int numberItem, Itemtotal, scrollItem;
+  AsyncHttpClient client = new AsyncHttpClient();
+
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_home);
+    recyclerView = findViewById(R.id.listadepost);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    manager = new LinearLayoutManager(this);
+    adapter = new PostAdapter(this, items);
+    recyclerView.setAdapter(adapter);
+    final Boolean Scroll = false;
     int numberItem, Itemtotal, scrollItem;
-    AsyncHttpClient client = new AsyncHttpClient();
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        recyclerView = findViewById(R.id.listadepost);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        manager = new LinearLayoutManager(this);
-        adapter = new PostAdapter(this, items);
-        recyclerView.setAdapter(adapter);
-        final Boolean Scroll = false;
-        int numberItem, Itemtotal, scrollItem;
 
 
 
-        getData();
+    getData();
 
-        FloatingActionButton fab = findViewById(R.id.fabback);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(questionario.this, questionario.class);
-                startActivity(intent);
-            }
-        });
-    }
+    FloatingActionButton fab = findViewById(R.id.fabback);
+    fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(questionario.this, questionario.class);
+        startActivity(intent);
+      }
+    });
+  }
 
-    private void getData() {
-        Call<PostList> postList = ApiBloggerQuestionário.getService().getPostList();
-        postList.enqueue(new Callback<PostList>() {
-            @Override
-            public void onResponse(Call<PostList> call, Response<PostList> response) {
-                PostList list = response.body();
-                items.addAll(list.getItems());
-                adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(new PostAdapter(questionario.this, list.getItems()));
-                Toast.makeText(questionario.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
-            }
+  private void getData() {
+    Call<PostList> postList = ApiBloggerQuestionário.getService().getPostList();
+    postList.enqueue(new Callback<PostList>() {
+      @Override
+      public void onResponse(Call<PostList> call, Response<PostList> response) {
+        PostList list = response.body();
+        items.addAll(list.getItems());
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(new PostAdapter(questionario.this, list.getItems()));
+        Toast.makeText(questionario.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+      }
 
-            @Override
-            public void onFailure(Call<PostList> call, Throwable t) {
-                Toast.makeText(questionario.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
+      @Override
+      public void onFailure(Call<PostList> call, Throwable t) {
+        Toast.makeText(questionario.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
 
-            }
-        });
-    }
+      }
+    });
+  }
 }
 
 
@@ -110,5 +110,4 @@ public class questionario extends AppCompatActivity {
         items.addAll(list);
         adapter.notifyDataSetChanged();
     }*/
-
 

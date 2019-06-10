@@ -8,40 +8,40 @@ import java.util.List;
 
 public class PostList {
 
-    @SerializedName("kind")
-    @Expose
-    private String kind;
-    @SerializedName("items")
-    @Expose
-    private List<Item> items = null;
-    @SerializedName("etag")
-    @Expose
-    private String etag;
+  @SerializedName("kind")
+  @Expose
+  private String kind;
+  @SerializedName("items")
+  @Expose
+  private List<Item> items = null;
+  @SerializedName("etag")
+  @Expose
+  private String etag;
 
-    public String getKind() {
-        return kind;
-    }
+  public String getKind() {
+    return kind;
+  }
 
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
+  public void setKind(String kind) {
+    this.kind = kind;
+  }
 
-    public List<Item> getItems() {
+  public List<Item> getItems() {
 
-        return items;
-    }
+    return items;
+  }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
 
-    public String getEtag() {
-        return etag;
-    }
+  public String getEtag() {
+    return etag;
+  }
 
-    public void setEtag(String etag) {
-        this.etag = etag;
-    }
+  public void setEtag(String etag) {
+    this.etag = etag;
+  }
 
 
 

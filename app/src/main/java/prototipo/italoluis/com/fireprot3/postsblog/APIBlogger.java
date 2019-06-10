@@ -8,34 +8,34 @@ import retrofit2.http.Path;
 
 public class APIBlogger {
 
-    private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private static final String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts/";
+  private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+  private static final String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts/";
 
-    public static PostService postService = null;
+  public static PostService postService = null;
 
-    public static PostService getService(){
+  public static PostService getService(){
 
-        if(postService == null){
+    if(postService == null){
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+      Retrofit retrofit = new Retrofit.Builder()
+              .baseUrl(url)
+              .addConverterFactory(GsonConverterFactory.create())
+              .build();
 
-            postService = retrofit.create(PostService.class);
-        }
-        return postService;
+      postService = retrofit.create(PostService.class);
     }
+    return postService;
+  }
 
-    public interface PostService {
-        @GET("?key="+key)
-        retrofit2.Call<PostList> getPostList();
+  public interface PostService {
+    @GET("?key="+key)
+    retrofit2.Call<PostList> getPostList();
 
-        @GET("{postId}/?key="+key)
-        Call<Item> getPostById(@Path("postId") String id);
+    @GET("{postId}/?key="+key)
+    Call<Item> getPostById(@Path("postId") String id);
 
 
-    }
+  }
 
 
 

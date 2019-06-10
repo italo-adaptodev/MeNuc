@@ -21,103 +21,103 @@ import prototipo.italoluis.com.fireprot3.postsblog.Home;
 
 public class Login2 extends AppCompatActivity {
 
-    private Button loginB;
-    private ProgressBar LoginProgressB;
-    private EditText userlogin, usersenha;
-    private FirebaseAuth mAuth;
-    private Intent tabs;
-    Dialog dialogo;
+  private Button loginB;
+  private ProgressBar LoginProgressB;
+  private EditText userlogin, usersenha;
+  private FirebaseAuth mAuth;
+  private Intent tabs;
+  Dialog dialogo;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
-
-
-        loginB = findViewById(R.id.login_button);
-        LoginProgressB = findViewById(R.id.login_progressbar);
-        LoginProgressB.setVisibility(View.INVISIBLE);
-        userlogin = findViewById(R.id.login_email_space);
-        usersenha = findViewById(R.id.senha_space);
-        mAuth = FirebaseAuth.getInstance();
-        tabs = new Intent(this, Home.class);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_login2);
 
 
-
-
-        loginB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginB.setVisibility(View.INVISIBLE);
-                LoginProgressB.setVisibility(View.VISIBLE);
-
-                final String loginStr = userlogin.getText().toString();
-                final String senhaStr = usersenha.getText().toString();
-
-                if (loginStr.isEmpty() || senhaStr.isEmpty()){
-                    Toast.makeText(Login2.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
-                    loginB.setVisibility(View.VISIBLE);
-                    LoginProgressB.setVisibility(View.INVISIBLE);
-
-                }
-                else{
-                    singIn(loginStr,senhaStr);
-
-                }
-
-
-            }
-
-        });
-    }
+    loginB = findViewById(R.id.login_button);
+    LoginProgressB = findViewById(R.id.login_progressbar);
+    LoginProgressB.setVisibility(View.INVISIBLE);
+    userlogin = findViewById(R.id.login_email_space);
+    usersenha = findViewById(R.id.senha_space);
+    mAuth = FirebaseAuth.getInstance();
+    tabs = new Intent(this, Home.class);
 
 
 
-    private void singIn(String loginStr, String senhaStr) {
 
-        mAuth.signInWithEmailAndPassword(loginStr,senhaStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete( Task<AuthResult> task) {
+    loginB.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        loginB.setVisibility(View.INVISIBLE);
+        LoginProgressB.setVisibility(View.VISIBLE);
 
-                if (task.isSuccessful()){
-                    LoginProgressB.setVisibility(View.INVISIBLE);
-                    loginB.setVisibility(View.VISIBLE);
-                    updateUI();
-                }
-                else{
-                    loginB.setVisibility(View.VISIBLE);
-                    LoginProgressB.setVisibility(View.INVISIBLE);
-                    showMessage(task.getException().getMessage());
+        final String loginStr = userlogin.getText().toString();
+        final String senhaStr = usersenha.getText().toString();
 
-                }
-            }
-        });
+        if (loginStr.isEmpty() || senhaStr.isEmpty()){
+          Toast.makeText(Login2.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
+          loginB.setVisibility(View.VISIBLE);
+          LoginProgressB.setVisibility(View.INVISIBLE);
 
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-    }
-
-    private void updateUI() {
-
-        startActivity(tabs);
-        finish();
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        if (user != null) {
-            //user is already connected  so we need to redirect him to home page
-            updateUI();
+        }
+        else{
+          singIn(loginStr,senhaStr);
 
         }
 
+
+      }
+
+    });
+  }
+
+
+
+  private void singIn(String loginStr, String senhaStr) {
+
+    mAuth.signInWithEmailAndPassword(loginStr,senhaStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+      @Override
+      public void onComplete( Task<AuthResult> task) {
+
+        if (task.isSuccessful()){
+          LoginProgressB.setVisibility(View.INVISIBLE);
+          loginB.setVisibility(View.VISIBLE);
+          updateUI();
+        }
+        else{
+          loginB.setVisibility(View.VISIBLE);
+          LoginProgressB.setVisibility(View.INVISIBLE);
+          showMessage(task.getException().getMessage());
+
+        }
+      }
+    });
+
+  }
+
+  private void showMessage(String message) {
+    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+  }
+
+  private void updateUI() {
+
+    startActivity(tabs);
+    finish();
+
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    FirebaseUser user = mAuth.getCurrentUser();
+
+    if (user != null) {
+      //user is already connected  so we need to redirect him to home page
+      updateUI();
+
     }
+
+  }
 
 
 

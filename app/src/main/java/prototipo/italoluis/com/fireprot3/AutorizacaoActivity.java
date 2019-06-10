@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,7 +122,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                            @Override
                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                              Toast.makeText(AutorizacaoActivity.this, "erro", Toast.LENGTH_SHORT).show();
+                              // Log.e(TAG, "onCancelled", databaseError.toException());
 
                            }
                        });
