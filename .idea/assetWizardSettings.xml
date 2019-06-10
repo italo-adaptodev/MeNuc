@@ -174,8 +174,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="button_enviar" />
-                            <entry key="sourceFile" value="C:\Users\itlac\OneDrive\Pictures\icones\send.svg" />
+                            <entry key="outputName" value="ic_cancel" />
+                            <entry key="sourceFile" value="C:\Users\itlac\Pictures\icones\cancel.svg" />
                           </map>
                         </option>
                       </PersistentState>

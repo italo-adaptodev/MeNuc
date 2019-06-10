@@ -15,87 +15,166 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/onhold"
+            android:layout_width="199dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="end"
+            android:padding="-20sp"
+            android:text="Aguardando confirmação!"
+            android:textColor="#00A800"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <TextView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-20dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="Nome"
             android:textColor="#FF029E02" />
 
-        <TextView
-            android:id="@+id/nome_auth"
-            android:layout_width="299dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/arrendondado_textview"
-            android:fontFamily="sans-serif-smallcaps"
-            android:paddingLeft="10sp"
-            android:textColor="#000000"
-            android:textSize="17sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp">
+
+            <TextView
+                android:id="@+id/nome_auth"
+                android:layout_width="206dp"
+                android:layout_height="22dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="176dp"
+                android:layout_marginRight="176dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/arrendondado_textview"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="fill"
+                android:paddingLeft="10sp"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/accept_btn"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="top|end"
+                android:layout_marginStart="252dp"
+                android:layout_marginLeft="252dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginRight="52dp"
+                android:layout_marginBottom="0dp"
+                android:background="#00411919"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_checked"
+                />
+        </RelativeLayout>
 
 
         <TextView
             android:id="@+id/email_auth"
-            android:layout_width="289dp"
-            android:layout_height="wrap_content"
+            android:layout_width="190dp"
+            android:layout_height="22dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="182dp"
+            android:layout_marginRight="182dp"
+            android:layout_marginBottom="7dp"
             android:background="@drawable/arrendondado_textview"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-smallcaps"
+            android:gravity="fill"
             android:paddingLeft="10sp"
             android:text="Email do indicado"
             android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="3dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/indicado_por"
-            android:textColor="#FF029E02"
-            android:layout_marginStart="15dp" />
+            android:textSize="12sp" />
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp">
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp">
 
             <TextView
-                android:id="@+id/padrinho_auth"
-                android:layout_width="183dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/arrendondado_textview"
+                android:layout_width="150dp"
+                android:layout_height="26dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="228dp"
+                android:layout_marginRight="228dp"
+                android:layout_marginBottom="0dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:paddingStart="10sp"
-                android:paddingLeft="10sp"
-                android:text="@string/quem_indicou"
-                android:textColor="#000000"
-                android:textSize="17sp" />
+                android:lines="1"
+                android:text="@string/indicado_por"
+                android:textColor="#FF029E02"
+                android:gravity="bottom"/>
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="@string/autorizar"
-                android:textColor="#029E02"
-                android:textSize="17sp"
-                android:onClick="onCheckboxClicked"/>
+            <ImageButton
+                android:id="@+id/denied_btn"
+                android:layout_width="87dp"
+                android:layout_height="29dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="253dp"
+                android:layout_marginLeft="253dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginRight="52dp"
+                android:layout_marginBottom="0dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_cancel" />
+        </RelativeLayout>
 
-        </LinearLayout>
+
+        <TextView
+            android:id="@+id/padrinho_auth"
+            android:layout_width="200dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/arrendondado_textview"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="fill"
+            android:paddingStart="10sp"
+            android:paddingLeft="10sp"
+            android:text="@string/quem_indicou"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+
 
     </LinearLayout>
 

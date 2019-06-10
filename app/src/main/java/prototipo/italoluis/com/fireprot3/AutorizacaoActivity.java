@@ -15,8 +15,12 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -61,11 +65,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull final FirebaseViewHolder holder, final int position, @NonNull FirebaseDataAuth model) {
+            protected void onBindViewHolder(@NonNull final FirebaseViewHolder holder, final int position, @NonNull final FirebaseDataAuth model) {
                 holder.txt_nomeIndicado.setText(model.getNomeIndicado());
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
                 holder.txt_padrinho.setText(model.getNomePadrinho());
-                bind(holder.getAdapterPosition(), holder.checkBox);
+                /*bind(holder.getAdapterPosition(), holder.checkBox);
                 provEmail = model.getEmailIndicado();
                 emailAuth = provEmail + " " + emailAuth;
 
@@ -91,8 +95,38 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
+                */
+                holder.accept.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.accept.setEnabled(false);
+                        holder.accept.setVisibility(View.INVISIBLE);
+                        holder.deny.setEnabled(false);
+                        holder.deny.setVisibility(View.INVISIBLE);
+                        holder.onHold.setVisibility(View.VISIBLE);
+                    }
+                });
 
+                holder.deny.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       Query exclude =  databaseReference.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                       exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                               for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                                   dataSnapshot1.getRef().removeValue();
+                               }
+                           }
 
+                           @Override
+                           public void onCancelled(@NonNull DatabaseError databaseError) {
+                              Toast.makeText(AutorizacaoActivity.this, "erro", Toast.LENGTH_SHORT).show();
+
+                           }
+                       });
+                    }
+                });
 
 
 
@@ -129,6 +163,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 
 
