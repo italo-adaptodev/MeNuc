@@ -65,7 +65,8 @@
                 android:gravity="fill"
                 android:paddingLeft="10sp"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:autoSizeTextType="uniform"/>
 
             <ImageButton
                 android:id="@+id/accept_btn"
@@ -108,7 +109,8 @@
             android:paddingLeft="10sp"
             android:text="Email do indicado"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:autoSizeTextType="uniform"/>
 
 
         <RelativeLayout
@@ -172,7 +174,8 @@
             android:paddingLeft="10sp"
             android:text="@string/quem_indicou"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:autoSizeTextType="uniform"/>
 
 
 

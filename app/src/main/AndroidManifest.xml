@@ -53,4 +53,5 @@
         <activity android:name=".Login2" />
     </application>
 
+
 </manifest>

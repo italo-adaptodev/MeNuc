@@ -23,12 +23,14 @@
         android:padding="10sp"
         android:text="@string/expli_invite"
         android:textColor="#00a800"
-        app:fontFamily="sans-serif-smallcaps"
+        android:textSize="17sp"
+        app:fontFamily="@font/font_akuma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.246"
+        android:autoSizeTextType="uniform"/>
 
     <TextView
         android:id="@+id/nome_invite"
@@ -45,13 +47,13 @@
         android:textColor="#00a800"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:fontFamily="sans-serif-smallcaps"
+        app:fontFamily="@font/font_akuma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/indicado2"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convite_expli"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
         android:id="@+id/email_invite"
@@ -68,13 +70,13 @@
         android:textColor="#00a800"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:fontFamily="sans-serif-smallcaps"
+        app:fontFamily="@font/font_akuma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convite_expli"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <EditText
         android:id="@+id/indicado2"
@@ -155,12 +157,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:gravity="center"
         android:text="@string/aviso_hint"
         android:textColor=" #FA410C"
-        app:fontFamily="sans-serif-smallcaps"
+        android:textSize="17sp"
+        app:fontFamily="@font/font_akuma"
         app:layout_constraintBottom_toTopOf="@+id/convite_expli"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

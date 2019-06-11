@@ -46,6 +46,7 @@ public class Invite extends AppCompatActivity {
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 indicados.setNomeIndicado(nome.getText().toString().trim());
                 indicados.setEmailIndicado(email.getText().toString().trim());
                 indicados.setNomePadrinho(receive);

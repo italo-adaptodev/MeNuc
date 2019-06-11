@@ -6,12 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -35,6 +35,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
     private DatabaseReference databaseReference;
     SharedPreferences pref;
+    private ImageButton send_author;
 
     String emailAuth;
     String provEmail;
@@ -63,6 +64,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Indicados");
         databaseReference.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(databaseReference, FirebaseDataAuth.class).build();
+        send_author = findViewById(R.id.send_author);
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
@@ -70,22 +72,18 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 holder.txt_nomeIndicado.setText(model.getNomeIndicado());
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
                 holder.txt_padrinho.setText(model.getNomePadrinho());
-                /*bind(holder.getAdapterPosition(), holder.checkBox);
                 provEmail = model.getEmailIndicado();
                 emailAuth = provEmail + " " + emailAuth;
 
 
 
-                holder.checkBox.setOnClickListener(new View.OnClickListener() {
+               send_author.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (itemStateArray.get(holder.getAdapterPosition(), false)) {
-                            holder.checkBox.setChecked(false);
-                            itemStateArray.put(holder.getAdapterPosition(), false);
+
                             pref.edit().clear().apply();
                         } else {
-                            holder.checkBox.setChecked(true);
-                            itemStateArray.put(holder.getAdapterPosition(), true);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("Lista_email", emailAuth);
                             editor.apply();
@@ -96,7 +94,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
-                */
+
                 holder.accept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
