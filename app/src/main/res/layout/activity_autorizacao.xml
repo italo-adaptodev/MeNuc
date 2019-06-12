@@ -29,28 +29,30 @@
   <android.support.v7.widget.RecyclerView
       android:id="@+id/lista_autorizacao"
       android:layout_width="match_parent"
-      android:layout_height="528dp">
+      android:layout_height="401dp">
 
   </android.support.v7.widget.RecyclerView>
 
-  <RelativeLayout
-      android:layout_width="411dp"
+  <LinearLayout
+      android:layout_width="wrap_content"
       android:layout_height="134dp"
-      android:layout_gravity="end|bottom|fill_vertical">
+      android:layout_gravity="end|bottom|fill_vertical"
+      android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/send_author"
         android:layout_width="132dp"
         android:layout_height="95dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="false"
+        android:layout_margin="-20dp"
         android:layout_marginStart="140dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="140dp"
         android:layout_marginRight="140dp"
         android:layout_marginBottom="23dp"
@@ -59,7 +61,7 @@
         android:scaleType="fitCenter"
         android:tint="#00FFFFFF"
         app:srcCompat="@drawable/button_enviar" />
-  </RelativeLayout>
+  </LinearLayout>
 
 
 </LinearLayout>

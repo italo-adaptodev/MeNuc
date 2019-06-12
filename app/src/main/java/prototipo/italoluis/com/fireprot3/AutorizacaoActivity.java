@@ -36,6 +36,9 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     SharedPreferences pref;
     private ImageButton send_author;
+    NewAutores novos_autores;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference = database.getReference().child("Autores");
 
     String emailAuth;
     String provEmail;
