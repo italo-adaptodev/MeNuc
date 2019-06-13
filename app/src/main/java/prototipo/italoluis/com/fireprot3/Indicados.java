@@ -6,8 +6,10 @@ public class Indicados {
     private String emailIndicado;
     private String nomePadrinho;
     private String emailPadrinho;
+    private boolean isAutor;
 
     public Indicados() {
+        this.isAutor = false;
     }
 
     public String getNomeIndicado() {
@@ -41,4 +43,14 @@ public class Indicados {
     public void setEmailPadrinho(String emailPadrinho) {
         this.emailPadrinho = emailPadrinho;
     }
+
+    public boolean isAutor() {
+        return isAutor;
+    }
+
+    public void setAutor(boolean autor) {
+        isAutor = autor;
+    }
+
+
 }

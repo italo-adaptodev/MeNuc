@@ -3,14 +3,13 @@ package prototipo.italoluis.com.fireprot3;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class FirebaseViewHolder extends RecyclerView.ViewHolder {
 
     public TextView txt_nomeIndicado, txt_emailIndicado, txt_padrinho, onHold;
-    public CheckBox checkBox;
+
     public ImageButton accept, deny;
 
 

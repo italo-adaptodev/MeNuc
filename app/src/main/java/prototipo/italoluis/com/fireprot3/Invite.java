@@ -19,7 +19,7 @@ public class Invite extends AppCompatActivity {
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference = database.getReference().child("Indicados");
+    DatabaseReference reference = database.getReference().child("Indicados&Autores");
     Indicados indicados;
     EditText nome, email;
     ImageButton button_send;

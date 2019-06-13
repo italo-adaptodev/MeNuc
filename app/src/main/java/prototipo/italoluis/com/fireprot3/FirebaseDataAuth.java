@@ -5,10 +5,12 @@ public class FirebaseDataAuth {
     String emailIndicado, nomeIndicado, nomePadrinho;
 
 
+
     public FirebaseDataAuth(String emailIndicado, String nomeIndicado, String nomePadrinho) {
         this.emailIndicado = emailIndicado;
         this.nomeIndicado = nomeIndicado;
         this.nomePadrinho = nomePadrinho;
+
 
     }
 

@@ -10,8 +10,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,15 +32,12 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
-    private DatabaseReference databaseReference;
+    private DatabaseReference dbRefIndicados;
     SharedPreferences pref;
-    private ImageButton send_author;
-    NewAutores novos_autores;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference = database.getReference().child("Autores");
-
+    private Button send_author;
     String emailAuth;
     String provEmail;
+
 
     @Override
     protected void onStart() {
@@ -64,10 +60,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Indicados");
-        databaseReference.keepSynced(true);
-        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(databaseReference, FirebaseDataAuth.class).build();
+        dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados");
+        dbRefIndicados.keepSynced(true);
+        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados, FirebaseDataAuth.class).build();
         send_author = findViewById(R.id.send_author);
+
+
+
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
@@ -78,58 +77,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 provEmail = model.getEmailIndicado();
                 emailAuth = provEmail + " " + emailAuth;
 
+               send_authors(holder);
 
+               accept(holder);
 
-               send_author.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (itemStateArray.get(holder.getAdapterPosition(), false)) {
-
-                            pref.edit().clear().apply();
-                        } else {
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("Lista_email", emailAuth);
-                            editor.apply();
-
-                            showText(emailAuth);
-                        }
-
-
-                    }
-                });
-
-                holder.accept.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.accept.setEnabled(false);
-                        holder.accept.setVisibility(View.INVISIBLE);
-                        holder.deny.setEnabled(false);
-                        holder.deny.setVisibility(View.INVISIBLE);
-                        holder.onHold.setVisibility(View.VISIBLE);
-                    }
-                });
-
-                holder.deny.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                       Query exclude =  databaseReference.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
-                       exclude.addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                               for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                                   dataSnapshot1.getRef().removeValue();
-                               }
-                           }
-
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError databaseError) {
-                              // Log.e(TAG, "onCancelled", databaseError.toException());
-
-                           }
-                       });
-                    }
-                });
-
+               deny(holder, model);
 
 
 
@@ -156,14 +108,79 @@ public class AutorizacaoActivity extends AppCompatActivity {
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
     }
 
-    void bind(int position, CheckBox checkBox) {
-        // use the sparse boolean array to check
-        if (!itemStateArray.get(position, false)) {
-            checkBox.setChecked(false);}
-        else {
-            checkBox.setChecked(true);
-        }
+    void send_authors(final FirebaseViewHolder holder){
+        send_author.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemStateArray.get(holder.getAdapterPosition(), false)) {
+                    pref.edit().clear().apply();
+                } else {
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("Lista_email", emailAuth);
+                    editor.apply();
+                    showText(pref.getString("Lista_email", ""));
+                }
 
+
+            }
+        });
+    }
+
+    void accept(@NonNull final FirebaseViewHolder holder){
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.accept.setEnabled(false);
+                holder.accept.setVisibility(View.INVISIBLE);
+                holder.deny.setEnabled(false);
+                holder.deny.setVisibility(View.INVISIBLE);
+                holder.onHold.setVisibility(View.VISIBLE);
+
+                Query update =  dbRefIndicados.orderByChild("nomeIndicado");
+                update.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            dataSnapshot1.getRef().child("autor").setValue("true");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Log.e(TAG, "onCancelled", databaseError.toException());
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
+    }
+
+    void deny(@NonNull final FirebaseViewHolder holder, @NonNull final FirebaseDataAuth model){
+        holder.deny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            dataSnapshot1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Log.e(TAG, "onCancelled", databaseError.toException());
+
+                    }
+                });
+            }
+        });
     }
 
 
