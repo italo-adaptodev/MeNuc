@@ -11,7 +11,6 @@ public class FirebaseDataAuth {
         this.nomeIndicado = nomeIndicado;
         this.nomePadrinho = nomePadrinho;
 
-
     }
 
     public FirebaseDataAuth() {

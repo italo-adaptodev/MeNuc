@@ -1,5 +1,7 @@
 package prototipo.italoluis.com.fireprot3;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -60,10 +62,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
-        dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados");
+        dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
         dbRefIndicados.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados, FirebaseDataAuth.class).build();
         send_author = findViewById(R.id.send_author);
+        Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
+        final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
+
 
 
 
@@ -78,8 +83,10 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 emailAuth = provEmail + " " + emailAuth;
 
                send_authors(holder);
+                ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
+                clipboardManager.setPrimaryClip(clipData);
 
-               accept(holder);
+               accept(holder, model);
 
                deny(holder, model);
 
@@ -112,7 +119,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         send_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (itemStateArray.get(holder.getAdapterPosition(), false)) {
+                if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
                     pref.edit().clear().apply();
                 } else {
                     SharedPreferences.Editor editor = pref.edit();
@@ -122,11 +129,14 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 }
 
 
+
+
+
             }
         });
     }
 
-    void accept(@NonNull final FirebaseViewHolder holder){
+    void accept(@NonNull final FirebaseViewHolder holder, @NonNull final FirebaseDataAuth model){
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,12 +146,12 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 holder.deny.setVisibility(View.INVISIBLE);
                 holder.onHold.setVisibility(View.VISIBLE);
 
-                Query update =  dbRefIndicados.orderByChild("nomeIndicado");
+                Query update =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
                 update.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            dataSnapshot1.getRef().child("autor").setValue("true");
+                            dataSnapshot1.getRef().child("autor").setValue(true);
                         }
                     }
 
@@ -151,6 +161,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
+
+
 
 
 

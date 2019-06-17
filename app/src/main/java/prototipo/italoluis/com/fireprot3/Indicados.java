@@ -9,7 +9,7 @@ public class Indicados {
     private boolean isAutor;
 
     public Indicados() {
-        this.isAutor = false;
+
     }
 
     public String getNomeIndicado() {

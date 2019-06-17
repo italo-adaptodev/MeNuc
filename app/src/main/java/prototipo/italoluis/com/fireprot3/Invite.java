@@ -51,6 +51,7 @@ public class Invite extends AppCompatActivity {
                 indicados.setEmailIndicado(email.getText().toString().trim());
                 indicados.setNomePadrinho(receive);
                 indicados.setEmailPadrinho(user.getEmail());
+                indicados.setAutor(false);
 
                 //reference.push().setValue(indicados);
                 reference.push().setValue(indicados);
