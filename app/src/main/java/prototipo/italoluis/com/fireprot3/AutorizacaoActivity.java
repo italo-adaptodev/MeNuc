@@ -2,9 +2,11 @@ package prototipo.italoluis.com.fireprot3;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +21,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -34,7 +35,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
-    private DatabaseReference dbRefIndicados;
+    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
     SharedPreferences pref;
     private Button send_author;
     String emailAuth;
@@ -62,16 +63,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
-        dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
         dbRefIndicados.keepSynced(true);
-        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados, FirebaseDataAuth.class).build();
+        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados.orderByChild("autor").equalTo(false), FirebaseDataAuth.class).build();
         send_author = findViewById(R.id.send_author);
         Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
         final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
-
-
-
-
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
@@ -80,11 +76,14 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
                 holder.txt_padrinho.setText(model.getNomePadrinho());
                 provEmail = model.getEmailIndicado();
-                emailAuth = provEmail + " " + emailAuth;
 
-               send_authors(holder);
-                ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
-                clipboardManager.setPrimaryClip(clipData);
+                if(emailAuth == null){
+                    emailAuth = " " + provEmail;
+                }else {
+                    emailAuth = provEmail + " " + emailAuth;
+                }
+               send_authors(holder, clipboardManager);
+
 
                accept(holder, model);
 
@@ -105,20 +104,18 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-
-
-
-
     }
 
     public void showText( String email){
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
     }
 
-    void send_authors(final FirebaseViewHolder holder){
+    void send_authors(final FirebaseViewHolder holder,final  ClipboardManager clipboardManager){
+
         send_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
                     pref.edit().clear().apply();
                 } else {
@@ -128,18 +125,59 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     showText(pref.getString("Lista_email", ""));
                 }
 
-
-
-
+                ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
+                clipboardManager.setPrimaryClip(clipData);
 
             }
         });
+
+
     }
 
     void accept(@NonNull final FirebaseViewHolder holder, @NonNull final FirebaseDataAuth model){
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                showAlertDialogAccept(v, holder, model);
+
+            }
+        });
+    }
+
+    void deny(@NonNull final FirebaseViewHolder holder, @NonNull final FirebaseDataAuth model){
+        holder.deny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialogDeny(v, holder, model);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData data = ClipData.newPlainText("", "");
+        clipboardManager.setPrimaryClip(data);
+
+
+    }
+
+    public void showAlertDialogAccept(View view, final FirebaseViewHolder holder,@NonNull final FirebaseDataAuth model) {
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("ATENÇÃO!");
+        builder.setMessage("Você tem certeza que deseja aceitar esta solicitação?");
+        // add a button
+        builder.setPositiveButton("Prosseguir",new DialogInterface
+                .OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog,
+                                int which)
+            {
                 holder.accept.setEnabled(false);
                 holder.accept.setVisibility(View.INVISIBLE);
                 holder.deny.setEnabled(false);
@@ -158,24 +196,33 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         // Log.e(TAG, "onCancelled", databaseError.toException());
-
                     }
                 });
-
-
-
-
-
             }
         });
 
-
+        builder.setNegativeButton("Voltar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
-    void deny(@NonNull final FirebaseViewHolder holder, @NonNull final FirebaseDataAuth model){
-        holder.deny.setOnClickListener(new View.OnClickListener() {
+    public void showAlertDialogDeny(View view, final FirebaseViewHolder holder,@NonNull final FirebaseDataAuth model) {
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("ATENÇÃO!");
+        builder.setMessage("Você tem certeza que deseja negar esta solicitação?");
+        // add a button
+        builder.setNegativeButton("Entendido!",new DialogInterface
+                .OnClickListener() {
+
             @Override
-            public void onClick(View v) {
+            public void onClick(DialogInterface dialog,
+                                int which)
+            {
                 Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
                 exclude.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -191,12 +238,14 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
+
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
-
-
-
 }
+
+

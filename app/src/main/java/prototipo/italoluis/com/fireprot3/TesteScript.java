@@ -21,9 +21,10 @@ public class TesteScript extends AppCompatActivity {
   private Context mContext;
   private Activity mActivity;
   private FloatingActionButton buttonback;
-
+  public String url;
   private RelativeLayout mRootLayout;
   private WebView mWebView;
+
 
 
   @Override
@@ -50,7 +51,7 @@ public class TesteScript extends AppCompatActivity {
     });
 
     // The target url to surf using web view
-    String url = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
+
 
         /*
             WebView
@@ -61,6 +62,8 @@ public class TesteScript extends AppCompatActivity {
                 perform text searches and more.
         */
     // Load the url in web view
+
+
     mWebView.loadUrl(url);
 
     // Enable java script on web view
@@ -95,6 +98,8 @@ public class TesteScript extends AppCompatActivity {
       }
     });
   }
+
+
 
   @Override
   public void onBackPressed() {

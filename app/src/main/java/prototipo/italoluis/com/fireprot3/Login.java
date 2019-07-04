@@ -28,6 +28,9 @@ public class Login extends AppCompatActivity {
   Button criarlogin;
   TextView textologin;
   Button logoutbtn;
+  String url = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
+  TesteScript webview = new TesteScript();
+
 
 
   private FirebaseAuth mAuth;
@@ -126,7 +129,8 @@ public class Login extends AppCompatActivity {
 
         // When the user click yes button
         // then app will close
-        Intent intent = new Intent(Login.this, TesteScript.class);
+        webview.url = url;
+        Intent intent = new Intent(Login.this, TesteScript.class );
         startActivity(intent);
       }
     });
