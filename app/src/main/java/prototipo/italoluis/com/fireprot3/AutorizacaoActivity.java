@@ -3,6 +3,7 @@ package prototipo.italoluis.com.fireprot3;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -111,25 +112,53 @@ public class AutorizacaoActivity extends AppCompatActivity {
     }
 
     void send_authors(final FirebaseViewHolder holder,final  ClipboardManager clipboardManager){
-
         send_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AutorizacaoActivity.this);
+                builder.setTitle("ATENÇÃO!");
+                builder.setMessage("Ao clicar em prosseguir, você será redirecionado para enviar convite para as autorizações aceitas. Os emails " +
+                        "das solicitações já foram copiados. Cole-os no local indicado na próxima tela. Deseja continuar?");
+                // add a button
+                builder.setPositiveButton("Sim",new DialogInterface
+                        .OnClickListener() {
 
-                if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
-                    pref.edit().clear().apply();
-                } else {
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("Lista_email", emailAuth);
-                    editor.apply();
-                    showText(pref.getString("Lista_email", ""));
-                }
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which)
+                    {
+                        if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
+                            pref.edit().clear().apply();
+                        } else {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("Lista_email", emailAuth);
+                            editor.apply();
+                            showText(pref.getString("Lista_email", ""));
+                        }
 
-                ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
-                clipboardManager.setPrimaryClip(clipData);
+                        ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
+                        clipboardManager.setPrimaryClip(clipData);
+
+                        Intent intent_webview = new Intent(AutorizacaoActivity.this, TesteScript.class);
+                        String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
+                        intent_webview.putExtra("url", url);
+                        startActivity(intent_webview);
+
+
+                    }
+                });
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             }
         });
+
+
 
 
     }
@@ -180,8 +209,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
             {
                 holder.accept.setEnabled(false);
                 holder.accept.setVisibility(View.INVISIBLE);
-                holder.deny.setEnabled(false);
-                holder.deny.setVisibility(View.INVISIBLE);
                 holder.onHold.setVisibility(View.VISIBLE);
 
                 Query update =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
@@ -216,7 +243,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         builder.setTitle("ATENÇÃO!");
         builder.setMessage("Você tem certeza que deseja negar esta solicitação?");
         // add a button
-        builder.setNegativeButton("Entendido!",new DialogInterface
+        builder.setPositiveButton("Prosseguir",new DialogInterface
                 .OnClickListener() {
 
             @Override
@@ -239,6 +266,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+        builder.setNegativeButton("Voltar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
             }
         });
         AlertDialog dialog = builder.create();

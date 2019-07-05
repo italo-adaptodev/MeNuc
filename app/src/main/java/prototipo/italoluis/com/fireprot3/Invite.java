@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,19 +45,30 @@ public class Invite extends AppCompatActivity {
         email = findViewById(R.id.indicado2);
         button_send = findViewById(R.id.btn_send);
         indicados = new Indicados();
+
+
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                indicados.setNomeIndicado(nome.getText().toString().trim());
-                indicados.setEmailIndicado(email.getText().toString().trim());
-                indicados.setNomePadrinho(receive);
-                indicados.setEmailPadrinho(user.getEmail());
-                indicados.setAutor(false);
+                if(!isEmailValid(email.getText().toString().trim()) && !TextUtils.isEmpty(nome.getText().toString())){
+                    Toast.makeText(Invite.this, "Email inválido!", Toast.LENGTH_LONG).show();
+                }
+                else if(TextUtils.isEmpty(nome.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
+                    Toast.makeText(Invite.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+                }
+                else {
 
-                //reference.push().setValue(indicados);
-                reference.push().setValue(indicados);
-                Toast.makeText(Invite.this, "ok!",Toast.LENGTH_LONG).show();
+                    indicados.setNomeIndicado(nome.getText().toString().trim());
+                    indicados.setEmailIndicado(email.getText().toString().trim());
+                    indicados.setNomePadrinho(receive);
+                    indicados.setEmailPadrinho(user.getEmail());
+                    indicados.setAutor(false);
+
+                    //reference.push().setValue(indicados);
+                    reference.push().setValue(indicados);
+                    Toast.makeText(Invite.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -66,5 +79,9 @@ public class Invite extends AppCompatActivity {
 
 
 
+    }
+
+    boolean isEmailValid(CharSequence email){
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

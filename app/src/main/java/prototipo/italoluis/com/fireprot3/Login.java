@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
   TextView textologin;
   Button logoutbtn;
   String url = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
-  TesteScript webview = new TesteScript();
+
 
 
 
@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
         final  String password = senha.getText().toString();
         final String username = nome.getText().toString();
 
-        saveusername(username);
+        saveUsernameEmail(username, userEmail);
 
         if(!TextUtils.isEmpty(username) || !TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(password)){
 
@@ -129,8 +129,9 @@ public class Login extends AppCompatActivity {
 
         // When the user click yes button
         // then app will close
-        webview.url = url;
+
         Intent intent = new Intent(Login.this, TesteScript.class );
+        intent.putExtra("url", url);
         startActivity(intent);
       }
     });
@@ -138,10 +139,11 @@ public class Login extends AppCompatActivity {
     dialog.show();
   }
 
-  public void saveusername(String user){
+  public void saveUsernameEmail(String user, String email_user){
     SharedPreferences preferences = getSharedPreferences("prototipo.italoluis.com.fireprot3", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString("nome_usuario", user);
+    editor.putString("email_usuario", email_user);
     editor.commit();
 
   }

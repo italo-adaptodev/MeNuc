@@ -7,12 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import prototipo.italoluis.com.fireprot3.postsblog.Home;
 
@@ -22,7 +19,7 @@ public class TesteScript extends AppCompatActivity {
   private Activity mActivity;
   private FloatingActionButton buttonback;
   public String url;
-  private RelativeLayout mRootLayout;
+
   private WebView mWebView;
 
 
@@ -32,23 +29,17 @@ public class TesteScript extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_teste_script);
 
-    Toast.makeText(this, "Ao terminar, clique em enviar e clique em retornar", Toast.LENGTH_LONG).show();
+
+
 
     // Get the application context
     mContext = getApplicationContext();
     mActivity = this;
 
-    // Get the widget reference from xml layout
-    mRootLayout = findViewById(R.id.root_layout);
+
     mWebView = findViewById(R.id.web_view);
 
-    buttonback.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(TesteScript.this, Home.class);
-        startActivity(intent);
-      }
-    });
+
 
     // The target url to surf using web view
 
@@ -63,7 +54,8 @@ public class TesteScript extends AppCompatActivity {
         */
     // Load the url in web view
 
-
+    Intent intent_origin = getIntent();
+    url = intent_origin.getStringExtra("url");
     mWebView.loadUrl(url);
 
     // Enable java script on web view

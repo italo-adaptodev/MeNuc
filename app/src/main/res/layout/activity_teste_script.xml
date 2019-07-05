@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,30 +13,20 @@
 
     <WebView
         android:id="@+id/web_view"
-        android:layout_width="423dp"
-        android:layout_height="764dp"
-        android:layout_weight="1"
-        android:visibility="visible">
-
-    </WebView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="#00a800"
-        android:clickable="true"
-        android:elevation="16dp"
-        android:focusable="true"
         android:visibility="visible"
-        app:fabSize="normal"
-        app:maxImageSize="50dp"
-        app:pressedTranslationZ="12dp"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </WebView>
+
+</android.support.constraint.ConstraintLayout>

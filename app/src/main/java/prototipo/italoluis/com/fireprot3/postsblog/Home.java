@@ -34,6 +34,7 @@ public class Home extends AppCompatActivity {
   private Animation fab_open, fab_close, fab_clock, fab_anticlock;
   TextView txt_quest, txt_invite, txt_author;
 
+
   Boolean isOpen = false;
 
   RecyclerView recyclerView;
@@ -93,6 +94,8 @@ public class Home extends AppCompatActivity {
     fab3_author.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+
         Intent intent = new Intent(Home.this, AutorizacaoActivity.class);
         startActivity(intent);
       }
@@ -100,13 +103,7 @@ public class Home extends AppCompatActivity {
 
 
 
-
-
-
-
   }
-
-
 
   private void getData(){
     Call<PostList> postList = APIBlogger.getService().getPostList();
