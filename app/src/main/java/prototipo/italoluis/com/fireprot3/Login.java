@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity {
 
 
 
+
   private FirebaseAuth mAuth;
 
 
@@ -116,8 +117,9 @@ public class Login extends AppCompatActivity {
   public void showAlertDialogButtonClicked(View view) {
     // setup the alert builder
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Novidade!");
-    builder.setMessage("Agora você tem acesso a uma lista de questionários! Basta clicar no ícone no canto inferior direito da tela.");
+    builder.setTitle("Seja bem vindo!!");
+    builder.setMessage("Você agora será direcionado para um questionário inicial. " +
+            "Por favor, preencha o questionário, depois é só clicar para ser direcionado a tela incial");
     // add a button
     builder.setPositiveButton("Entendido!",new DialogInterface
             .OnClickListener() {

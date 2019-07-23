@@ -26,27 +26,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home extends AppCompatActivity {
+public class QuestionariosActivity extends AppCompatActivity {
 
   private SwipeRefreshLayout swipeContainer;
 
-  private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author;
+  FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author;
   private Animation fab_open, fab_close, fab_clock, fab_anticlock;
-  TextView txt_quest, txt_invite, txt_author;
-
-
-  Boolean isOpen = false;
-
   RecyclerView recyclerView;
   LinearLayoutManager manager;
-  prototipo.italoluis.com.fireprot3.PostAdapter adapter;
+  PostAdapter adapter;
   List<Item> items = new ArrayList<>();
-  Boolean Scroll = false;
-  int numberItem, Itemtotal, scrollItem;
+  TextView txt_quest, txt_invite, txt_author;
   AsyncHttpClient client = new AsyncHttpClient();
-  Author autor = new Author();
+  Boolean isOpen = false;
   TextView receive;
-
 
 
   @Override
@@ -58,10 +51,9 @@ public class Home extends AppCompatActivity {
     manager = new LinearLayoutManager(this);
     adapter = new PostAdapter(this, items);
     recyclerView.setAdapter(adapter);
-    final Boolean Scroll = false;
-    int numberItem, Itemtotal, scrollItem;
     receive = findViewById(R.id.receive);
     receive.setText(getIntent().getStringExtra("valor"));
+
 
     fab_main = findViewById(R.id.fabback);
     fab1_quest = findViewById(R.id.fab1);
@@ -76,19 +68,16 @@ public class Home extends AppCompatActivity {
     txt_invite =  findViewById(R.id.txt_indicacao);
     txt_author =  findViewById(R.id.txt_autores);
 
+    txt_quest.setText("Inicio");
 
 
-
-
-
-    getData();
     getFabMain();
+    getData();
 
     fab1_quest.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(Home.this, QuestionariosActivity.class);
-        intent.putExtra("valor", receive.getText().toString());
+        Intent intent = new Intent(QuestionariosActivity.this, Home.class);
         startActivity(intent);
       }
     });
@@ -96,7 +85,7 @@ public class Home extends AppCompatActivity {
     fab2_invite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(Home.this, Invite.class);
+        Intent intent = new Intent(QuestionariosActivity.this, Invite.class);
         intent.putExtra("valor", receive.getText().toString());
         startActivity(intent);
       }
@@ -107,34 +96,27 @@ public class Home extends AppCompatActivity {
       public void onClick(View v) {
 
 
-        Intent intent = new Intent(Home.this, AutorizacaoActivity.class);
+        Intent intent = new Intent(QuestionariosActivity.this, AutorizacaoActivity.class);
         startActivity(intent);
       }
     });
-
-
-
   }
 
-  private void getData(){
-    Call<PostList> postList = APIBlogger.getService().getPostList();
+  private void getData() {
+    Call<PostList> postList = ApiBloggerQuestionário.getService().getPostList();
     postList.enqueue(new Callback<PostList>() {
-
-
-
       @Override
       public void onResponse(Call<PostList> call, Response<PostList> response) {
         PostList list = response.body();
         items.addAll(list.getItems());
         adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(new prototipo.italoluis.com.fireprot3.PostAdapter(Home.this, list.getItems()));
-        Toast.makeText(Home.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+        recyclerView.setAdapter(new PostAdapter(QuestionariosActivity.this, list.getItems()));
+        Toast.makeText(QuestionariosActivity.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
       }
-
 
       @Override
       public void onFailure(Call<PostList> call, Throwable t) {
-        Toast.makeText(Home.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(QuestionariosActivity.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
 
       }
     });
@@ -176,8 +158,6 @@ public class Home extends AppCompatActivity {
       }
     });
   }
-
-
 }
 
 
