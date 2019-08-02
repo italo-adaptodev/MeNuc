@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.postsblog;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import prototipo.italoluis.com.fireprot3.R;
 
 public class postDetalhe extends AppCompatActivity {
 

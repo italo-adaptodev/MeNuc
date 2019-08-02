@@ -17,7 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Invite extends AppCompatActivity {
+import prototipo.italoluis.com.fireprot3.Models.Indicados;
+
+public class SendInviteActivity extends AppCompatActivity {
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -52,10 +54,10 @@ public class Invite extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(!isEmailValid(email.getText().toString().trim()) && !TextUtils.isEmpty(nome.getText().toString())){
-                    Toast.makeText(Invite.this, "Email inválido!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SendInviteActivity.this, "Email inválido!", Toast.LENGTH_LONG).show();
                 }
                 else if(TextUtils.isEmpty(nome.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
-                    Toast.makeText(Invite.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SendInviteActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
@@ -66,7 +68,7 @@ public class Invite extends AppCompatActivity {
 
                     //reference.push().setValue(indicados);
                     reference.push().setValue(indicados);
-                    Toast.makeText(Invite.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SendInviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
                 }
             }
         });

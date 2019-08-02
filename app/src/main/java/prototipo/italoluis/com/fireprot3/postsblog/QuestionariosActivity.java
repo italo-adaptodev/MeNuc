@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
-import prototipo.italoluis.com.fireprot3.Invite;
-import prototipo.italoluis.com.fireprot3.PostAdapter;
+import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import prototipo.italoluis.com.fireprot3.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,7 +84,7 @@ public class QuestionariosActivity extends AppCompatActivity {
     fab2_invite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(QuestionariosActivity.this, Invite.class);
+        Intent intent = new Intent(QuestionariosActivity.this, SendInviteActivity.class);
         intent.putExtra("valor", receive.getText().toString());
         startActivity(intent);
       }

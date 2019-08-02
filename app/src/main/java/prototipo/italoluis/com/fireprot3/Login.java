@@ -132,7 +132,7 @@ public class Login extends AppCompatActivity {
         // When the user click yes button
         // then app will close
 
-        Intent intent = new Intent(Login.this, TesteScript.class );
+        Intent intent = new Intent(Login.this, WebViewConfig.class );
         intent.putExtra("url", url);
         startActivity(intent);
       }

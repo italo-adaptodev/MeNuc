@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.postsblog;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import org.jsoup.select.Elements;
 
 import java.util.List;
 
-import prototipo.italoluis.com.fireprot3.postsblog.Item;
+import prototipo.italoluis.com.fireprot3.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 

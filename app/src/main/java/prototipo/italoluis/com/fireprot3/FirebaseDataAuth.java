@@ -2,14 +2,14 @@ package prototipo.italoluis.com.fireprot3;
 
 public class FirebaseDataAuth {
 
-    String emailIndicado, nomeIndicado, nomePadrinho;
+    String emailIndicado, nomeIndicado, emailPadrinho;
 
 
 
-    public FirebaseDataAuth(String emailIndicado, String nomeIndicado, String nomePadrinho) {
+    public FirebaseDataAuth(String emailIndicado, String nomeIndicado, String emailPadrinho) {
         this.emailIndicado = emailIndicado;
         this.nomeIndicado = nomeIndicado;
-        this.nomePadrinho = nomePadrinho;
+        this.emailPadrinho = emailPadrinho;
 
     }
 
@@ -20,25 +20,19 @@ public class FirebaseDataAuth {
         return emailIndicado;
     }
 
-    public void setEmailIndicado(String emailIndicado) {
-        this.emailIndicado = emailIndicado;
-    }
+
 
     public String getNomeIndicado() {
         return nomeIndicado;
     }
 
-    public void setNomeIndicado(String nomeIndicado) {
-        this.nomeIndicado = nomeIndicado;
+
+
+    public String getEmailPadrinho() {
+        return emailPadrinho;
     }
 
-    public String getNomePadrinho() {
-        return nomePadrinho;
-    }
 
-    public void setNomePadrinho(String nomePadrinho) {
-        this.nomePadrinho = nomePadrinho;
-    }
 
 
 }

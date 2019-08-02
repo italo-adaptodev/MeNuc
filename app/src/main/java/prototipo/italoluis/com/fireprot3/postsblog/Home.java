@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
-import prototipo.italoluis.com.fireprot3.Invite;
-import prototipo.italoluis.com.fireprot3.PostAdapter;
+import prototipo.italoluis.com.fireprot3.ListaAutoresActivity;
+import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import prototipo.italoluis.com.fireprot3.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +39,7 @@ public class Home extends AppCompatActivity {
 
   RecyclerView recyclerView;
   LinearLayoutManager manager;
-  prototipo.italoluis.com.fireprot3.PostAdapter adapter;
+  PostAdapter adapter;
   List<Item> items = new ArrayList<>();
   Boolean Scroll = false;
   int numberItem, Itemtotal, scrollItem;
@@ -96,7 +96,7 @@ public class Home extends AppCompatActivity {
     fab2_invite.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(Home.this, Invite.class);
+        Intent intent = new Intent(Home.this, SendInviteActivity.class);
         intent.putExtra("valor", receive.getText().toString());
         startActivity(intent);
       }
@@ -107,7 +107,7 @@ public class Home extends AppCompatActivity {
       public void onClick(View v) {
 
 
-        Intent intent = new Intent(Home.this, AutorizacaoActivity.class);
+        Intent intent = new Intent(Home.this, ListaAutoresActivity.class);
         startActivity(intent);
       }
     });
@@ -127,7 +127,7 @@ public class Home extends AppCompatActivity {
         PostList list = response.body();
         items.addAll(list.getItems());
         adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(new prototipo.italoluis.com.fireprot3.PostAdapter(Home.this, list.getItems()));
+        recyclerView.setAdapter(new PostAdapter(Home.this, list.getItems()));
         Toast.makeText(Home.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
       }
 

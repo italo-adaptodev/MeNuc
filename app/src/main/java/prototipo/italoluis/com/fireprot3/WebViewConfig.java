@@ -14,7 +14,7 @@ import android.webkit.WebViewClient;
 import prototipo.italoluis.com.fireprot3.postsblog.Home;
 
 
-public class TesteScript extends AppCompatActivity {
+public class WebViewConfig extends AppCompatActivity {
   private Context mContext;
   private Activity mActivity;
   private FloatingActionButton buttonback;

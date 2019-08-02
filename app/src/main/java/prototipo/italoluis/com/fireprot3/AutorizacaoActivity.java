@@ -75,7 +75,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull final FirebaseViewHolder holder, final int position, @NonNull final FirebaseDataAuth model) {
                 holder.txt_nomeIndicado.setText(model.getNomeIndicado());
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
-                holder.txt_padrinho.setText(model.getNomePadrinho());
+                holder.txt_padrinho.setText(model.getEmailPadrinho());
                 provEmail = model.getEmailIndicado();
 
                 if(emailAuth == null){
@@ -89,9 +89,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
                accept(holder, model);
 
                deny(holder, model);
-
-
-
 
             }
 
@@ -139,7 +136,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
                         clipboardManager.setPrimaryClip(clipData);
 
-                        Intent intent_webview = new Intent(AutorizacaoActivity.this, TesteScript.class);
+                        Intent intent_webview = new Intent(AutorizacaoActivity.this, WebViewConfig.class);
                         String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
                         intent_webview.putExtra("url", url);
                         startActivity(intent_webview);

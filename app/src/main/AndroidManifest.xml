@@ -16,9 +16,10 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".AutorizacaoActivity"></activity>
-        <activity android:name=".Invite" />
-        <activity android:name=".TesteScript" />
+        <activity android:name=".ListaAutoresActivity"></activity>
+        <activity android:name=".AutorizacaoActivity" />
+        <activity android:name=".SendInviteActivity" />
+        <activity android:name=".WebViewConfig" />
         <activity android:name=".postsblog.Home" />
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -34,7 +35,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".postDetalhe" />
+        <activity android:name=".postsblog.postDetalhe" />
         <activity android:name=".postsblog.QuestionariosActivity" />
 
         <service android:name=".Messagens">
@@ -52,6 +53,5 @@
 
         <activity android:name=".Login2" />
     </application>
-
 
 </manifest>
