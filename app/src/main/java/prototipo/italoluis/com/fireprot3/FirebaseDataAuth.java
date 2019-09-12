@@ -2,7 +2,7 @@ package prototipo.italoluis.com.fireprot3;
 
 public class FirebaseDataAuth {
 
-    String emailIndicado, nomeIndicado, emailPadrinho;
+    public String emailIndicado, nomeIndicado, emailPadrinho;
 
 
 

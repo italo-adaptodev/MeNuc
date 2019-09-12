@@ -16,33 +16,27 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ListaAutoresActivity"></activity>
+        <activity android:name=".ListaAutoresActivity" />
         <activity android:name=".AutorizacaoActivity" />
         <activity android:name=".SendInviteActivity" />
         <activity android:name=".WebViewConfig" />
-        <activity android:name=".postsblog.Home" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".PostStructure.TelaInicial" />
+        <activity android:name=".PackageLogin.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login">
+        <activity android:name=".PackageLogin.CriarLogin">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".postsblog.postDetalhe" />
-        <activity android:name=".postsblog.QuestionariosActivity" />
-
-        <service android:name=".Messagens">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+        <activity android:name=".PostStructure.PostDetalhe" />
+        <activity android:name=".PostStructure.Questionarios" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -51,7 +45,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".Login2" />
+        <activity android:name=".PackageLogin.LoginSalvo" />
     </application>
 
 </manifest>

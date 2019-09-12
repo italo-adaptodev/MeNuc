@@ -32,15 +32,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
 
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
-    private RecyclerView recyclerView;
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
     private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
-    SharedPreferences pref;
+    public SharedPreferences pref;
     private Button send_author;
-    String emailAuth;
-    String provEmail;
+    private String emailAuth, provEmail;
 
 
     @Override
@@ -60,16 +58,24 @@ public class AutorizacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacao);
         pref = getSharedPreferences("Autorizados", MODE_PRIVATE);
-        recyclerView = findViewById(R.id.lista_autorizacao);
+        RecyclerView recyclerView = findViewById(R.id.lista_autorizacao);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
         dbRefIndicados.keepSynced(true);
-        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados.orderByChild("autor").equalTo(false), FirebaseDataAuth.class).build();
+        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().
+                setQuery(dbRefIndicados.orderByChild("autor").equalTo(false), FirebaseDataAuth.class).build();
         send_author = findViewById(R.id.send_author);
         Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
         final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
 
+        createAdapter(clipboardManager);
+
+        recyclerView.setAdapter(adapter);
+
+    }
+
+    private void createAdapter(final ClipboardManager clipboardManager) {
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull final FirebaseViewHolder holder, final int position, @NonNull final FirebaseDataAuth model) {
@@ -83,7 +89,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 }else {
                     emailAuth = provEmail + " " + emailAuth;
                 }
-               send_authors(holder, clipboardManager);
+               sendAuthors(holder, clipboardManager);
 
 
                accept(holder, model);
@@ -99,16 +105,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
             }
         };
-
-        recyclerView.setAdapter(adapter);
-
     }
 
     public void showText( String email){
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
     }
 
-    void send_authors(final FirebaseViewHolder holder,final  ClipboardManager clipboardManager){
+    void sendAuthors(final FirebaseViewHolder holder, final  ClipboardManager clipboardManager){
         send_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

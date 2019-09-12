@@ -12,21 +12,15 @@ public class FirebaseViewHolder extends RecyclerView.ViewHolder {
 
     public ImageButton accept, deny;
 
-
-
     public FirebaseViewHolder(@NonNull View itemView) {
         super(itemView);
 
         txt_nomeIndicado = itemView.findViewById(R.id.nome_auth);
         txt_emailIndicado = itemView.findViewById(R.id.email_auth);
         txt_padrinho = itemView.findViewById(R.id.padrinho_auth);
-        //checkBox = itemView.findViewById(R.id.checkBox);
         accept = itemView.findViewById(R.id.accept_btn);
         deny = itemView.findViewById(R.id.denied_btn);
         onHold = itemView.findViewById(R.id.onhold);
-
-
-
 
     }
 

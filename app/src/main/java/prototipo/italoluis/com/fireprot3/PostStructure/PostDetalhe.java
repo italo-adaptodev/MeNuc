@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.postsblog;
+package prototipo.italoluis.com.fireprot3.PostStructure;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,20 +13,18 @@ import android.widget.Toast;
 
 import prototipo.italoluis.com.fireprot3.R;
 
-public class postDetalhe extends AppCompatActivity {
+public class PostDetalhe extends AppCompatActivity {
 
   ProgressBar progressBar;
-
   WebView webView;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_post_detalhe);
     progressBar = findViewById(R.id.progressBar);
-    webView = findViewById(R.id.detalhestela);
 
+    webView = findViewById(R.id.detalhestela);
     webView.setVisibility(View.INVISIBLE);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
@@ -38,16 +36,13 @@ public class postDetalhe extends AppCompatActivity {
     webView.getSettings().setEnableSmoothTransition(true);
     webView.getSettings().setSaveFormData(true);
     webView.getSettings().setSavePassword(true);
-
-
-
     webView.setWebChromeClient(new WebChromeClient());
-    webView.setWebViewClient(new WebViewClient(){
 
+    webView.setWebViewClient(new WebViewClient(){
       @Override
       public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        Toast.makeText(postDetalhe.this,"Carregando tela", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PostDetalhe.this,"Carregando tela", Toast.LENGTH_SHORT).show();
       }
 
       @Override
@@ -55,7 +50,7 @@ public class postDetalhe extends AppCompatActivity {
         super.onPageFinished(view, url);
         progressBar.setVisibility(View.GONE);
         webView.setVisibility(View.VISIBLE);
-        Toast.makeText(postDetalhe.this, "Tela carregada com sucesso", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PostDetalhe.this, "Tela carregada com sucesso", Toast.LENGTH_SHORT).show();
 
       }
     });

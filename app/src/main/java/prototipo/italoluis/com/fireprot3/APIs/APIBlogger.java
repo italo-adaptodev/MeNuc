@@ -1,14 +1,17 @@
-package prototipo.italoluis.com.fireprot3.postsblog;
+package prototipo.italoluis.com.fireprot3.APIs;
 
+import prototipo.italoluis.com.fireprot3.BlogModel.Item;
+import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public class ApiBloggerQuestionário {
+public class APIBlogger {
+
   private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-  private static final String url = "https://www.googleapis.com/blogger/v3/blogs/4680066170031091498/posts/";
+  private static final String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts/";
 
   public static PostService postService = null;
 
@@ -28,11 +31,14 @@ public class ApiBloggerQuestionário {
 
   public interface PostService {
     @GET("?key="+key)
-    Call<PostList> getPostList();
+    retrofit2.Call<PostList> getPostList();
 
     @GET("{postId}/?key="+key)
     Call<Item> getPostById(@Path("postId") String id);
+
+
   }
 
-}
 
+
+}

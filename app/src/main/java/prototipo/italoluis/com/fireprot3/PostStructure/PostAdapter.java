@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.postsblog;
+package prototipo.italoluis.com.fireprot3.PostStructure;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import org.jsoup.select.Elements;
 
 import java.util.List;
 
+import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
@@ -51,7 +52,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(context, postDetalhe.class);
+        Intent intent = new Intent(context, PostDetalhe.class);
         intent.putExtra("url", item.getUrl());
         context.startActivity(intent);
       }
@@ -79,13 +80,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
   }
 
-  public void clear() {
-    items.clear();
-    notifyDataSetChanged();
-  }
 
-  public void addAll(List<Item> list) {
-    items.addAll(list);
-    notifyDataSetChanged();
-  }
 }
