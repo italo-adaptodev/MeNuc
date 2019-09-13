@@ -58,7 +58,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacao);
         pref = getSharedPreferences("Autorizados", MODE_PRIVATE);
-        RecyclerView recyclerView = findViewById(R.id.lista_autorizacao);
+        RecyclerView recyclerView = findViewById(R.id.lista_autorizacao1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();

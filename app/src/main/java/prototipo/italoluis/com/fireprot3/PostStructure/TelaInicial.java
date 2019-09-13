@@ -13,6 +13,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.loopj.android.http.AsyncHttpClient;
 
 import java.util.ArrayList;
@@ -33,9 +37,9 @@ public class TelaInicial extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
 
-    private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author;
+    private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author, fab4_autorizacao;
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
-    private TextView txt_quest, txt_invite, txt_author;
+    private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
     private Boolean isOpen = false;
     private RecyclerView recyclerView;
     private LinearLayoutManager manager;
@@ -46,6 +50,9 @@ public class TelaInicial extends AppCompatActivity {
     private AsyncHttpClient client = new AsyncHttpClient();
     private Author autor = new Author();
     private TextView receive;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
+
 
 
 
@@ -68,6 +75,7 @@ public class TelaInicial extends AppCompatActivity {
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
         txt_author =  findViewById(R.id.txt_autores);
+        txt_autoziracao = findViewById(R.id.txt_autorizacao);
 
         getData();
         fabAction();
@@ -112,6 +120,7 @@ public class TelaInicial extends AppCompatActivity {
         fab1_quest = findViewById(R.id.fab1);
         fab2_invite = findViewById(R.id.fab2);
         fab3_author = findViewById(R.id.fab3);
+        fab4_autorizacao = findViewById(R.id.fab4);
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
         fab_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotacao2);
@@ -147,29 +156,34 @@ public class TelaInicial extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (isOpen) {
-
-                    txt_author.setVisibility(View.INVISIBLE);
-                    txt_invite.setVisibility(View.INVISIBLE);
-                    txt_quest.setVisibility(View.INVISIBLE);
                     fab1_quest.startAnimation(fab_close);
                     fab2_invite.startAnimation(fab_close);
                     fab3_author.startAnimation(fab_close);
+                    fab4_autorizacao.startAnimation(fab_close);
                     fab_main.startAnimation(fab_anticlock);
                     fab1_quest.setClickable(false);
                     fab2_invite.setClickable(false);
                     fab3_author.setClickable(false);
+                    txt_author.setVisibility(View.INVISIBLE);txt_author.startAnimation(fab_close);
+                    txt_invite.setVisibility(View.INVISIBLE);txt_invite.startAnimation(fab_close);
+                    txt_quest.setVisibility(View.INVISIBLE);txt_quest.startAnimation(fab_close);
+                    txt_autoziracao.setVisibility(View.INVISIBLE);txt_autoziracao.startAnimation(fab_close);
                     isOpen = false;
                 } else {
-                    txt_author.setVisibility(View.VISIBLE);
-                    txt_invite.setVisibility(View.VISIBLE);
-                    txt_quest.setVisibility(View.VISIBLE);
+
                     fab1_quest.startAnimation(fab_open);
                     fab2_invite.startAnimation(fab_open);
                     fab3_author.startAnimation(fab_open);
+
                     fab_main.startAnimation(fab_clock);
                     fab1_quest.setClickable(true);
                     fab2_invite.setClickable(true);
                     fab3_author.setClickable(true);
+                    txt_author.setVisibility(View.VISIBLE);txt_author.startAnimation(fab_open);
+                    txt_invite.setVisibility(View.VISIBLE);txt_invite.startAnimation(fab_open);
+                    txt_quest.setVisibility(View.VISIBLE);txt_quest.startAnimation(fab_open);
+                    //if(user.equals(dbRefIndicados.orderByChild("")))
+                    txt_autoziracao.setVisibility(View.VISIBLE);txt_autoziracao.startAnimation(fab_open);fab4_autorizacao.startAnimation(fab_open);
                     isOpen = true;
                 }
 
