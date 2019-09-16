@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "600320456886-sv097mj0dp5qheklu1fa129b3e8pma14.apps.googleusercontent.com",
+          "client_id": "600320456886-gdq291gll1kuavh61do9kl36pt0m2hu9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "prototipo.italoluis.com.fireprot3",
-            "certificate_hash": "dfc30523d2d8701bacdf19bae209a1e43e0e74b7"
+            "certificate_hash": "8d725dcfdbb350dba1771b63f0e7ae947fcd35f5"
           }
         },
         {
@@ -28,6 +28,14 @@
           "android_info": {
             "package_name": "prototipo.italoluis.com.fireprot3",
             "certificate_hash": "1c4bcb0d8704e793098aa96bcff3c24e9de958f3"
+          }
+        },
+        {
+          "client_id": "600320456886-sv097mj0dp5qheklu1fa129b3e8pma14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "prototipo.italoluis.com.fireprot3",
+            "certificate_hash": "dfc30523d2d8701bacdf19bae209a1e43e0e74b7"
           }
         },
         {
@@ -41,20 +49,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "600320456886-cd2jh2kd2rvv7q3vh7gm2scg5qcho2nu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

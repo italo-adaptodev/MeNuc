@@ -23,7 +23,7 @@ public class SendInviteActivity extends AppCompatActivity {
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference = database.getReference().child("Indicados&Autores");
+    DatabaseReference reference = database.getReference().child("Indicados");
     Indicados indicados;
     EditText nome, email;
     ImageButton button_send;

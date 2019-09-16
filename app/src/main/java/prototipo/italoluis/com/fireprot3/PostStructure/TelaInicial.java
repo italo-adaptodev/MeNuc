@@ -2,6 +2,8 @@ package prototipo.italoluis.com.fireprot3.PostStructure;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.loopj.android.http.AsyncHttpClient;
@@ -23,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prototipo.italoluis.com.fireprot3.APIs.APIBlogger;
+import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Author;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
@@ -51,7 +58,8 @@ public class TelaInicial extends AppCompatActivity {
     private Author autor = new Author();
     private TextView receive;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
+    private DatabaseReference dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
+    private  boolean isUserAnAuthor;
 
 
 
@@ -71,6 +79,7 @@ public class TelaInicial extends AppCompatActivity {
         receive.setText(getIntent().getStringExtra("valor"));
 
         fabConfig();
+        checkAutor();
 
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
@@ -107,9 +116,15 @@ public class TelaInicial extends AppCompatActivity {
         fab3_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(TelaInicial.this, ListaAutoresActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fab4_autorizacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TelaInicial.this, AutorizacaoActivity.class);
                 startActivity(intent);
             }
         });
@@ -164,32 +179,67 @@ public class TelaInicial extends AppCompatActivity {
                     fab1_quest.setClickable(false);
                     fab2_invite.setClickable(false);
                     fab3_author.setClickable(false);
+                    fab4_autorizacao.setClickable(false);
                     txt_author.setVisibility(View.INVISIBLE);txt_author.startAnimation(fab_close);
                     txt_invite.setVisibility(View.INVISIBLE);txt_invite.startAnimation(fab_close);
                     txt_quest.setVisibility(View.INVISIBLE);txt_quest.startAnimation(fab_close);
                     txt_autoziracao.setVisibility(View.INVISIBLE);txt_autoziracao.startAnimation(fab_close);
                     isOpen = false;
                 } else {
-
                     fab1_quest.startAnimation(fab_open);
                     fab2_invite.startAnimation(fab_open);
                     fab3_author.startAnimation(fab_open);
-
+                    fab4_autorizacao.startAnimation(fab_open);
                     fab_main.startAnimation(fab_clock);
                     fab1_quest.setClickable(true);
                     fab2_invite.setClickable(true);
                     fab3_author.setClickable(true);
+                    fab4_autorizacao.setClickable(true);
                     txt_author.setVisibility(View.VISIBLE);txt_author.startAnimation(fab_open);
                     txt_invite.setVisibility(View.VISIBLE);txt_invite.startAnimation(fab_open);
                     txt_quest.setVisibility(View.VISIBLE);txt_quest.startAnimation(fab_open);
-                    //if(user.equals(dbRefIndicados.orderByChild("")))
-                    txt_autoziracao.setVisibility(View.VISIBLE);txt_autoziracao.startAnimation(fab_open);fab4_autorizacao.startAnimation(fab_open);
+                    if(isUserAnAuthor)
+                        txt_autoziracao.setVisibility(View.VISIBLE);txt_autoziracao.startAnimation(fab_open);
                     isOpen = true;
                 }
+
 
             }
         });
     }
+
+    private void checkAutor(){
+        dbRefIndicados.orderByChild("nomeIndicado").equalTo(receive.getText().toString());
+        dbRefIndicados.orderByChild("autor").equalTo("true")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        isUserAnAuthor = (boolean) dataSnapshot.getValue();
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
 
 
 }

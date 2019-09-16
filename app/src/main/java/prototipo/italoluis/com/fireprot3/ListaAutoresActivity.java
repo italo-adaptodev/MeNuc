@@ -35,11 +35,8 @@ public class ListaAutoresActivity extends AppCompatActivity {
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
-    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
-    SharedPreferences pref;
-    private Button send_author;
-    String emailAuth;
-    String provEmail;
+    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Autores");
+    private SharedPreferences pref;
 
 
     @Override
@@ -57,17 +54,15 @@ public class ListaAutoresActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_autorizacao);
+        setContentView(R.layout.activity_lista_autores);
         pref = getSharedPreferences("Autorizados", MODE_PRIVATE);
-        recyclerView = findViewById(R.id.lista_autorizacao);
+        recyclerView = findViewById(R.id.lista_autores);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
         dbRefIndicados.keepSynced(true);
-        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados.orderByChild("autor").equalTo(false), FirebaseDataAuth.class).build();
-        send_author = findViewById(R.id.send_author);
-        Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
-        final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
+        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados.orderByChild("autor").equalTo(true), FirebaseDataAuth.class).build();
+
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {
             @Override
@@ -75,23 +70,12 @@ public class ListaAutoresActivity extends AppCompatActivity {
                 holder.txt_nomeIndicado.setText(model.getNomeIndicado());
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
                 holder.txt_padrinho.setText(model.getEmailPadrinho());
-                provEmail = model.getEmailIndicado();
-
-                if(emailAuth == null){
-                    emailAuth = " " + provEmail;
-                }else {
-                    emailAuth = provEmail + " " + emailAuth;
-                }
-
-                holder.accept.setVisibility(View.INVISIBLE);
-                holder.deny.setVisibility(View.INVISIBLE);
-
             }
 
             @NonNull
             @Override
             public FirebaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                return new FirebaseViewHolder(LayoutInflater.from(ListaAutoresActivity.this).inflate(R.layout.modelo, viewGroup,false));
+                return new FirebaseViewHolder(LayoutInflater.from(ListaAutoresActivity.this).inflate(R.layout.modelo2, viewGroup,false));
 
             }
         };
@@ -100,17 +84,6 @@ public class ListaAutoresActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData data = ClipData.newPlainText("", "");
-        clipboardManager.setPrimaryClip(data);
-
-
-    }
 
 
 

@@ -22,6 +22,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -35,7 +36,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
-    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");
+    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados");
+    private DatabaseReference dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
     public SharedPreferences pref;
     private Button send_author;
     private String emailAuth, provEmail;
@@ -217,6 +219,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                             dataSnapshot1.getRef().child("autor").setValue(true);
+                            dbRefAutores.push().setValue(dataSnapshot1.getValue());
                         }
                     }
 
@@ -250,7 +253,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog,
                                 int which)
             {
-                Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                final Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
                 exclude.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
