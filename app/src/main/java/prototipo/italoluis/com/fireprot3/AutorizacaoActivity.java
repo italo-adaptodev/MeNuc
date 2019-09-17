@@ -66,7 +66,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         arrayList = new ArrayList<FirebaseDataAuth>();
         dbRefIndicados.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().
-                setQuery(dbRefIndicados.orderByChild("autor").equalTo(false), FirebaseDataAuth.class).build();
+                setQuery(dbRefIndicados.orderByChild("nomeIndicado"), FirebaseDataAuth.class).build();
         send_author = findViewById(R.id.send_author);
         Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
         final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
@@ -93,7 +93,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 }
                sendAuthors(holder, clipboardManager);
 
-
                accept(holder, model);
 
                deny(holder, model);
@@ -104,7 +103,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
             @Override
             public FirebaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 return new FirebaseViewHolder(LayoutInflater.from(AutorizacaoActivity.this).inflate(R.layout.modelo, viewGroup,false));
-
             }
         };
     }
@@ -132,10 +130,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
                         if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
                             pref.edit().clear().apply();
                         } else {
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("Lista_email", emailAuth);
-                            editor.apply();
-                            showText(pref.getString("Lista_email", ""));
+                            if(holder.accept.getVisibility() == View.INVISIBLE) {
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString("Lista_email", emailAuth);
+                                editor.apply();
+                                showText(pref.getString("Lista_email", ""));
+                            }
+                            removeIndicadoIfAuthor();
                         }
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
@@ -148,6 +149,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
 
                     }
+
                 });
                 builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
@@ -169,7 +171,9 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                holder.accept.setEnabled(false);
+                holder.accept.setVisibility(View.INVISIBLE);
+                holder.onHold.setVisibility(View.VISIBLE);
                 showAlertDialogAccept(v, holder, model);
 
             }
@@ -209,17 +213,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog,
                                 int which)
             {
-                holder.accept.setEnabled(false);
-                holder.accept.setVisibility(View.INVISIBLE);
-                holder.onHold.setVisibility(View.VISIBLE);
-
                 Query update =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
                 update.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                             dataSnapshot1.getRef().child("autor").setValue(true);
-                            dbRefAutores.push().setValue(dataSnapshot1.getValue());
+                            dbRefAutores.push().setValue(dataSnapshot1.getValue(true));
                         }
                     }
 
@@ -234,6 +234,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         builder.setNegativeButton("Voltar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
             }
         });
         AlertDialog dialog = builder.create();
@@ -278,6 +279,24 @@ public class AutorizacaoActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public void removeIndicadoIfAuthor(){
+        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(true);
+        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log.e(TAG, "onCancelled", databaseError.toException());
+
+            }
+        });
     }
 
 

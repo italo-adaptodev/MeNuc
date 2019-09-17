@@ -65,8 +65,6 @@ public class SendInviteActivity extends AppCompatActivity {
                     indicados.setEmailIndicado(email.getText().toString().trim());
                     indicados.setEmailPadrinho(user.getEmail());
                     indicados.setAutor(false);
-
-                    //reference.push().setValue(indicados);
                     reference.push().setValue(indicados);
                     Toast.makeText(SendInviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
                 }
