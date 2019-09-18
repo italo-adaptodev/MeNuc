@@ -6,9 +6,18 @@ public class Indicados {
     private String emailIndicado;
     private String nomePadrinho;
     private String emailPadrinho;
-    private boolean isAutor;
+    private boolean isAuthor;
+
 
     public Indicados() {
+
+    }
+
+    public Indicados(String nomeIndicado, String emailIndicado, String emailPadrinho, Boolean isAuthor) {
+        setNomeIndicado(nomeIndicado);
+        setEmailIndicado(emailIndicado);
+        setEmailPadrinho(emailPadrinho);
+        setAuthor(isAuthor);
 
     }
 
@@ -44,13 +53,12 @@ public class Indicados {
         this.emailPadrinho = emailPadrinho;
     }
 
-    public boolean isAutor() {
-        return isAutor;
+
+    public boolean isAuthor() {
+        return isAuthor;
     }
 
-    public void setAutor(boolean autor) {
-        isAutor = autor;
+    public void setAuthor(boolean author) {
+        isAuthor = author;
     }
-
-
 }

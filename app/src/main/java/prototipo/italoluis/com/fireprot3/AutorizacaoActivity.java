@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 public class AutorizacaoActivity extends AppCompatActivity {
 
 
+
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
@@ -41,6 +43,9 @@ public class AutorizacaoActivity extends AppCompatActivity {
     public SharedPreferences pref;
     private Button send_author;
     private String emailAuth, provEmail;
+    private Parcelable listState;
+    private RecyclerView recyclerView;
+
 
 
     @Override
@@ -60,10 +65,10 @@ public class AutorizacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacao);
         pref = getSharedPreferences("Autorizados", MODE_PRIVATE);
-        RecyclerView recyclerView = findViewById(R.id.lista_autorizacao1);
+        recyclerView = findViewById(R.id.lista_autorizacao1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        arrayList = new ArrayList<FirebaseDataAuth>();
+        arrayList = new ArrayList<>();
         dbRefIndicados.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().
                 setQuery(dbRefIndicados.orderByChild("nomeIndicado"), FirebaseDataAuth.class).build();
@@ -146,8 +151,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
                         String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
                         intent_webview.putExtra("url", url);
                         startActivity(intent_webview);
-
-
                     }
 
                 });
@@ -158,12 +161,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
             }
         });
-
-
-
 
     }
 
@@ -184,7 +183,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.deny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialogDeny(v, holder, model);
+                showAlertDialogDeny(model);
             }
         });
     }
@@ -196,8 +195,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData data = ClipData.newPlainText("", "");
         clipboardManager.setPrimaryClip(data);
-
-
     }
 
     public void showAlertDialogAccept(View view, final FirebaseViewHolder holder,@NonNull final FirebaseDataAuth model) {
@@ -217,9 +214,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 update.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            dataSnapshot1.getRef().child("autor").setValue(true);
-                            dbRefAutores.push().setValue(dataSnapshot1.getValue(true));
+                        for(DataSnapshot dS: dataSnapshot.getChildren()){
+                            dS.getRef().child("autor")
                         }
                     }
 
@@ -241,7 +237,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void showAlertDialogDeny(View view, final FirebaseViewHolder holder,@NonNull final FirebaseDataAuth model) {
+    private void copyToAutores(DataSnapshot  ds) {
+        dbRefAutores.push().setValue(ds.getValue());
+    }
+
+    public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("ATENÇÃO!");
@@ -282,7 +282,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     }
 
     public void removeIndicadoIfAuthor(){
-        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(true);
+        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(false);
         exclude.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

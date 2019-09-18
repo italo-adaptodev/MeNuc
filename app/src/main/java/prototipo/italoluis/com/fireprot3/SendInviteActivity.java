@@ -46,7 +46,7 @@ public class SendInviteActivity extends AppCompatActivity {
         nome = findViewById(R.id.indicado1);
         email = findViewById(R.id.indicado2);
         button_send = findViewById(R.id.btn_send);
-        indicados = new Indicados();
+
 
 
         button_send.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +61,7 @@ public class SendInviteActivity extends AppCompatActivity {
                 }
                 else {
 
-                    indicados.setNomeIndicado(nome.getText().toString().trim());
-                    indicados.setEmailIndicado(email.getText().toString().trim());
-                    indicados.setEmailPadrinho(user.getEmail());
-                    indicados.setAutor(false);
+                    indicados = new Indicados(nome.getText().toString().trim(), email.getText().toString().trim(), user.getEmail(), false );
                     reference.push().setValue(indicados);
                     Toast.makeText(SendInviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
                 }
