@@ -6,44 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".PackageLogin.LoginSalvo">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="450dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/colordrawer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Login" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="296dp" />
-
     <TextView
         android:id="@+id/login_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="196dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Email"
         android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toTopOf="@+id/login_progressbar"
+        app:layout_constraintBottom_toTopOf="@+id/login_email_space"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <EditText
         android:id="@+id/login_email_space"
@@ -54,15 +34,14 @@
         android:layout_marginLeft="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="340dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_textview"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/senha_textview"
@@ -77,25 +56,24 @@
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@+id/senha_space"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_textview" />
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/login_textview"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:layout_marginTop="36dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="108dp"
         android:backgroundTint="#eaf20e"
         android:text="Entrar"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/login_email_space"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/login_email_space"
         app:layout_constraintTop_toBottomOf="@+id/senhaText"
         app:layout_constraintVertical_bias="0.0"
@@ -103,18 +81,17 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="103dp"
-        android:layout_height="88dp"
+        android:layout_width="124dp"
+        android:layout_height="103dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/login_email_space"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.169"
         app:srcCompat="@drawable/logo_medicina_nuclear" />
 
     <ProgressBar
@@ -124,6 +101,7 @@
         android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="@+id/login_button"
         app:layout_constraintTop_toTopOf="@+id/login_button" />
 
@@ -141,9 +119,10 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/login_progressbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email_space"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.458" />
 
 
 </android.support.constraint.ConstraintLayout>

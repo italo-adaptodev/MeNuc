@@ -215,7 +215,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dS: dataSnapshot.getChildren()){
-                            dS.getRef().child("autor")
+                            dS.getRef().child("autor");
                         }
                     }
 
