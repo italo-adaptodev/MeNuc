@@ -9,6 +9,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.loopj.android.http.AsyncHttpClient;
 
 import java.util.ArrayList;
@@ -49,7 +50,6 @@ public class TelaInicial extends AppCompatActivity {
     private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
     private Boolean isOpen = false;
     private RecyclerView recyclerView;
-    private LinearLayoutManager manager;
     private PostAdapter adapter;
     private List<Item> items = new ArrayList<>();
     private Boolean Scroll = false;
@@ -64,32 +64,29 @@ public class TelaInicial extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         recyclerView = findViewById(R.id.listadepost);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        manager = new LinearLayoutManager(this);
         adapter = new PostAdapter(this, items);
         recyclerView.setAdapter(adapter);
         final Boolean Scroll = false;
         int numberItem, Itemtotal, scrollItem;
         receive = findViewById(R.id.receive);
         receive.setText(getIntent().getStringExtra("valor"));
-
-        fabConfig();
-        checkAutor();
-
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
         txt_author =  findViewById(R.id.txt_autores);
         txt_autoziracao = findViewById(R.id.txt_autorizacao);
-
+        checkAutor();
+        fabConfig();
         getData();
-        fabAction();
-
+        fabMainAction();
         fabOnClick();
+
 
 
     }
@@ -101,6 +98,7 @@ public class TelaInicial extends AppCompatActivity {
                 Intent intent = new Intent(TelaInicial.this, Questionarios.class);
                 intent.putExtra("valor", receive.getText().toString());
                 startActivity(intent);
+                closeFloatActionButton();
             }
         });
 
@@ -110,6 +108,7 @@ public class TelaInicial extends AppCompatActivity {
                 Intent intent = new Intent(TelaInicial.this, SendInviteActivity.class);
                 intent.putExtra("valor", receive.getText().toString());
                 startActivity(intent);
+                closeFloatActionButton();
             }
         });
 
@@ -118,6 +117,7 @@ public class TelaInicial extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TelaInicial.this, ListaAutoresActivity.class);
                 startActivity(intent);
+                closeFloatActionButton();
             }
         });
 
@@ -126,12 +126,13 @@ public class TelaInicial extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TelaInicial.this, AutorizacaoActivity.class);
                 startActivity(intent);
+                closeFloatActionButton();
             }
         });
     }
 
     private void fabConfig() {
-        fab_main = findViewById(R.id.fabback);
+        fab_main = findViewById(R.id.fabmain);
         fab1_quest = findViewById(R.id.fab1);
         fab2_invite = findViewById(R.id.fab2);
         fab3_author = findViewById(R.id.fab3);
@@ -164,48 +165,67 @@ public class TelaInicial extends AppCompatActivity {
         });
     }
 
-    private void fabAction(){
+    private void fabMainAction(){
 
         fab_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (isOpen) {
-                    fab1_quest.startAnimation(fab_close);
-                    fab2_invite.startAnimation(fab_close);
-                    fab3_author.startAnimation(fab_close);
-                    fab4_autorizacao.startAnimation(fab_close);
-                    fab_main.startAnimation(fab_anticlock);
-                    fab1_quest.setClickable(false);
-                    fab2_invite.setClickable(false);
-                    fab3_author.setClickable(false);
-                    fab4_autorizacao.setClickable(false);
-                    txt_author.setVisibility(View.INVISIBLE);txt_author.startAnimation(fab_close);
-                    txt_invite.setVisibility(View.INVISIBLE);txt_invite.startAnimation(fab_close);
-                    txt_quest.setVisibility(View.INVISIBLE);txt_quest.startAnimation(fab_close);
-                    txt_autoziracao.setVisibility(View.INVISIBLE);txt_autoziracao.startAnimation(fab_close);
-                    isOpen = false;
+                    closeFloatActionButton();
                 } else {
-                    fab1_quest.startAnimation(fab_open);
-                    fab2_invite.startAnimation(fab_open);
-                    fab3_author.startAnimation(fab_open);
-                    fab4_autorizacao.startAnimation(fab_open);
-                    fab_main.startAnimation(fab_clock);
-                    fab1_quest.setClickable(true);
-                    fab2_invite.setClickable(true);
-                    fab3_author.setClickable(true);
-                    fab4_autorizacao.setClickable(true);
-                    txt_author.setVisibility(View.VISIBLE);txt_author.startAnimation(fab_open);
-                    txt_invite.setVisibility(View.VISIBLE);txt_invite.startAnimation(fab_open);
-                    txt_quest.setVisibility(View.VISIBLE);txt_quest.startAnimation(fab_open);
-                    if(isUserAnAuthor)
-                        txt_autoziracao.setVisibility(View.VISIBLE);txt_autoziracao.startAnimation(fab_open);
-                    isOpen = true;
+                    openFloatActionButton();
                 }
 
 
             }
         });
+    }
+
+    private void openFloatActionButton() {
+        fab1_quest.startAnimation(fab_open);
+        fab2_invite.startAnimation(fab_open);
+        fab3_author.startAnimation(fab_open);
+        fab4_autorizacao.startAnimation(fab_open);
+        fab_main.startAnimation(fab_clock);
+        fab1_quest.setClickable(true);
+        fab2_invite.setClickable(true);
+        fab3_author.setClickable(true);
+        fab4_autorizacao.setClickable(true);
+        txt_author.setVisibility(View.VISIBLE);
+        txt_author.startAnimation(fab_open);
+        txt_invite.setVisibility(View.VISIBLE);
+        txt_invite.startAnimation(fab_open);
+        txt_quest.setVisibility(View.VISIBLE);
+        txt_quest.startAnimation(fab_open);
+        if(isUserAnAuthor)
+            txt_autoziracao.setVisibility(View.VISIBLE);
+        txt_autoziracao.startAnimation(fab_open);
+        isOpen = true;
+
+
+    }
+
+    private void closeFloatActionButton() {
+        fab1_quest.startAnimation(fab_close);
+        fab2_invite.startAnimation(fab_close);
+        fab3_author.startAnimation(fab_close);
+        fab4_autorizacao.startAnimation(fab_close);
+        fab_main.startAnimation(fab_anticlock);
+        fab1_quest.setClickable(false);
+        fab2_invite.setClickable(false);
+        fab3_author.setClickable(false);
+        fab4_autorizacao.setClickable(false);
+        txt_author.setVisibility(View.INVISIBLE);
+        txt_author.startAnimation(fab_close);
+        txt_invite.setVisibility(View.INVISIBLE);
+        txt_invite.startAnimation(fab_close);
+        txt_quest.setVisibility(View.INVISIBLE);
+        txt_quest.startAnimation(fab_close);
+        txt_autoziracao.setVisibility(View.INVISIBLE);
+        txt_autoziracao.startAnimation(fab_close);
+        isOpen = false;
+
     }
 
     private void checkAutor(){

@@ -102,7 +102,7 @@ public class Questionarios extends AppCompatActivity {
     }
 
     private void fabConfig() {
-        fab_main = findViewById(R.id.fabback);
+        fab_main = findViewById(R.id.fabmain);
         fab1_quest = findViewById(R.id.fab1);
         fab2_invite = findViewById(R.id.fab2);
         fab3_author = findViewById(R.id.fab3);

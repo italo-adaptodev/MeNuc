@@ -150,14 +150,14 @@
         android:focusable="true"
         android:visibility="visible"
         app:backgroundTint="#00a800"
-        app:layout_constraintBottom_toBottomOf="@+id/fabback"
+        app:layout_constraintBottom_toBottomOf="@+id/fabmain"
         app:maxImageSize="40dp"
         app:pressedTranslationZ="12dp"
         app:srcCompat="@drawable/questionario"
         tools:targetApi="lollipop" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabback"
+        android:id="@+id/fabmain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
