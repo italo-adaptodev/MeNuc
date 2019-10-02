@@ -6,7 +6,6 @@
     app:cardBackgroundColor="#6FFFD700"
     app:cardElevation="5dp"
     android:layout_gravity="center_horizontal"
-
     android:layout_margin="10dp"
     >
 

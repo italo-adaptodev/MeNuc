@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".MenuInicial"></activity>
         <activity android:name=".ListaAutoresActivity" />
         <activity android:name=".AutorizacaoActivity" />
         <activity android:name=".SendInviteActivity" />

@@ -52,10 +52,6 @@ public class TelaInicial extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PostAdapter adapter;
     private List<Item> items = new ArrayList<>();
-    private Boolean Scroll = false;
-    private int numberItem, Itemtotal, scrollItem;
-    private AsyncHttpClient client = new AsyncHttpClient();
-    private Author autor = new Author();
     private TextView receive;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados&Autores");

@@ -107,7 +107,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FirebaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                return new FirebaseViewHolder(LayoutInflater.from(AutorizacaoActivity.this).inflate(R.layout.modelo, viewGroup,false));
+                return new FirebaseViewHolder(LayoutInflater.from(AutorizacaoActivity.this).inflate(R.layout.cardview_solicitacao, viewGroup,false));
             }
         };
     }
