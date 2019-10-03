@@ -3,287 +3,349 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="60dp"
+    android:layout_gravity="center"
+    android:foregroundGravity="center">
 
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_height="400dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35">
+        app:layout_constraintVertical_bias="0.44">
 
-        <android.support.design.card.MaterialCardView
-            android:id="@+id/cv_bases_fisicas"
-            android:layout_width="110dp"
-            android:layout_height="80dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardElevation="2dp"
-            app:cardMaxElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cv_radiofarmacia"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.305"
-            app:strokeColor="#6FFFD700"
-            app:strokeWidth="2dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_atom">
-
-            </ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Bases Físicas"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-        </android.support.design.card.MaterialCardView>
-
-        <android.support.design.card.MaterialCardView
-            android:id="@+id/cv_radiofarmacia"
-            android:layout_width="110dp"
-            android:layout_height="80dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardElevation="2dp"
-            app:cardMaxElevation="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="362dp"
+            android:layout_height="83dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.303"
-            app:strokeColor="#6FFFD700"
-            app:strokeWidth="2dp">
+            app:layout_constraintVertical_bias="0.05">
 
-            <ImageView
-                android:layout_width="90dp"
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_bases_fisicas"
+                android:layout_width="110dp"
                 android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_atom">
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cv_radiofarmacia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.305"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
 
-            </ImageView>
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Radiofarmácia"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-        </android.support.design.card.MaterialCardView>
+                </ImageView>
 
-        <android.support.design.card.MaterialCardView
-            android:id="@+id/cv_radionuclideos"
-            android:layout_width="110dp"
-            android:layout_height="80dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardElevation="2dp"
-            app:cardMaxElevation="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Bases Físicas"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+            </android.support.design.card.MaterialCardView>
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_radiofarmacia"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.303"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Radiofarmácia"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+            </android.support.design.card.MaterialCardView>
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_radionuclideos"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_radiofarmacia"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.305"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Radionuclídeos"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+            </android.support.design.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="362dp"
+            android:layout_height="107dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cv_radiofarmacia"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.305"
-            app:strokeColor="#6FFFD700"
-            app:strokeWidth="2dp"
-            android:layout_marginLeft="10dp">
+            app:layout_constraintVertical_bias="0.447">
 
-            <ImageView
-                android:layout_width="90dp"
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_equipamento"
+                android:layout_width="110dp"
                 android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_atom">
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cv_diag_terapia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.521"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
 
-            </ImageView>
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Radionuclídeos"
-                android:textColor="#000000"
-                android:textStyle="bold" />
+                </ImageView>
 
-        </android.support.design.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Equipamentos"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+            </android.support.design.card.MaterialCardView>
 
-    </LinearLayout>
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_diag_terapia"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.523"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
 
-    <android.support.design.card.MaterialCardView
-        android:id="@+id/cv_equipamento"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cv_diag_terapia"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521"
-        app:strokeColor="#6FFFD700"
-        app:strokeWidth="2dp">
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_atom">
+                </ImageView>
 
-        </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Diagnótisco e Terapia"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+            </android.support.design.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="wrap_content"
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_protec_radio"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_diag_terapia"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.521"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Proteção Radiológica"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+            </android.support.design.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Equipamentos"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-    </android.support.design.card.MaterialCardView>
+            android:gravity="center"
+            android:paddingTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.883">
 
-    <android.support.design.card.MaterialCardView
-        android:id="@+id/cv_diag_terapia"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="0dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:strokeWidth="2dp"
-        app:strokeColor="#6FFFD700">
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_legislacao"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cv_outros"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.721"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="80dp"
-            android:background="@drawable/ic_atom"
-            android:layout_gravity="center">
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
 
-        </ImageView>
+                </ImageView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Diagnótisco e Terapia"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-    </android.support.design.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Legislação"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
 
-    <android.support.design.card.MaterialCardView
-        android:id="@+id/cv_protec_radio"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cv_diag_terapia"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521"
-        app:strokeColor="#6FFFD700"
-        app:strokeWidth="2dp">
+            </android.support.design.card.MaterialCardView>
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_atom">
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cv_outros"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.794"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.72"
+                app:strokeColor="#6FFFD700"
+                app:strokeWidth="2dp">
 
-        </ImageView>
+                <ImageView
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_atom">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Proteção Radiológica"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+                </ImageView>
 
-    </android.support.design.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Outros"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
 
-    <android.support.design.card.MaterialCardView
-        android:id="@+id/cv_legislacao"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cv_outros"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721"
-        app:strokeColor="#6FFFD700"
-        app:strokeWidth="2dp">
+            </android.support.design.card.MaterialCardView>
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_atom">
+        </LinearLayout>
 
-        </ImageView>
+    </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Legislação"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-    </android.support.design.card.MaterialCardView>
-
-    <android.support.design.card.MaterialCardView
-        android:id="@+id/cv_outros"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72"
-        app:strokeColor="#6FFFD700"
-        app:strokeWidth="2dp">
-
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_atom">
-
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Outros"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-    </android.support.design.card.MaterialCardView>
 
 </android.support.constraint.ConstraintLayout>
