@@ -22,7 +22,7 @@
         <activity android:name=".SendInviteActivity" />
         <activity android:name=".WebViewConfig" />
         <activity android:name=".PostStructure.TelaInicial" />
-        <activity android:name=".PackageLogin.SplashScreen">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

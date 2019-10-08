@@ -33,10 +33,6 @@ public class APIBlogger {
     @GET("?key="+key)
     retrofit2.Call<PostList> getPostList();
 
-    @GET("{postId}/?key="+key)
-    Call<Item> getPostById(@Path("postId") String id);
-
-
   }
 
 

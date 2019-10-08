@@ -12,11 +12,6 @@ public class ApiBloggerQuestionario {
   private static final String key = "AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
   private static final String url = "https://www.googleapis.com/blogger/v3/blogs/4680066170031091498/posts/";
 
-  // EXEMPLO DE QUERY PRA FILTRAR POR TAG
-  //https://www.googleapis.com/blogger/v3/blogs/537701014572510680
-  ///posts?labels=RADIAÇÃO&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY
-
-
   public static PostService postService = null;
 
   public static PostService getService(){

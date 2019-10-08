@@ -31,7 +31,6 @@ import retrofit2.Response;
 public class Questionarios extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeContainer;
-
     private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author;
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private RecyclerView recyclerView;
@@ -41,8 +40,6 @@ public class Questionarios extends AppCompatActivity {
     private TextView txt_quest, txt_invite, txt_author, receive;
     private AsyncHttpClient client = new AsyncHttpClient();
     private Boolean isOpen = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +124,6 @@ public class Questionarios extends AppCompatActivity {
             @Override
             public void onFailure(Call<PostList> call, Throwable t) {
                 Toast.makeText(Questionarios.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
