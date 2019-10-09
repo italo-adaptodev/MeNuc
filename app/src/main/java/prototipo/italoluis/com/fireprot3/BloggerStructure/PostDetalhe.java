@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.PostStructure;
+package prototipo.italoluis.com.fireprot3.BloggerStructure;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

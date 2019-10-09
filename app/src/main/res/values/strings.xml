@@ -1,21 +1,12 @@
 <resources>
-    <string name="app_name">NucMed - IFBA</string>
     <string name="app_name2">NucMed - IFBA</string>
-    <string name="title_activity_tab">tab</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_tabs">tabs</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_questionario">questionarioActivity</string>
     <string name="questionario">Questionário</string>
     <string name="convidar">Convidar</string>
     <string name="autores">Autores</string>
     <string name="nome_indicado">Nome do indicado</string>
     <string name="email_indicado">Email do indicado</string>
-    <string name="digite_o_email_da_pessoa_que_deseja_indicar_para_autor">Digite o email da pessoa que deseja indicar para autor</string>
-    <string name="digite_o_nome_da_pessoa_que_deseja_indicar_para_autor">Digite o nome da pessoa que deseja indicar para autor</string>
     <string name="todo">TODO</string>
     <string name="expli_invite">Nesta tela você irá indicar uma pessoa para ter se candidatar ao cargo de <b>Autor</b>. A candidatura será revisada pelo Administrador do aplicado. Importante que o email seja do domínio gmail, caso contrário será necessário que a pessoa crie um Gmail para ganhar autorização.</string>
     <string name="hint_nome">Nome e sobrenome</string>
@@ -23,5 +14,4 @@
     <string name="aviso_hint">Aviso!</string>
     <string name="indicado_por">Indicado por</string>
     <string name="quem_indicou">Quem indicou</string>
-    <string name="autorizar">Autorizar</string>
 </resources>

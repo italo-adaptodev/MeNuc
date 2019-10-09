@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.PostStructure;
+package prototipo.italoluis.com.fireprot3.BloggerStructure;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +34,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
   @Override
   public PostViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
     LayoutInflater inflater = LayoutInflater.from(context);
-    View view = inflater.inflate(R.layout.post_item, parent, false);
+    View view = inflater.inflate(R.layout.cardview_posts, parent, false);
     return new PostViewHolder(view);
   }
 

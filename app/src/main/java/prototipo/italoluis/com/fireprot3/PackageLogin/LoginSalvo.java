@@ -15,8 +15,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import prototipo.italoluis.com.fireprot3.MenuInicial;
 import prototipo.italoluis.com.fireprot3.R;
-import prototipo.italoluis.com.fireprot3.PostStructure.TelaInicial;
 
 
 public class LoginSalvo extends AppCompatActivity {
@@ -40,7 +40,7 @@ public class LoginSalvo extends AppCompatActivity {
         userLogin = findViewById(R.id.login_email_space);
         userSenha = findViewById(R.id.senha_space);
         mAuth = FirebaseAuth.getInstance();
-        tabs = new Intent(this, TelaInicial.class);
+        tabs = new Intent(this, MenuInicial.class);
 
 
         btnLogin();

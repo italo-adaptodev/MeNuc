@@ -1,79 +1,80 @@
 package prototipo.italoluis.com.fireprot3;
-
-
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import prototipo.italoluis.com.fireprot3.APIs.APIDataHolder;
-import prototipo.italoluis.com.fireprot3.BlogModel.Item;
-import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
-import prototipo.italoluis.com.fireprot3.PostStructure.PostAdapter;
-import prototipo.italoluis.com.fireprot3.PostStructure.Questionarios;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class MenuInicial extends AppCompatActivity {
+import prototipo.italoluis.com.fireprot3.BloggerStructure.PostListLoader;
 
 
-    private RecyclerView recyclerView;
-    private LinearLayoutManager manager;
-    private PostAdapter adapter;
-    private List<Item> items = new ArrayList<>();
-    private TextView txt_quest, txt_invite, txt_author, receive;
-    private AsyncHttpClient client = new AsyncHttpClient();
-    private Boolean isOpen = false;
+public class MenuInicial extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prototipotelainicial);
 
-        findViewById(R.id.cv_bases_fisicas).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuInicial.this, Questionarios.class);
-                startActivity(intent);
-            }
-        });
-
+        findViewById(R.id.cv_bases_fisicas).setOnClickListener(this);
+        findViewById(R.id.cv_radiofarmacia).setOnClickListener(this);
+        findViewById(R.id.cv_radionuclideos).setOnClickListener(this);
+        findViewById(R.id.cv_equipamento).setOnClickListener(this);
+        findViewById(R.id.cv_diag_terapia).setOnClickListener(this);
+        findViewById(R.id.cv_protec_radio).setOnClickListener(this);
+        findViewById(R.id.cv_legislacao).setOnClickListener(this);
+        findViewById(R.id.cv_outros).setOnClickListener(this);
     }
 
 
-// ESTE MÉTODO ESTARÁ NUMA CLASSE SIMILAR A CLASSE QUESTIONÁRIOS, ONDE SERÁ CRIADA A RECYCLERVIEW. REPETIREMOS O FINDVIEWBYID MOSTRADO A CIMA
-    // PARA TODOS OS CARDVIEWS, CADA UM COM UMA APIHOLDER DIFERENTE PARA GERAR A STRING DA URL
+    @Override
+    public void onClick(View v) {
+        int numCardViewClicado = 0;
+        Intent intent = new Intent(MenuInicial.this, PostListLoader.class);
 
+        switch(v.getId()){
+            case R.id.cv_bases_fisicas:
+                numCardViewClicado = 1;
+                break;
 
-//    private void getData(){
-//        Call<PostList> postList = APIDataHolder.getService().getPostList();
-//        postList.enqueue(new Callback<PostList>() {
-//            @Override
-//            public void onResponse(Call<PostList> call, Response<PostList> response) {
-//                PostList list = response.body();
-//                items.addAll(list.getItems());
-//                adapter.notifyDataSetChanged();
-//                recyclerView.setAdapter(new PostAdapter(MenuInicial.this, list.getItems()));
-//                Toast.makeText(MenuInicial.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<PostList> call, Throwable t) {
-//                Toast.makeText(MenuInicial.this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+            case R.id.cv_radiofarmacia:
+                numCardViewClicado = 2;
+                break;
+
+            case R.id.cv_radionuclideos:
+                numCardViewClicado = 3;
+                break;
+
+            case R.id.cv_equipamento:
+                numCardViewClicado = 4;
+                break;
+
+            case R.id.cv_diag_terapia:
+                numCardViewClicado = 5;
+                break;
+
+            case R.id.cv_protec_radio:
+                numCardViewClicado = 6;
+                break;
+
+            case R.id.cv_legislacao:
+                numCardViewClicado = 7;
+                break;
+
+            case R.id.cv_outros:
+                numCardViewClicado = 8;
+                break;
+
+            default:
+                Toast.makeText(this, "Opção incorreta", Toast.LENGTH_LONG).show();
+                break;
+
+        }
+        startPostListLoader(numCardViewClicado, intent);
+    }
+
+    private void startPostListLoader(int numCardViewClicado, @NonNull Intent intent) {
+        intent.putExtra("cardview escolhido", numCardViewClicado);
+        startActivity(intent);
+    }
 }

@@ -16,12 +16,13 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".MenuInicial"></activity>
+        <activity android:name=".BloggerStructure.PostListLoader"></activity>
+        <activity android:name=".MenuInicial" />
         <activity android:name=".ListaAutoresActivity" />
         <activity android:name=".AutorizacaoActivity" />
         <activity android:name=".SendInviteActivity" />
         <activity android:name=".WebViewConfig" />
-        <activity android:name=".PostStructure.TelaInicial" />
+        <activity android:name=".BloggerStructure.TelaInicial" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,8 +37,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PostStructure.PostDetalhe" />
-        <activity android:name=".PostStructure.Questionarios" />
+        <activity android:name=".BloggerStructure.PostDetalhe" />
+        <activity android:name=".BloggerStructure.Questionarios" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

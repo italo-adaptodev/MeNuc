@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.PostStructure;
+package prototipo.italoluis.com.fireprot3.BloggerStructure;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +20,8 @@ import prototipo.italoluis.com.fireprot3.APIs.ApiBloggerQuestionario;
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
-import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import prototipo.italoluis.com.fireprot3.R;
+import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,8 +35,7 @@ public class Questionarios extends AppCompatActivity {
     private LinearLayoutManager manager;
     private PostAdapter adapter;
     private List<Item> items = new ArrayList<>();
-    private TextView txt_quest, txt_invite, txt_author, receive;
-    private AsyncHttpClient client = new AsyncHttpClient();
+    private TextView txt_quest, txt_invite, txt_author;
     private Boolean isOpen = false;
 
     @Override
@@ -50,8 +47,7 @@ public class Questionarios extends AppCompatActivity {
         manager = new LinearLayoutManager(this);
         adapter = new PostAdapter(this, items);
         recyclerView.setAdapter(adapter);
-        receive = findViewById(R.id.receive);
-        receive.setText(getIntent().getStringExtra("valor"));
+
 
 
         fabConfig();
@@ -82,7 +78,6 @@ public class Questionarios extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Questionarios.this, SendInviteActivity.class);
-                intent.putExtra("valor", receive.getText().toString());
                 startActivity(intent);
             }
         });

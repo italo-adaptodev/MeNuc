@@ -1,10 +1,9 @@
 package prototipo.italoluis.com.fireprot3;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -28,21 +27,15 @@ public class SendInviteActivity extends AppCompatActivity {
     EditText nome, email;
     ImageButton button_send;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String receive, mini;
-    TextView usuario;
-    SharedPreferences preferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
-        preferences = getSharedPreferences("prototipo.italoluis.com.fireprot3", Context.MODE_PRIVATE);
-        receive = preferences.getString("nome_usuario", "");
-        usuario = findViewById(R.id.nome_usuario);
-        mini = "Seja bem vindo, " + receive;
-        usuario.setText(mini);
 
+        TextView aviso = findViewById(R.id.convite_expli);
+        aviso.setMovementMethod(new ScrollingMovementMethod());
         nome = findViewById(R.id.indicado1);
         email = findViewById(R.id.indicado2);
         button_send = findViewById(R.id.btn_send);
@@ -67,14 +60,6 @@ public class SendInviteActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
-
-
-
     }
 
     boolean isEmailValid(CharSequence email){
