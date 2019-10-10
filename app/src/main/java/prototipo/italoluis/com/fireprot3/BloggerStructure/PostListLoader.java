@@ -1,9 +1,9 @@
 package prototipo.italoluis.com.fireprot3.BloggerStructure;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,11 +15,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import prototipo.italoluis.com.fireprot3.APIs.APIBlogger;
+import prototipo.italoluis.com.fireprot3.APIs.APIBloggerTest;
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
 import prototipo.italoluis.com.fireprot3.ListaAutoresActivity;
+import prototipo.italoluis.com.fireprot3.MenuInicial;
 import prototipo.italoluis.com.fireprot3.R;
 import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import retrofit2.Call;
@@ -33,7 +34,7 @@ public class PostListLoader extends AppCompatActivity {
     private Boolean isOpen = false;
     private RecyclerView recyclerView;
     private PostAdapter adapter;
-    private int idCVEscolhido;
+    private String urlCompleta;
     private List<Item> items = new ArrayList<>();
 
 
@@ -46,7 +47,7 @@ public class PostListLoader extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PostAdapter(this, items);
         recyclerView.setAdapter(adapter);
-        idCVEscolhido = getIntent().getIntExtra("cardview escolhido", 0);
+        urlCompleta = getIntent().getStringExtra("urlCompletaBlogger");
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
         txt_author =  findViewById(R.id.txt_autores);
@@ -109,17 +110,23 @@ public class PostListLoader extends AppCompatActivity {
     }
 
     private void getData(){
-        Call<PostList> postList = APIBlogger.getService().getPostList();
+        Call<PostList> postList = APIBloggerTest.getService().getPostList(urlCompleta);
 
         postList.enqueue(new Callback<PostList>() {
 
             @Override
             public void onResponse(Call<PostList> call, Response<PostList> response) {
                 PostList list = response.body();
-                items.addAll(list.getItems());
-                adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(new PostAdapter(PostListLoader.this, list.getItems()));
-                Toast.makeText(PostListLoader.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                if (list.getItems() == null) {
+                    startActivity(new Intent(PostListLoader.this, MenuInicial.class));
+                    Toast.makeText(PostListLoader.this, "Ops. Parece que não há nada aqui...", (Toast.LENGTH_LONG+4)).show();
+
+                } else {
+                    items.addAll(list.getItems());
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(new PostAdapter(PostListLoader.this, list.getItems()));
+                    Toast.makeText(PostListLoader.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

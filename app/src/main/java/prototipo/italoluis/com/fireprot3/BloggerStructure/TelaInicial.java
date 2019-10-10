@@ -132,7 +132,7 @@ public class TelaInicial extends AppCompatActivity {
     }
 
     private void getData(){
-        Call<PostList> postList = APIBlogger.getService().getPostList();
+        Call<PostList> postList = APIBlogger.getService().getPostList("https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts/?key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY");
         postList.enqueue(new Callback<PostList>() {
 
             @Override

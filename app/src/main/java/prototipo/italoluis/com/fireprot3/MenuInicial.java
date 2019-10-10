@@ -1,7 +1,9 @@
 package prototipo.italoluis.com.fireprot3;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -10,6 +12,16 @@ import prototipo.italoluis.com.fireprot3.BloggerStructure.PostListLoader;
 
 
 public class MenuInicial extends AppCompatActivity implements View.OnClickListener {
+
+    private String labelKeyBaseFisica = "posts?labels=BASE+FÍSICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKey2Radiofarmacia = "posts?labels=RADIOFARMACIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyRadionuclideos = "posts?labels=RADIONUCLIDEOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyEquips = "posts?labels=EQUIPAMENTOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyDiagnoTerapia = "posts?labels=DIAGNOSTICO+E+TERAPIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyRadioProtec = "posts?labels=PROTECAO+RADIOLOGICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyLegisl = "posts?labels=LEGISLACAO&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String labelKeyOutros = "posts?labels=OUTROS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    private String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,43 +38,67 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
         findViewById(R.id.cv_outros).setOnClickListener(this);
     }
 
+    @Override
+    public void onBackPressed() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Deseja sair do aplicativo?");
+        builder.setPositiveButton("Sim",new DialogInterface
+                .OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog,
+                                int which)
+            {
+                finish();
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     @Override
     public void onClick(View v) {
-        int numCardViewClicado = 0;
+        String labelkey ="";
         Intent intent = new Intent(MenuInicial.this, PostListLoader.class);
 
         switch(v.getId()){
             case R.id.cv_bases_fisicas:
-                numCardViewClicado = 1;
+                labelkey = labelKeyBaseFisica;
                 break;
 
             case R.id.cv_radiofarmacia:
-                numCardViewClicado = 2;
+                labelkey = labelKey2Radiofarmacia;
                 break;
 
             case R.id.cv_radionuclideos:
-                numCardViewClicado = 3;
+                labelkey = labelKeyRadionuclideos;
                 break;
 
             case R.id.cv_equipamento:
-                numCardViewClicado = 4;
+                labelkey = labelKeyEquips;
                 break;
 
             case R.id.cv_diag_terapia:
-                numCardViewClicado = 5;
+                labelkey = labelKeyDiagnoTerapia;
                 break;
 
             case R.id.cv_protec_radio:
-                numCardViewClicado = 6;
+                labelkey = labelKeyRadioProtec;
                 break;
 
             case R.id.cv_legislacao:
-                numCardViewClicado = 7;
+                labelkey = labelKeyLegisl;
                 break;
 
             case R.id.cv_outros:
-                numCardViewClicado = 8;
+                labelkey = labelKeyOutros;
                 break;
 
             default:
@@ -70,11 +106,12 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
                 break;
 
         }
-        startPostListLoader(numCardViewClicado, intent);
+        startPostListLoader(labelkey, intent);
     }
 
-    private void startPostListLoader(int numCardViewClicado, @NonNull Intent intent) {
-        intent.putExtra("cardview escolhido", numCardViewClicado);
+    private void startPostListLoader(String labelkey, @NonNull Intent intent) {
+        intent.putExtra("urlCompletaBlogger", url + labelkey);
         startActivity(intent);
     }
+
 }
