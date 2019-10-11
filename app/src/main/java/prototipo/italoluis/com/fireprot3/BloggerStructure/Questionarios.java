@@ -20,6 +20,7 @@ import prototipo.italoluis.com.fireprot3.APIs.ApiBloggerQuestionario;
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
+import prototipo.italoluis.com.fireprot3.MenuInicial;
 import prototipo.italoluis.com.fireprot3.R;
 import prototipo.italoluis.com.fireprot3.SendInviteActivity;
 import retrofit2.Call;
@@ -69,7 +70,7 @@ public class Questionarios extends AppCompatActivity {
         fab1_quest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Questionarios.this, TelaInicial.class);
+                Intent intent = new Intent(Questionarios.this, MenuInicial.class);
                 startActivity(intent);
             }
         });

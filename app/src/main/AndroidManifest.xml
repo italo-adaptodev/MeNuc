@@ -22,7 +22,6 @@
         <activity android:name=".AutorizacaoActivity" />
         <activity android:name=".SendInviteActivity" />
         <activity android:name=".WebViewConfig" />
-        <activity android:name=".BloggerStructure.TelaInicial" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -26,7 +26,7 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prototipotelainicial);
+        setContentView(R.layout.menuinicial);
 
         findViewById(R.id.cv_bases_fisicas).setOnClickListener(this);
         findViewById(R.id.cv_radiofarmacia).setOnClickListener(this);

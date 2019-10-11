@@ -9,8 +9,19 @@
     android:layout_gravity="center"
     android:foregroundGravity="center">
 
+    <FrameLayout
+
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="369dp"
         android:layout_height="402dp"
         android:foregroundGravity="center"
@@ -43,6 +54,9 @@
                 android:layout_height="80dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:stateListAnimator="@anim/animation_cardview"
                 app:cardBackgroundColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/cv_radiofarmacia"
@@ -50,10 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.305"
                 app:strokeColor="#6FFFD700"
-                app:strokeWidth="2dp"
-                android:stateListAnimator="@anim/animation_cardview"
-                android:foreground="?attr/selectableItemBackground"
-                android:clickable="true">
+                app:strokeWidth="2dp">
 
                 <ImageView
                     android:layout_width="90dp"
@@ -347,6 +358,16 @@
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="407dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

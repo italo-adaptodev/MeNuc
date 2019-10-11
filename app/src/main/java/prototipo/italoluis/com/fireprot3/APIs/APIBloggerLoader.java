@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
-public class APIBloggerTest {
+public class APIBloggerLoader {
 
     private final static String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/";
 

@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import prototipo.italoluis.com.fireprot3.APIs.APIBloggerTest;
+import prototipo.italoluis.com.fireprot3.APIs.APIBloggerLoader;
 import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
@@ -110,7 +110,7 @@ public class PostListLoader extends AppCompatActivity {
     }
 
     private void getData(){
-        Call<PostList> postList = APIBloggerTest.getService().getPostList(urlCompleta);
+        Call<PostList> postList = APIBloggerLoader.getService().getPostList(urlCompleta);
 
         postList.enqueue(new Callback<PostList>() {
 
@@ -156,15 +156,9 @@ public class PostListLoader extends AppCompatActivity {
     }
 
     private void openFloatActionButton(){
-        fab1_quest.startAnimation(fab_open);
-        fab2_invite.startAnimation(fab_open);
-        fab3_author.startAnimation(fab_open);
-        fab4_autorizacao.startAnimation(fab_open);
+        startAnimationFab(fab1_quest, fab_open, fab2_invite, fab3_author, fab4_autorizacao, fab_open);
         fab_main.startAnimation(fab_clock);
-        fab1_quest.setClickable(true);
-        fab2_invite.setClickable(true);
-        fab3_author.setClickable(true);
-        fab4_autorizacao.setClickable(true);
+        isFabClickable(true);
         txt_author.setVisibility(View.VISIBLE);
         txt_author.startAnimation(fab_open);
         txt_invite.setVisibility(View.VISIBLE);
@@ -176,16 +170,17 @@ public class PostListLoader extends AppCompatActivity {
         isOpen = true;
     }
 
-    private void closeFloatActionButton(){
-        fab1_quest.startAnimation(fab_close);
-        fab2_invite.startAnimation(fab_close);
-        fab3_author.startAnimation(fab_close);
-        fab4_autorizacao.startAnimation(fab_close);
+    private void startAnimationFab(FloatingActionButton fab1_quest, Animation fab_open, FloatingActionButton fab2_invite, FloatingActionButton fab3_author, FloatingActionButton fab4_autorizacao, Animation fab_open2) {
+        fab1_quest.startAnimation(fab_open);
+        fab2_invite.startAnimation(fab_open);
+        fab3_author.startAnimation(fab_open);
+        fab4_autorizacao.startAnimation(fab_open2);
         fab_main.startAnimation(fab_anticlock);
-        fab1_quest.setClickable(false);
-        fab2_invite.setClickable(false);
-        fab3_author.setClickable(false);
-        fab4_autorizacao.setClickable(false);
+    }
+
+    private void closeFloatActionButton(){
+        startAnimationFab(fab1_quest, fab_close, fab2_invite, fab3_author, fab4_autorizacao, fab_close);
+        isFabClickable(false);
         txt_author.setVisibility(View.INVISIBLE);
         txt_author.startAnimation(fab_close);
         txt_invite.setVisibility(View.INVISIBLE);
@@ -195,5 +190,12 @@ public class PostListLoader extends AppCompatActivity {
         txt_autoziracao.setVisibility(View.INVISIBLE);
         txt_autoziracao.startAnimation(fab_close);
         isOpen = false;
+    }
+
+    private void isFabClickable(boolean b) {
+        fab1_quest.setClickable(b);
+        fab2_invite.setClickable(b);
+        fab3_author.setClickable(b);
+        fab4_autorizacao.setClickable(b);
     }
 }

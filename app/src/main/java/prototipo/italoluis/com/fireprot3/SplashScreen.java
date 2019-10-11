@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import prototipo.italoluis.com.fireprot3.PackageLogin.CriarLogin;
+
 public class SplashScreen extends AppCompatActivity {
 
   @Override
@@ -16,7 +18,7 @@ public class SplashScreen extends AppCompatActivity {
     handler.postDelayed(new Runnable() {
       @Override
       public void run() {
-        Intent intent = new Intent(SplashScreen.this, MenuInicial.class);
+        Intent intent = new Intent(SplashScreen.this, CriarLogin.class);
         startActivity(intent);
         finish();
 
