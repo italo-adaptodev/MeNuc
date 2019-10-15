@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListadorDePosts extends AppCompatActivity {
+public class ListadorPosts extends AppCompatActivity {
     private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author, fab4_autorizacao;
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
@@ -86,9 +86,9 @@ public class ListadorDePosts extends AppCompatActivity {
     }
 
     private void startActivityWAnimation(Class nextActivity){
-        Intent intent = new Intent(ListadorDePosts.this, nextActivity);
+        Intent intent = new Intent(ListadorPosts.this, nextActivity);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ListadorDePosts.this).toBundle());
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ListadorPosts.this).toBundle());
         }else{
             startActivity(intent);
         }
@@ -116,20 +116,20 @@ public class ListadorDePosts extends AppCompatActivity {
             public void onResponse(Call<PostList> call, Response<PostList> response) {
                 PostList list = response.body();
                 if (list.getItems() == null) {
-                    startActivity(new Intent(ListadorDePosts.this, MenuInicialActivity.class));
-                    Toast.makeText(ListadorDePosts.this, "Ops. Parece que não há nada aqui...", (Toast.LENGTH_LONG+4)).show();
+                    startActivity(new Intent(ListadorPosts.this, MenuInicialActivity.class));
+                    Toast.makeText(ListadorPosts.this, "Ops. Parece que não há nada aqui...", (Toast.LENGTH_LONG+4)).show();
 
                 } else {
                     items.addAll(list.getItems());
                     adapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(new AdaptadorPosts(ListadorDePosts.this, list.getItems()));
-                    Toast.makeText(ListadorDePosts.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    recyclerView.setAdapter(new AdaptadorPosts(ListadorPosts.this, list.getItems()));
+                    Toast.makeText(ListadorPosts.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PostList> call, Throwable t) {
-                Toast.makeText(ListadorDePosts.this, "Não foi possível carregar a página. " +
+                Toast.makeText(ListadorPosts.this, "Não foi possível carregar a página. " +
                         "Verifique sua internet e tente novamente.", Toast.LENGTH_LONG).show();
 
             }

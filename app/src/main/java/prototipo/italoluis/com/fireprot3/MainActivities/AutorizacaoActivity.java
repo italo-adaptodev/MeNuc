@@ -37,8 +37,6 @@ import prototipo.italoluis.com.fireprot3.WebViewConfig;
 
 public class AutorizacaoActivity extends AppCompatActivity {
 
-
-
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
@@ -50,8 +48,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private String emailAuth, provEmail;
     private Parcelable listState;
     private RecyclerView recyclerView;
-
-
 
     @Override
     protected void onStart() {
@@ -101,6 +97,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 }else {
                     emailAuth = provEmail + " " + emailAuth;
                 }
+
                sendAuthors(holder, clipboardManager);
 
                accept(holder, model);

@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".BloggerStructure.ListadorDePosts"></activity>
+        <activity android:name=".BloggerStructure.ListadorPosts"></activity>
         <activity android:name=".MainActivities.MenuInicialActivity" />
         <activity android:name=".MainActivities.ListaAutoresActivity" />
         <activity android:name=".MainActivities.AutorizacaoActivity" />

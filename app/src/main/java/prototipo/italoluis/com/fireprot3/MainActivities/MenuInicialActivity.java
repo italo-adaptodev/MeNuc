@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import prototipo.italoluis.com.fireprot3.BloggerStructure.ListadorDePosts;
+import prototipo.italoluis.com.fireprot3.BloggerStructure.ListadorPosts;
 import prototipo.italoluis.com.fireprot3.LabelKeyController;
 import prototipo.italoluis.com.fireprot3.R;
 
@@ -103,7 +103,7 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
 
 
     private void startPostListLoader(String labelkeyurl) {
-        Intent intent =  new Intent(MenuInicialActivity.this, ListadorDePosts.class);
+        Intent intent =  new Intent(MenuInicialActivity.this, ListadorPosts.class);
         intent.putExtra("urlCompletaBlogger", labelkeyurl);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MenuInicialActivity.this).toBundle());
