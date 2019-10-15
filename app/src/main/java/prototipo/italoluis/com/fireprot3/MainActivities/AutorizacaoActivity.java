@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.MainActivities;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -29,6 +29,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import prototipo.italoluis.com.fireprot3.FirebaseDataAuth;
+import prototipo.italoluis.com.fireprot3.FirebaseViewHolder;
+import prototipo.italoluis.com.fireprot3.R;
+import prototipo.italoluis.com.fireprot3.WebViewConfig;
 
 public class AutorizacaoActivity extends AppCompatActivity {
 

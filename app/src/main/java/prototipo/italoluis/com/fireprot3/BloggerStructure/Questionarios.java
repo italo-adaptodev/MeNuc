@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prototipo.italoluis.com.fireprot3.APIs.ApiBloggerQuestionario;
-import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
-import prototipo.italoluis.com.fireprot3.MenuInicial;
+import prototipo.italoluis.com.fireprot3.MainActivities.MenuInicialActivity;
 import prototipo.italoluis.com.fireprot3.R;
-import prototipo.italoluis.com.fireprot3.SendInviteActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.SendInviteActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +34,7 @@ public class Questionarios extends AppCompatActivity {
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private RecyclerView recyclerView;
     private LinearLayoutManager manager;
-    private PostAdapter adapter;
+    private AdaptadorPosts adapter;
     private List<Item> items = new ArrayList<>();
     private TextView txt_quest, txt_invite, txt_author;
     private Boolean isOpen = false;
@@ -42,11 +42,11 @@ public class Questionarios extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_post_list_model);
         recyclerView = findViewById(R.id.listadepost);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         manager = new LinearLayoutManager(this);
-        adapter = new PostAdapter(this, items);
+        adapter = new AdaptadorPosts(this, items);
         recyclerView.setAdapter(adapter);
 
 
@@ -70,7 +70,7 @@ public class Questionarios extends AppCompatActivity {
         fab1_quest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Questionarios.this, MenuInicial.class);
+                Intent intent = new Intent(Questionarios.this, MenuInicialActivity.class);
                 startActivity(intent);
             }
         });
@@ -113,7 +113,7 @@ public class Questionarios extends AppCompatActivity {
                 PostList list = response.body();
                 items.addAll(list.getItems());
                 adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(new PostAdapter(Questionarios.this, list.getItems()));
+                recyclerView.setAdapter(new AdaptadorPosts(Questionarios.this, list.getItems()));
                 Toast.makeText(Questionarios.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
             }
 

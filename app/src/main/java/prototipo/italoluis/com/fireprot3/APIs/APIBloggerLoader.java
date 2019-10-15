@@ -30,6 +30,4 @@ public class APIBloggerLoader {
         @GET
         retrofit2.Call<PostList> getPostList(@Url String fullUrl);
     }
-
-    // criar varias interfaces "postservices", uma pra cada String label statica (8 no total)
 }

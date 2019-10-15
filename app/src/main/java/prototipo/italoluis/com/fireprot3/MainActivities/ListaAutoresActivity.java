@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.MainActivities;
 
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -16,6 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
+
+import prototipo.italoluis.com.fireprot3.FirebaseDataAuth;
+import prototipo.italoluis.com.fireprot3.FirebaseViewHolder;
+import prototipo.italoluis.com.fireprot3.R;
 
 public class ListaAutoresActivity extends AppCompatActivity {
 

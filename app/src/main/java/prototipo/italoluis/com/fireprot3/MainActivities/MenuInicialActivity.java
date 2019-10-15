@@ -1,27 +1,22 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.MainActivities;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import prototipo.italoluis.com.fireprot3.BloggerStructure.PostListLoader;
+import prototipo.italoluis.com.fireprot3.BloggerStructure.ListadorDePosts;
+import prototipo.italoluis.com.fireprot3.LabelKeyController;
+import prototipo.italoluis.com.fireprot3.R;
 
 
-public class MenuInicial extends AppCompatActivity implements View.OnClickListener {
+public class MenuInicialActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String labelKeyBaseFisica = "posts?labels=BASE+FÍSICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKey2Radiofarmacia = "posts?labels=RADIOFARMACIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyRadionuclideos = "posts?labels=RADIONUCLIDEOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyEquips = "posts?labels=EQUIPAMENTOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyDiagnoTerapia = "posts?labels=DIAGNOSTICO+E+TERAPIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyRadioProtec = "posts?labels=PROTECAO+RADIOLOGICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyLegisl = "posts?labels=LEGISLACAO&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String labelKeyOutros = "posts?labels=OUTROS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
-    private String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/";
+    private LabelKeyController labelKeyController = new LabelKeyController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +45,7 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
                                 int which)
             {
                 finish();
+                Toast.makeText(MenuInicialActivity.this,"Clique novamente para sair do app", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -62,43 +58,39 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
         dialog.show();
     }
 
-
     @Override
     public void onClick(View v) {
-        String labelkey ="";
-        Intent intent = new Intent(MenuInicial.this, PostListLoader.class);
-
         switch(v.getId()){
             case R.id.cv_bases_fisicas:
-                labelkey = labelKeyBaseFisica;
+                startPostListLoader(labelKeyController.getLabelKeyBaseFisica());
                 break;
 
             case R.id.cv_radiofarmacia:
-                labelkey = labelKey2Radiofarmacia;
+                startPostListLoader(labelKeyController.getLabelKey2Radiofarmacia());
                 break;
 
             case R.id.cv_radionuclideos:
-                labelkey = labelKeyRadionuclideos;
+                startPostListLoader(labelKeyController.getLabelKeyRadionuclideos());
                 break;
 
             case R.id.cv_equipamento:
-                labelkey = labelKeyEquips;
+                startPostListLoader(labelKeyController.getLabelKeyEquips());
                 break;
 
             case R.id.cv_diag_terapia:
-                labelkey = labelKeyDiagnoTerapia;
+                startPostListLoader(labelKeyController.getLabelKeyDiagnoTerapia());
                 break;
 
             case R.id.cv_protec_radio:
-                labelkey = labelKeyRadioProtec;
+                startPostListLoader(labelKeyController.getLabelKeyRadioProtec());
                 break;
 
             case R.id.cv_legislacao:
-                labelkey = labelKeyLegisl;
+                startPostListLoader(labelKeyController.getLabelKeyLegisl());
                 break;
 
             case R.id.cv_outros:
-                labelkey = labelKeyOutros;
+                startPostListLoader(labelKeyController.getLabelKeyOutros());
                 break;
 
             default:
@@ -106,12 +98,19 @@ public class MenuInicial extends AppCompatActivity implements View.OnClickListen
                 break;
 
         }
-        startPostListLoader(labelkey, intent);
     }
 
-    private void startPostListLoader(String labelkey, @NonNull Intent intent) {
-        intent.putExtra("urlCompletaBlogger", url + labelkey);
-        startActivity(intent);
+
+
+    private void startPostListLoader(String labelkeyurl) {
+        Intent intent =  new Intent(MenuInicialActivity.this, ListadorDePosts.class);
+        intent.putExtra("urlCompletaBlogger", labelkeyurl);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MenuInicialActivity.this).toBundle());
+        }else{
+            startActivity(intent);
+        }
+
     }
 
 }

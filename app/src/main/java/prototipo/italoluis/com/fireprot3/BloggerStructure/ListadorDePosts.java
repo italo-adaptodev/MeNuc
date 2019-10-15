@@ -1,6 +1,8 @@
 package prototipo.italoluis.com.fireprot3.BloggerStructure;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,36 +18,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prototipo.italoluis.com.fireprot3.APIs.APIBloggerLoader;
-import prototipo.italoluis.com.fireprot3.AutorizacaoActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.AutorizacaoActivity;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
-import prototipo.italoluis.com.fireprot3.ListaAutoresActivity;
-import prototipo.italoluis.com.fireprot3.MenuInicial;
+import prototipo.italoluis.com.fireprot3.MainActivities.ListaAutoresActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.MenuInicialActivity;
 import prototipo.italoluis.com.fireprot3.R;
-import prototipo.italoluis.com.fireprot3.SendInviteActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.SendInviteActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostListLoader extends AppCompatActivity {
+public class ListadorDePosts extends AppCompatActivity {
     private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author, fab4_autorizacao;
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
     private Boolean isOpen = false;
     private RecyclerView recyclerView;
-    private PostAdapter adapter;
+    private AdaptadorPosts adapter;
     private String urlCompleta;
     private List<Item> items = new ArrayList<>();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_post_list_model);
         recyclerView = findViewById(R.id.listadepost);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PostAdapter(this, items);
+        adapter = new AdaptadorPosts(this, items);
         recyclerView.setAdapter(adapter);
         urlCompleta = getIntent().getStringExtra("urlCompletaBlogger");
         txt_quest =  findViewById(R.id.txt_questionario);
@@ -61,40 +61,38 @@ public class PostListLoader extends AppCompatActivity {
 
     private void fabOnClick(){
         fab1_quest.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostListLoader.this, Questionarios.class);
-                startActivity(intent);
-                closeFloatActionButton();
+                startActivityWAnimation(Questionarios.class);
             }
         });
 
         fab2_invite.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostListLoader.this, SendInviteActivity.class);
-                startActivity(intent);
-                closeFloatActionButton();
+                startActivityWAnimation(SendInviteActivity.class);
             }
         });
 
         fab3_author.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostListLoader.this, ListaAutoresActivity.class);
-                startActivity(intent);
-                closeFloatActionButton();
+                startActivityWAnimation(ListaAutoresActivity.class);
             }
         });
 
         fab4_autorizacao.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostListLoader.this, AutorizacaoActivity.class);
-                startActivity(intent);
-                closeFloatActionButton();
+                 startActivityWAnimation(AutorizacaoActivity.class);
             }
         });
+    }
+
+    private void startActivityWAnimation(Class nextActivity){
+        Intent intent = new Intent(ListadorDePosts.this, nextActivity);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ListadorDePosts.this).toBundle());
+        }else{
+            startActivity(intent);
+        }
+
     }
 
     private void fabConfig(){
@@ -118,20 +116,20 @@ public class PostListLoader extends AppCompatActivity {
             public void onResponse(Call<PostList> call, Response<PostList> response) {
                 PostList list = response.body();
                 if (list.getItems() == null) {
-                    startActivity(new Intent(PostListLoader.this, MenuInicial.class));
-                    Toast.makeText(PostListLoader.this, "Ops. Parece que não há nada aqui...", (Toast.LENGTH_LONG+4)).show();
+                    startActivity(new Intent(ListadorDePosts.this, MenuInicialActivity.class));
+                    Toast.makeText(ListadorDePosts.this, "Ops. Parece que não há nada aqui...", (Toast.LENGTH_LONG+4)).show();
 
                 } else {
                     items.addAll(list.getItems());
                     adapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(new PostAdapter(PostListLoader.this, list.getItems()));
-                    Toast.makeText(PostListLoader.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
+                    recyclerView.setAdapter(new AdaptadorPosts(ListadorDePosts.this, list.getItems()));
+                    Toast.makeText(ListadorDePosts.this, "Efetuado com sucesso", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PostList> call, Throwable t) {
-                Toast.makeText(PostListLoader.this, "Não foi possível carregar a página. " +
+                Toast.makeText(ListadorDePosts.this, "Não foi possível carregar a página. " +
                         "Verifique sua internet e tente novamente.", Toast.LENGTH_LONG).show();
 
             }

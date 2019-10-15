@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.PackageLogin;
+package prototipo.italoluis.com.fireprot3.MainActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +15,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import prototipo.italoluis.com.fireprot3.MenuInicial;
 import prototipo.italoluis.com.fireprot3.R;
 
 
-public class LoginSalvo extends AppCompatActivity {
+public class LoginSalvoActivity extends AppCompatActivity {
 
     private Button btnLoggin;
     private ProgressBar loginProgressB;
@@ -40,7 +39,7 @@ public class LoginSalvo extends AppCompatActivity {
         userLogin = findViewById(R.id.login_email_space);
         userSenha = findViewById(R.id.senha_space);
         mAuth = FirebaseAuth.getInstance();
-        tabs = new Intent(this, MenuInicial.class);
+        tabs = new Intent(this, MenuInicialActivity.class);
 
 
         btnLogin();
@@ -57,7 +56,7 @@ public class LoginSalvo extends AppCompatActivity {
                 final String senhaStr = userSenha.getText().toString();
 
                 if (loginStr.isEmpty() || senhaStr.isEmpty()){
-                    Toast.makeText(LoginSalvo.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginSalvoActivity.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
                     btnLoggin.setVisibility(View.VISIBLE);
                     loginProgressB.setVisibility(View.INVISIBLE);
 

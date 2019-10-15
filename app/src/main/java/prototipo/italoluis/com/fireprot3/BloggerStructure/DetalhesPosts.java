@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import prototipo.italoluis.com.fireprot3.R;
 
-public class PostDetalhe extends AppCompatActivity {
+public class DetalhesPosts extends AppCompatActivity {
 
   ProgressBar progressBar;
   WebView webView;
@@ -42,7 +42,7 @@ public class PostDetalhe extends AppCompatActivity {
       @Override
       public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        Toast.makeText(PostDetalhe.this,"Carregando tela", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DetalhesPosts.this,"Carregando tela", Toast.LENGTH_SHORT).show();
       }
 
       @Override
@@ -50,7 +50,7 @@ public class PostDetalhe extends AppCompatActivity {
         super.onPageFinished(view, url);
         progressBar.setVisibility(View.GONE);
         webView.setVisibility(View.VISIBLE);
-        Toast.makeText(PostDetalhe.this, "Tela carregada com sucesso", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DetalhesPosts.this, "Tela carregada com sucesso", Toast.LENGTH_SHORT).show();
 
       }
     });

@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3;
+package prototipo.italoluis.com.fireprot3.MainActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import prototipo.italoluis.com.fireprot3.Models.Indicados;
+import prototipo.italoluis.com.fireprot3.R;
 
 public class SendInviteActivity extends AppCompatActivity {
 

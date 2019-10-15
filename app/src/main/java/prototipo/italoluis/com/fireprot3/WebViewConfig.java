@@ -10,6 +10,8 @@ import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import prototipo.italoluis.com.fireprot3.MainActivities.MenuInicialActivity;
+
 
 public class WebViewConfig extends AppCompatActivity {
   private Context mContext;
@@ -62,7 +64,7 @@ public class WebViewConfig extends AppCompatActivity {
   @Override
   public void onBackPressed() {
     super.onBackPressed();
-    Intent intent = new Intent(this, MenuInicial.class);
+    Intent intent = new Intent(this, MenuInicialActivity.class);
     startActivity(intent);
   }
 }

@@ -20,12 +20,12 @@ import java.util.List;
 import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.R;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
+public class AdaptadorPosts extends RecyclerView.Adapter<AdaptadorPosts.PostViewHolder> {
 
   private Context context;
   private List<Item> items;
 
-  public PostAdapter(Context context, List<Item> items) {
+  public AdaptadorPosts(Context context, List<Item> items) {
     this.context = context;
     this.items = items;
   }
@@ -52,7 +52,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = new Intent(context, PostDetalhe.class);
+        Intent intent = new Intent(context, DetalhesPosts.class);
         intent.putExtra("url", item.getUrl());
         context.startActivity(intent);
       }

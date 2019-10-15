@@ -1,4 +1,4 @@
-package prototipo.italoluis.com.fireprot3.PackageLogin;
+package prototipo.italoluis.com.fireprot3.MainActivities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,7 +22,7 @@ import prototipo.italoluis.com.fireprot3.R;
 import prototipo.italoluis.com.fireprot3.WebViewConfig;
 
 
-public class CriarLogin extends AppCompatActivity {
+public class CriarLoginActivity extends AppCompatActivity {
 
     private EditText nome, senha, email;
     private String URL = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
@@ -61,7 +61,7 @@ public class CriarLogin extends AppCompatActivity {
             public void onClick(View v) {
                 mAuth.signOut();
 
-                Toast.makeText(CriarLogin.this, "Logout", Toast.LENGTH_LONG).show();
+                Toast.makeText(CriarLoginActivity.this, "Logout", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -82,7 +82,7 @@ public class CriarLogin extends AppCompatActivity {
                     CriarContaFirebase(userEmail, password, view);
 
                 } else {
-                    Toast.makeText(CriarLogin.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CriarLoginActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -92,7 +92,7 @@ public class CriarLogin extends AppCompatActivity {
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CriarLogin.this, LoginSalvo.class);
+                Intent intent = new Intent(CriarLoginActivity.this, LoginSalvoActivity.class);
                 startActivity(intent);
 
             }
@@ -105,10 +105,10 @@ public class CriarLogin extends AppCompatActivity {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(CriarLogin.this, "Conta criada", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CriarLoginActivity.this, "Conta criada", Toast.LENGTH_LONG).show();
                             showAlertDialogButtonClicked(view);
                         } else {
-                            Toast.makeText(CriarLogin.this, "Ocorreu um erro. Tente novamente" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(CriarLoginActivity.this, "Ocorreu um erro. Tente novamente" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -124,7 +124,7 @@ public class CriarLogin extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(CriarLogin.this, WebViewConfig.class);
+                Intent intent = new Intent(CriarLoginActivity.this, WebViewConfig.class);
                 intent.putExtra("URL", URL);
                 startActivity(intent);
             }

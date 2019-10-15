@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#00FFFFFF"
     android:padding="3dp"
-    tools:context=".SendInviteActivity">
+    tools:context=".MainActivities.SendInviteActivity">
 
     <TextView
         android:id="@+id/convite_expli"
