@@ -24,7 +24,7 @@ import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
 import prototipo.italoluis.com.fireprot3.MainActivities.ListaAutoresActivity;
 import prototipo.italoluis.com.fireprot3.MainActivities.MenuInicialActivity;
 import prototipo.italoluis.com.fireprot3.R;
-import prototipo.italoluis.com.fireprot3.MainActivities.SendInviteActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.EnviarConviteActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,7 +68,7 @@ public class ListadorPosts extends AppCompatActivity {
 
         fab2_invite.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityWAnimation(SendInviteActivity.class);
+                startActivityWAnimation(EnviarConviteActivity.class);
             }
         });
 

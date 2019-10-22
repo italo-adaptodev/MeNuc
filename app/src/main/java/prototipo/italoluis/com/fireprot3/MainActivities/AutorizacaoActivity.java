@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +45,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
     public SharedPreferences pref;
     private Button send_author;
     private String emailAuth, provEmail;
-    private Parcelable listState;
     private RecyclerView recyclerView;
 
     @Override
@@ -138,9 +136,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                             pref.edit().clear().apply();
                         } else {
                             if(holder.accept.getVisibility() == View.INVISIBLE) {
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putString("Lista_email", emailAuth);
-                                editor.apply();
+                                pref.edit().putString("Lista_email", emailAuth).apply();
                                 showText(pref.getString("Lista_email", ""));
                             }
                             removeIndicadoIfAuthor();
@@ -148,6 +144,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
                         clipboardManager.setPrimaryClip(clipData);
+
 
                         Intent intent_webview = new Intent(AutorizacaoActivity.this, WebViewConfig.class);
                         String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
@@ -172,9 +169,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.accept.setEnabled(false);
-                holder.accept.setVisibility(View.INVISIBLE);
-                holder.onHold.setVisibility(View.VISIBLE);
                 showAlertDialogAccept(v, holder, model);
 
             }
@@ -185,7 +179,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.deny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialogDeny(model);
+                showAlertDialogDeny(model, v, holder);
             }
         });
     }
@@ -217,7 +211,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dS: dataSnapshot.getChildren()){
-                            dS.getRef().child("autor");
+                            holder.accept.setEnabled(false);
+                            holder.accept.setVisibility(View.INVISIBLE);
+                            holder.onHold.setVisibility(View.VISIBLE);
+                            dS.getRef().child("autor").setValue(true);
+//                            dbRefAutores.push().setValue(dS.getValue());
                         }
                     }
 
@@ -243,7 +241,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dbRefAutores.push().setValue(ds.getValue());
     }
 
-    public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model) {
+    public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model, View v, final FirebaseViewHolder holder) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("ATENÇÃO!");
@@ -261,7 +259,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            dataSnapshot1.getRef().removeValue();
+                            if(dataSnapshot1.getRef().child("autor").toString().equals("true")) {
+                                holder.accept.setEnabled(false);
+                                holder.accept.setVisibility(View.INVISIBLE);
+                                holder.onHold.setVisibility(View.VISIBLE);
+                                dataSnapshot1.getRef().child("autor").setValue(false);
+                            }else
+                                dataSnapshot1.getRef().removeValue();
                         }
                     }
 
@@ -284,7 +288,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     }
 
     public void removeIndicadoIfAuthor(){
-        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(false);
+        final Query exclude =  dbRefAutores.orderByChild("autor").equalTo(false);
         exclude.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
