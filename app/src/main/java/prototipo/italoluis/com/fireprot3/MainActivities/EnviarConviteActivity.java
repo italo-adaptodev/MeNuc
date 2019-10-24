@@ -33,7 +33,7 @@ public class EnviarConviteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invite);
+        setContentView(R.layout.activity_enviar_convite);
 
         TextView aviso = findViewById(R.id.convite_expli);
         aviso.setMovementMethod(new ScrollingMovementMethod());

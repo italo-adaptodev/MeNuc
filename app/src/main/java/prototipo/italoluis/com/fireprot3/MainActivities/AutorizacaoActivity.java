@@ -139,7 +139,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                                 pref.edit().putString("Lista_email", emailAuth).apply();
                                 showText(pref.getString("Lista_email", ""));
                             }
-                            removeIndicadoIfAuthor();
+//                            removeIndicadoIfAuthor();
                         }
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
@@ -187,6 +187,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        removeIfAuthorFalse();
 
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData data = ClipData.newPlainText("", "");
@@ -214,8 +215,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                             holder.accept.setEnabled(false);
                             holder.accept.setVisibility(View.INVISIBLE);
                             holder.onHold.setVisibility(View.VISIBLE);
-                            dS.getRef().child("autor").setValue(true);
-//                            dbRefAutores.push().setValue(dS.getValue());
+                            dbRefAutores.push().setValue(dS.getValue());
                         }
                     }
 
@@ -224,6 +224,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
                         // Log.e(TAG, "onCancelled", databaseError.toException());
                     }
                 });
+
+
             }
         });
 
@@ -254,17 +256,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog,
                                 int which)
             {
-                final Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
-                exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+                final Query excludeFromIndicados =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                excludeFromIndicados.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            if(dataSnapshot1.getRef().child("autor").toString().equals("true")) {
-                                holder.accept.setEnabled(false);
-                                holder.accept.setVisibility(View.INVISIBLE);
-                                holder.onHold.setVisibility(View.VISIBLE);
-                                dataSnapshot1.getRef().child("autor").setValue(false);
-                            }else
                                 dataSnapshot1.getRef().removeValue();
                         }
                     }
@@ -275,6 +271,22 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
+
+                final Query excludeCopyFromAutores = dbRefAutores.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                excludeCopyFromAutores.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dS1: dataSnapshot.getChildren()){
+                            dS1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
@@ -287,7 +299,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void removeIndicadoIfAuthor(){
+    public void removeIfAuthorFalse(){
         final Query exclude =  dbRefAutores.orderByChild("autor").equalTo(false);
         exclude.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -304,6 +316,10 @@ public class AutorizacaoActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void setAutoresTrue(){} // ESTE MÉTODO SERÁ RESPONSÁVEL POR ATUALIZAR O CAMPO AUTOR EM TODOS OS ROWS EXISTENTES NO DB AUTORES, SENDO CHAMADO AO CLICAR NO BOTÃO
+    //AUTORIZAR (PARA COPIA E ENVIO DEFINITIVO DO CONVITE);
+
 
 
 }

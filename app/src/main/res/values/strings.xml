@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name2">NucMed - IFBA</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -8,10 +8,11 @@
     <string name="nome_indicado">Nome do indicado</string>
     <string name="email_indicado">Email do indicado</string>
     <string name="todo">TODO</string>
-    <string name="expli_invite">Nesta tela você irá indicar uma pessoa para ter se candidatar ao cargo de <b>Autor</b>. A candidatura será revisada pelo Administrador do aplicado. Importante que o email seja do domínio gmail, caso contrário será necessário que a pessoa crie um Gmail para ganhar autorização.</string>
     <string name="hint_nome">Nome e sobrenome</string>
     <string name="hint_email">exemplo@gmail.com (somente gmail!)</string>
     <string name="aviso_hint">Aviso!</string>
     <string name="indicado_por">Indicado por</string>
     <string name="quem_indicou">Quem indicou</string>
+    <string name="aviso_convite">Nesta tela você irá indicar uma pessoa ao cargo de <b>Autor</b>. A candidatura será revisada pelo Administrador do aplicado.
+        Importante que o email seja do domínio gmail, caso contrário será necessário que a pessoa crie um Gmail para ganhar autorização</string>
 </resources>
