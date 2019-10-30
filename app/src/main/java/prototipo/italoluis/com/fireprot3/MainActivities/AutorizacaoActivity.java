@@ -139,8 +139,9 @@ public class AutorizacaoActivity extends AppCompatActivity {
                                 pref.edit().putString("Lista_email", emailAuth).apply();
                                 showText(pref.getString("Lista_email", ""));
                             }
-//                            removeIndicadoIfAuthor();
                         }
+
+                        //QUANDO CLICAR EM ENVIAR, APAGAR TUDO QUE ESTIVER EM INDICADOS
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
                         clipboardManager.setPrimaryClip(clipData);
@@ -312,13 +313,27 @@ public class AutorizacaoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Log.e(TAG, "onCancelled", databaseError.toException());
-
             }
         });
     }
 
-    public void setAutoresTrue(){} // ESTE MÉTODO SERÁ RESPONSÁVEL POR ATUALIZAR O CAMPO AUTOR EM TODOS OS ROWS EXISTENTES NO DB AUTORES, SENDO CHAMADO AO CLICAR NO BOTÃO
-    //AUTORIZAR (PARA COPIA E ENVIO DEFINITIVO DO CONVITE);
+    public void setAutoresTrue(){
+        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(false);
+        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+    } // ESTE MÉTODO SERÁ RESPONSÁVEL POR APAGAR TODS OS DADOS RESTANTES DO DB INDICADOS, TENDO EM VISTA DE QUE QUANDO O BOTÃO FOR CLICADO,
+    //TODAS AS CHECAGENS E CONFIRMAÇÕES JA TERÃO SIDO FEITAS ;
 
 
 
