@@ -20,7 +20,9 @@
         <activity android:name=".MainActivities.MenuInicialActivity" />
         <activity android:name=".MainActivities.ListaAutoresActivity" />
         <activity android:name=".MainActivities.AutorizacaoActivity" />
-        <activity android:name=".MainActivities.EnviarConviteActivity" />
+        <activity android:name=".MainActivities.EnviarConviteActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".WebViewConfig" />
         <activity android:name=".MainActivities.SplashScreenActivity">
             <intent-filter>

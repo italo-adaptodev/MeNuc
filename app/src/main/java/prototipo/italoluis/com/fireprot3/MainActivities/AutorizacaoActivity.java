@@ -141,11 +141,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
                             }
                         }
 
-                        //QUANDO CLICAR EM ENVIAR, APAGAR TUDO QUE ESTIVER EM INDICADOS
+                        cleanIndicados();
+                        setAutoresTrue();
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
                         clipboardManager.setPrimaryClip(clipData);
-
 
                         Intent intent_webview = new Intent(AutorizacaoActivity.this, WebViewConfig.class);
                         String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
@@ -318,7 +318,25 @@ public class AutorizacaoActivity extends AppCompatActivity {
     }
 
     public void setAutoresTrue(){
-        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(false);
+        final Query exclude =  dbRefAutores.orderByChild("autor").equalTo(false);
+        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().child("autor").setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+    } // ESTE MÉTODO SERÁ RESPONSÁVEL POR APAGAR TODS OS DADOS RESTANTES DO DB INDICADOS, TENDO EM VISTA DE QUE QUANDO O BOTÃO FOR CLICADO,
+    //TODAS AS CHECAGENS E CONFIRMAÇÕES JA TERÃO SIDO FEITAS ;
+
+    public void cleanIndicados(){
+        final Query exclude =  dbRefIndicados.orderByChild("nomeIndicado");
         exclude.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -332,10 +350,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 // Log.e(TAG, "onCancelled", databaseError.toException());
             }
         });
-    } // ESTE MÉTODO SERÁ RESPONSÁVEL POR APAGAR TODS OS DADOS RESTANTES DO DB INDICADOS, TENDO EM VISTA DE QUE QUANDO O BOTÃO FOR CLICADO,
-    //TODAS AS CHECAGENS E CONFIRMAÇÕES JA TERÃO SIDO FEITAS ;
-
-
+    }
 
 }
 

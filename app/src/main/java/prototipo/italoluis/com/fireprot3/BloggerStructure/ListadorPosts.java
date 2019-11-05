@@ -88,8 +88,10 @@ public class ListadorPosts extends AppCompatActivity {
     private void startActivityWAnimation(Class nextActivity){
         Intent intent = new Intent(ListadorPosts.this, nextActivity);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            closeFloatActionButton();
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ListadorPosts.this).toBundle());
         }else{
+            closeFloatActionButton();
             startActivity(intent);
         }
 
