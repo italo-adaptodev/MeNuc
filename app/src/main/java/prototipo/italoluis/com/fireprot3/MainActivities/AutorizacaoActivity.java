@@ -240,10 +240,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void copyToAutores(DataSnapshot  ds) {
-        dbRefAutores.push().setValue(ds.getValue());
-    }
-
     public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model, View v, final FirebaseViewHolder holder) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
