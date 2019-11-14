@@ -1,6 +1,8 @@
 package prototipo.italoluis.com.fireprot3.MainActivities;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,6 +35,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
     private Boolean isOpen = false;
     private Query dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
+    boolean check;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,25 +133,13 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-//        final Query exclude =  dbRefAutores.orderByChild("emailIndicado");
-//        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot dS: dataSnapshot.getChildren()){
-//                    if(dS.child("emailIndicado").getValue().toString().equals("teste@gmail.com"))
-//                        fab4_autorizacao.setClickable(false);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
         fab4_autorizacao.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityWAnimation(AutorizacaoActivity.class);
+                if(checkIfAutor())
+                    startActivityWAnimation(AutorizacaoActivity.class);
+                else Toast.makeText(MenuInicialActivity.this,"Permissão negada. Você não é um autor!", Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -237,4 +230,25 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         fab4_autorizacao.setClickable(b);
     }
 
+    private boolean checkIfAutor(){
+        final Query checkPermission =  dbRefAutores.orderByChild("emailIndicado").orderByChild("autor").equalTo(true);
+        checkPermission.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dS: dataSnapshot.getChildren()){
+                    if(dS.child("emailIndicado").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
+                        check = true;
+                    }else{
+                        check = false;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return check;
+    }
 }

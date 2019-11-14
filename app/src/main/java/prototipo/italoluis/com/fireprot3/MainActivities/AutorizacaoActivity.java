@@ -314,8 +314,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
     }
 
     public void setAutoresTrue(){
-        final Query exclude =  dbRefAutores.orderByChild("autor").equalTo(false);
-        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+        final Query setAutores =  dbRefAutores.orderByChild("autor").equalTo(false);
+        setAutores.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
