@@ -22,7 +22,7 @@ import prototipo.italoluis.com.fireprot3.BlogModel.Item;
 import prototipo.italoluis.com.fireprot3.BlogModel.PostList;
 import prototipo.italoluis.com.fireprot3.MainActivities.MenuInicialActivity;
 import prototipo.italoluis.com.fireprot3.R;
-import prototipo.italoluis.com.fireprot3.MainActivities.SendInviteActivity;
+import prototipo.italoluis.com.fireprot3.MainActivities.EnviarConviteActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,7 +78,7 @@ public class Questionarios extends AppCompatActivity {
         fab2_invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Questionarios.this, SendInviteActivity.class);
+                Intent intent = new Intent(Questionarios.this, EnviarConviteActivity.class);
                 startActivity(intent);
             }
         });

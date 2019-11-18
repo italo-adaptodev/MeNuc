@@ -28,7 +28,7 @@ public class ListaAutoresActivity extends AppCompatActivity {
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
-    private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Autores");
+    private Query dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
     private SharedPreferences pref;
 
 
@@ -53,8 +53,8 @@ public class ListaAutoresActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<FirebaseDataAuth>();
-        dbRefIndicados.keepSynced(true);
-        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefIndicados.orderByChild("autor").equalTo(true), FirebaseDataAuth.class).build();
+        dbRefAutores.keepSynced(true);
+        options = new FirebaseRecyclerOptions.Builder<FirebaseDataAuth>().setQuery(dbRefAutores.orderByChild("autor").equalTo(true), FirebaseDataAuth.class).build();
 
 
         adapter = new FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder>(options) {

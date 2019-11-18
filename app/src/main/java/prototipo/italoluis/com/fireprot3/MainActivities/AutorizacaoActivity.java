@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +45,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
     public SharedPreferences pref;
     private Button send_author;
     private String emailAuth, provEmail;
-    private Parcelable listState;
     private RecyclerView recyclerView;
 
     @Override
@@ -138,13 +136,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
                             pref.edit().clear().apply();
                         } else {
                             if(holder.accept.getVisibility() == View.INVISIBLE) {
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putString("Lista_email", emailAuth);
-                                editor.apply();
+                                pref.edit().putString("Lista_email", emailAuth).apply();
                                 showText(pref.getString("Lista_email", ""));
                             }
-                            removeIndicadoIfAuthor();
                         }
+
+                        cleanIndicados();
+                        setAutoresTrue();
 
                         ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
                         clipboardManager.setPrimaryClip(clipData);
@@ -172,9 +170,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.accept.setEnabled(false);
-                holder.accept.setVisibility(View.INVISIBLE);
-                holder.onHold.setVisibility(View.VISIBLE);
                 showAlertDialogAccept(v, holder, model);
 
             }
@@ -185,7 +180,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         holder.deny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialogDeny(model);
+                showAlertDialogDeny(model, v, holder);
             }
         });
     }
@@ -193,6 +188,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        removeIfAuthorFalse();
 
         final ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData data = ClipData.newPlainText("", "");
@@ -217,7 +213,10 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dS: dataSnapshot.getChildren()){
-                            dS.getRef().child("autor");
+                            holder.accept.setEnabled(false);
+                            holder.accept.setVisibility(View.INVISIBLE);
+                            holder.onHold.setVisibility(View.VISIBLE);
+                            dbRefAutores.push().setValue(dS.getValue());
                         }
                     }
 
@@ -226,6 +225,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
                         // Log.e(TAG, "onCancelled", databaseError.toException());
                     }
                 });
+
+
             }
         });
 
@@ -239,11 +240,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void copyToAutores(DataSnapshot  ds) {
-        dbRefAutores.push().setValue(ds.getValue());
-    }
-
-    public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model) {
+    public void showAlertDialogDeny(@NonNull final FirebaseDataAuth model, View v, final FirebaseViewHolder holder) {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("ATENÇÃO!");
@@ -256,12 +253,12 @@ public class AutorizacaoActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog,
                                 int which)
             {
-                final Query exclude =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
-                exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+                final Query excludeFromIndicados =  dbRefIndicados.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                excludeFromIndicados.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                            dataSnapshot1.getRef().removeValue();
+                                dataSnapshot1.getRef().removeValue();
                         }
                     }
 
@@ -271,6 +268,22 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                     }
                 });
+
+                final Query excludeCopyFromAutores = dbRefAutores.orderByChild("nomeIndicado").equalTo(model.nomeIndicado);
+                excludeCopyFromAutores.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dS1: dataSnapshot.getChildren()){
+                            dS1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
@@ -283,8 +296,8 @@ public class AutorizacaoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void removeIndicadoIfAuthor(){
-        final Query exclude =  dbRefIndicados.orderByChild("autor").equalTo(false);
+    public void removeIfAuthorFalse(){
+        final Query exclude =  dbRefAutores.orderByChild("autor").equalTo(false);
         exclude.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -296,11 +309,44 @@ public class AutorizacaoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Log.e(TAG, "onCancelled", databaseError.toException());
-
             }
         });
     }
 
+    public void setAutoresTrue(){
+        final Query setAutores =  dbRefAutores.orderByChild("autor").equalTo(false);
+        setAutores.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().child("autor").setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+    } // ESTE MÉTODO SERÁ RESPONSÁVEL POR APAGAR TODS OS DADOS RESTANTES DO DB INDICADOS, TENDO EM VISTA DE QUE QUANDO O BOTÃO FOR CLICADO,
+    //TODAS AS CHECAGENS E CONFIRMAÇÕES JA TERÃO SIDO FEITAS ;
+
+    public void cleanIndicados(){
+        final Query exclude =  dbRefIndicados.orderByChild("nomeIndicado");
+        exclude.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    dataSnapshot1.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+    }
 
 }
 

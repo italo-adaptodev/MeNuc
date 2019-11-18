@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import prototipo.italoluis.com.fireprot3.Models.Indicados;
 import prototipo.italoluis.com.fireprot3.R;
 
-public class SendInviteActivity extends AppCompatActivity {
+public class EnviarConviteActivity extends AppCompatActivity {
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -33,7 +33,7 @@ public class SendInviteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_invite);
+        setContentView(R.layout.activity_enviar_convite);
 
         TextView aviso = findViewById(R.id.convite_expli);
         aviso.setMovementMethod(new ScrollingMovementMethod());
@@ -48,16 +48,16 @@ public class SendInviteActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(!isEmailValid(email.getText().toString().trim()) && !TextUtils.isEmpty(nome.getText().toString())){
-                    Toast.makeText(SendInviteActivity.this, "Email inválido!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EnviarConviteActivity.this, "Email inválido!", Toast.LENGTH_LONG).show();
                 }
                 else if(TextUtils.isEmpty(nome.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
-                    Toast.makeText(SendInviteActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EnviarConviteActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
                 else {
 
                     indicados = new Indicados(nome.getText().toString().trim(), email.getText().toString().trim(), user.getEmail(), false );
                     reference.push().setValue(indicados);
-                    Toast.makeText(SendInviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EnviarConviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();
                 }
             }
         });
