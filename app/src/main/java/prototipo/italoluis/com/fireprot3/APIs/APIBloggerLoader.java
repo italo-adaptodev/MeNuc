@@ -10,9 +10,9 @@ public class APIBloggerLoader {
 
     private final static String url = "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/";
 
-    public static PostServiceBaseFisica postService = null;
+    public static PostService postService = null;
 
-    public static PostServiceBaseFisica getService(){
+    public static PostService getService(){
 
         if(postService == null){
 
@@ -21,12 +21,12 @@ public class APIBloggerLoader {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            postService = retrofit.create(PostServiceBaseFisica.class);
+            postService = retrofit.create(PostService.class);
         }
         return postService;
     }
 
-    public interface PostServiceBaseFisica {
+    public interface PostService {
         @GET
         retrofit2.Call<PostList> getPostList(@Url String fullUrl);
     }

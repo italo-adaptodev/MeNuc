@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     private Query dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
     boolean check;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private EditText searchbar;
+    private ImageButton searchbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,13 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.cv_protec_radio).setOnClickListener(this);
         findViewById(R.id.cv_legislacao).setOnClickListener(this);
         findViewById(R.id.cv_outros).setOnClickListener(this);
+        findViewById(R.id.search_button_menu).setOnClickListener(this);
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
         txt_author =  findViewById(R.id.txt_autores);
         txt_autoziracao = findViewById(R.id.txt_autorizacao);
+        searchbar = findViewById(R.id.searchtext);
+
 
         fabConfig();
         fabMainAction();
@@ -95,6 +102,12 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
             case R.id.cv_outros:
                 startPostListLoader(labelKeyController.getLabelKeyOutros());
                 break;
+
+            case R.id.search_button_menu:
+                String keyword = searchbar.getText().toString().toUpperCase();
+                //FALTA ENVIAR A PALAVRA CHAVE E FORMATAR PARA URL PESQUISAR POR PALAVRA CHAVE
+                //CHECAR BLOGGER API
+
 
             default:
                 Toast.makeText(this, "Opção incorreta", Toast.LENGTH_LONG).show();
