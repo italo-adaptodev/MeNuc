@@ -104,13 +104,7 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.search_button_menu:
-                String keyword = searchbar.getText().toString().toUpperCase();
-                //FALTA ENVIAR A PALAVRA CHAVE E FORMATAR PARA URL PESQUISAR POR PALAVRA CHAVE
-                //CHECAR BLOGGER API
-
-
-            default:
-                Toast.makeText(this, "Opção incorreta", Toast.LENGTH_LONG).show();
+                startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getText().toString()));
                 break;
 
         }

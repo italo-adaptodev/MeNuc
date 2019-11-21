@@ -31,7 +31,10 @@ public class LabelKeyController {
     }
 
     public String getLabelKeyOutros() {
-        //return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=OUTROS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
         return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+    }
+
+    public String getQueryParameterPesquisa(String keyword){
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts/search?q=" + keyword +"&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 }
