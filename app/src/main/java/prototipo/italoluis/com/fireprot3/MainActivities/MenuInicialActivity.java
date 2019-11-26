@@ -1,8 +1,6 @@
 package prototipo.italoluis.com.fireprot3.MainActivities;
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,10 +32,10 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     private LabelKeyController labelKeyController = new LabelKeyController();
     private FloatingActionButton fab_main, fab1_quest, fab2_invite, fab3_author, fab4_autorizacao;
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
-    private TextView txt_quest, txt_invite, txt_author, txt_autoziracao;
+    private TextView txt_quest, txt_invite, txt_author, txt_autorizacao;
     private Boolean isOpen = false;
     private Query dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
-    boolean check;
+    private boolean check;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private EditText searchbar;
     private ImageButton searchbutton;
@@ -59,10 +57,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         txt_quest =  findViewById(R.id.txt_questionario);
         txt_invite =  findViewById(R.id.txt_indicacao);
         txt_author =  findViewById(R.id.txt_autores);
-        txt_autoziracao = findViewById(R.id.txt_autorizacao);
+        txt_autorizacao = findViewById(R.id.txt_autorizacao);
         searchbar = findViewById(R.id.searchtext);
-
-
         fabConfig();
         fabMainAction();
         fabOnClick();
@@ -145,17 +141,17 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View v) {
                 if(checkIfAutor())
                     startActivityWAnimation(AutorizacaoActivity.class);
-                else Toast.makeText(MenuInicialActivity.this,"Permissão negada. Você não é um autor!", Toast.LENGTH_LONG).show();
+                else Toast.makeText(getApplicationContext(),"Permissão negada. Você não é um autor!", Toast.LENGTH_LONG).show();
 
             }
         });
     }
 
     private void startActivityWAnimation(Class nextActivity){
-        Intent intent = new Intent(MenuInicialActivity.this, nextActivity);
+        Intent intent = new Intent(this, nextActivity);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             closeFloatActionButton();
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MenuInicialActivity.this).toBundle());
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         }else{
             closeFloatActionButton();
             startActivity(intent);
@@ -203,8 +199,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         txt_invite.startAnimation(fab_open);
         txt_quest.setVisibility(View.VISIBLE);
         txt_quest.startAnimation(fab_open);
-        txt_autoziracao.setVisibility(View.VISIBLE);
-        txt_autoziracao.startAnimation(fab_open);
+        txt_autorizacao.setVisibility(View.VISIBLE);
+        txt_autorizacao.startAnimation(fab_open);
         isOpen = true;
     }
 
@@ -225,8 +221,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         txt_invite.startAnimation(fab_close);
         txt_quest.setVisibility(View.INVISIBLE);
         txt_quest.startAnimation(fab_close);
-        txt_autoziracao.setVisibility(View.INVISIBLE);
-        txt_autoziracao.startAnimation(fab_close);
+        txt_autorizacao.setVisibility(View.INVISIBLE);
+        txt_autorizacao.startAnimation(fab_close);
         isOpen = false;
     }
 
@@ -238,7 +234,7 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     }
 
     private boolean checkIfAutor(){
-        final Query checkPermission =  dbRefAutores.orderByChild("emailIndicado").orderByChild("autor").equalTo(true);
+        final Query checkPermission =  dbRefAutores.orderByChild("autor").equalTo(true);
         checkPermission.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
