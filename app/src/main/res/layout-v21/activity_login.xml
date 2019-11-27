@@ -9,18 +9,19 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="304dp"
-        android:layout_marginRight="304dp"
+        android:layout_width="57dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Nome"
         android:textColor="#000"
         app:layout_constraintBottom_toTopOf="@+id/nomeText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/nomeText" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/nomeText"
@@ -56,7 +57,7 @@
         android:textColor="#000"
         app:layout_constraintBottom_toTopOf="@+id/emailText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nomeText"
         app:layout_constraintVertical_bias="1.0" />
@@ -79,7 +80,6 @@
         app:layout_constraintTop_toBottomOf="@+id/nomeText"
         app:layout_constraintVertical_bias="0.124" />
 
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -94,10 +94,11 @@
         android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="@+id/senhaText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <EditText
         android:id="@+id/senhaText"
@@ -110,7 +111,6 @@
         android:ems="10"
         android:hint="Mínimo de 6 caracteres"
         android:inputType="textPassword"
-        android:backgroundTint="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/emailText"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,7 +123,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
-        android:background="@drawable/button_yellow_login"
+        android:backgroundTint="#eaf20e"
         android:text="Criar conta"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
         android:textColor="@android:color/black"
@@ -162,7 +162,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_yellow_login"
+        android:backgroundTint="#eaf20e"
         android:text="Logout"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
