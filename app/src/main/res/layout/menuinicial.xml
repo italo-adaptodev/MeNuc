@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:paddingTop="60dp"
     android:layout_gravity="center"
-    android:foregroundGravity="center">
+    android:foregroundGravity="center"
+    android:descendantFocusability="blocksDescendants" >
 
 
     <TextView
@@ -24,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/layoutPrincipal"
         android:layout_width="375dp"
         android:layout_height="398dp"
         android:foregroundGravity="center"
@@ -34,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19">
+        app:layout_constraintVertical_bias="0.19"
+        android:descendantFocusability="blocksDescendants">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -72,7 +74,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -104,7 +106,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -140,7 +142,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -190,7 +192,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -222,7 +224,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -257,7 +259,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -308,7 +310,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -344,7 +346,7 @@
                     android:layout_width="90dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_atom">
+                    android:background="@drawable/ic_atom_background">
 
                 </ImageView>
 
@@ -542,7 +544,8 @@
         app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintVertical_bias="0.811"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab1"
@@ -607,7 +610,8 @@
         app:pressedTranslationZ="12dp"
         app:srcCompat="@drawable/menu"
         app:useCompatPadding="false"
-        tools:targetApi="lollipop" />
+        tools:targetApi="lollipop"
+        />
 
     <EditText
         android:id="@+id/searchtext"
@@ -623,7 +627,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
         app:layout_constraintVertical_bias="0.033" />
 
     <ImageButton
@@ -637,7 +641,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/searchtext"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
         app:layout_constraintVertical_bias="0.03"
         app:srcCompat="@drawable/ic_loupe" />
 

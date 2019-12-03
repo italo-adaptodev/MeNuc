@@ -1,11 +1,15 @@
 package prototipo.italoluis.com.fireprot3.MainActivities;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -38,7 +42,6 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     private boolean check;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private EditText searchbar;
-    private ImageButton searchbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         fabConfig();
         fabMainAction();
         fabOnClick();
+
     }
 
     @Override
@@ -100,8 +104,13 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.search_button_menu:
-                startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getText().toString()));
+                if(!TextUtils.isEmpty(searchbar.getText())) {
+                    startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getText().toString()));
+                }
                 break;
+
+            case R.id.layoutPrincipal:
+                toggleFab();
 
         }
     }
@@ -135,7 +144,6 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
                 startActivityWAnimation(ListaAutoresActivity.class);
             }
         });
-
 
         fab4_autorizacao.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -173,18 +181,14 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void fabMainAction(){
-
         fab_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (isOpen) {
                     closeFloatActionButton();
                 } else {
                     openFloatActionButton();
                 }
-
-
             }
         });
     }
@@ -201,6 +205,8 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
         txt_quest.startAnimation(fab_open);
         txt_autorizacao.setVisibility(View.VISIBLE);
         txt_autorizacao.startAnimation(fab_open);
+//        ConstraintLayout v = findViewById(R.id.layoutPrincipal);
+//        v.setFocusable(false);  IDENTIFICAR COMO BLOQUEAR O BACKGROUND QUANDO CLICAR NO BOTÃO
         isOpen = true;
     }
 
@@ -253,5 +259,16 @@ public class MenuInicialActivity extends AppCompatActivity implements View.OnCli
             }
         });
         return check;
+    }
+
+    private void toggleFab(){
+        findViewById(R.id.layoutPrincipal).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(!isOpen)
+                    closeFloatActionButton();
+                return false;
+            }
+        });
     }
 }
