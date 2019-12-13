@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:padding="3dp"
-    tools:context=".MainActivities.EnviarConviteActivity"
+    tools:context="prototipo.italoluis.com.menuc.MainActivities.EnviarConviteActivity"
     android:fitsSystemWindows="false">
 
     <TextView

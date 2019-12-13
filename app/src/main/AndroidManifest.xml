@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="prototipo.italoluis.com.fireprot3"
+    package="prototipo.italoluis.com.menuc"
     tools:ignore="ExtraText">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,30 +16,30 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".BloggerStructure.ListadorPosts"></activity>
-        <activity android:name=".MainActivities.MenuInicialActivity" />
-        <activity android:name=".MainActivities.ListaAutoresActivity" />
-        <activity android:name=".MainActivities.AutorizacaoActivity" />
-        <activity android:name=".MainActivities.EnviarConviteActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
-        <activity android:name=".WebViewConfig" />
-        <activity android:name=".MainActivities.SplashScreenActivity">
+        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.ListadorPosts" />
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.TelaInicialActivity" />
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.ListaAutoresActivity" />
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.AutorizacaoActivity" />
+        <activity
+            android:name="prototipo.italoluis.com.menuc.MainActivities.EnviarConviteActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="prototipo.italoluis.com.menuc.WebViewConfig" />
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivities.CriarLoginActivity">
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.CriarLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".BloggerStructure.DetalhesPosts" />
-        <activity android:name=".BloggerStructure.Questionarios" />
+        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.DetalhesPosts" />
+        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.QuestionariosPosts" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -48,7 +48,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".MainActivities.LoginSalvoActivity" />
+        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.LoginSalvoActivity" />
     </application>
 
 </manifest>

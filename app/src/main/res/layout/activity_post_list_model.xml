@@ -21,27 +21,5 @@
         tools:listitem="@layout/cardview_posts" />
 
 
-    <TextView
-        android:id="@+id/txt_autorizacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/arrendondado_textview_verde"
-        android:padding="8dp"
-        android:text="Autorização"
-        android:textColor="#FFFAFA"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/txt_questionario"
-        app:layout_constraintEnd_toEndOf="@+id/fab4"
-        app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.607" />
-
     </android.support.constraint.ConstraintLayout>
         
