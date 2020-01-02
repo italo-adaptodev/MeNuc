@@ -5,14 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,24 +37,16 @@ public class CriarLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-
-
         nome = findViewById(R.id.nomeText);
         email = findViewById(R.id.emailText);
         senha = findViewById(R.id.senhaText);
         Button criarlogin = findViewById(R.id.button);
         TextView textologin = findViewById(R.id.textView4);
         Button logoutbtn = findViewById(R.id.logout);
-
         mAuth = FirebaseAuth.getInstance();
-
-
         btnLogout(logoutbtn);
-
         btncriarConta(criarlogin);
-
         loginConectado(textologin);
-
     }
 
     private void btnLogout(Button btnLogout) {
@@ -60,7 +54,6 @@ public class CriarLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-
                 Toast.makeText(CriarLoginActivity.this, "Logout", Toast.LENGTH_LONG).show();
             }
         });
@@ -70,17 +63,12 @@ public class CriarLoginActivity extends AppCompatActivity {
         btnCriarLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 final String userEmail = email.getText().toString();
                 final String password = senha.getText().toString();
                 final String userName = nome.getText().toString();
-
                 saveUsernameEmail(userName, userEmail);
-
                 if (!TextUtils.isEmpty(userName) || !TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(password)) {
-
                     CriarContaFirebase(userEmail, password, view);
-
                 } else {
                     Toast.makeText(CriarLoginActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
@@ -92,8 +80,7 @@ public class CriarLoginActivity extends AppCompatActivity {
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(CriarLoginActivity.this, LoginSalvoActivity.class);
-                Intent intent = new Intent(CriarLoginActivity.this, TelaInicialActivity.class);
+                Intent intent = new Intent(CriarLoginActivity.this, LoginSalvoActivity.class);
                 startActivity(intent);
 
             }

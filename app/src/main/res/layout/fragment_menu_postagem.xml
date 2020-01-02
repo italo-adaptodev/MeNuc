@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     tools:context="prototipo.italoluis.com.menuc.Fragmentos.MenuPostagemFragment">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:foregroundGravity="center"
         android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutPrincipal"
             android:layout_width="375dp"
             android:layout_height="398dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.062">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayout2"
                 android:layout_width="362dp"
                 android:layout_height="83dp"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.05">
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_bases_fisicas"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -74,9 +74,9 @@
                         android:text="Bases Físicas"
                         android:textColor="#000000"
                         android:textStyle="bold" />
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_radionuclideos"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -107,9 +107,9 @@
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_radiofarmacia"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -142,9 +142,9 @@
                         android:text="Radiofarmácia"
                         android:textColor="#000000"
                         android:textStyle="bold" />
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <LinearLayout
                 android:layout_width="362dp"
@@ -160,7 +160,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.447">
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_equipamento"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -192,9 +192,9 @@
                         android:text="Equipamentos"
                         android:textColor="#000000"
                         android:textStyle="bold" />
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_diag_terapia"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -225,9 +225,9 @@
                         android:textAlignment="center"
                         android:textColor="#000000"
                         android:textStyle="bold" />
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_protec_radio"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -261,7 +261,7 @@
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
 
             </LinearLayout>
@@ -278,7 +278,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.883">
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_legislacao"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -311,9 +311,9 @@
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.design.card.MaterialCardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_outros"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
@@ -347,12 +347,12 @@
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
-                </android.support.design.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/txt_autorizacao"
@@ -376,7 +376,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.607" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -428,7 +428,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_autorizacao"
             app:layout_constraintVertical_bias="0.226" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -482,7 +482,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.924" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -536,7 +536,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.711" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -566,7 +566,7 @@
             app:srcCompat="@drawable/questionario"
             tools:targetApi="lollipop" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabmain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -634,5 +634,5 @@
             app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
             app:layout_constraintVertical_bias="0.024" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

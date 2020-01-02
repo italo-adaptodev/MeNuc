@@ -1,7 +1,6 @@
 package prototipo.italoluis.com.menuc.MainActivities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Patterns;
@@ -10,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +41,7 @@ public class EnviarConviteActivity extends AppCompatActivity {
         nome = findViewById(R.id.indicado1);
         email = findViewById(R.id.indicado2);
         button_send = findViewById(R.id.btn_send);
+
 
 
 

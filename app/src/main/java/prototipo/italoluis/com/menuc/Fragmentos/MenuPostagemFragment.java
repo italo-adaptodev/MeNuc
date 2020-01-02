@@ -4,11 +4,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,9 +14,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -39,8 +41,8 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
     private Animation fab_open, fab_close, fab_clock, fab_anticlock;
     private TextView txt_quest, txt_invite, txt_author, txt_autorizacao;
     private Boolean isOpen = false;
-    private Query dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
-    private boolean check;
+    private Boolean check = false;
+    private DatabaseReference dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private EditText searchbar;
 
@@ -75,6 +77,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fabConfig();
         fabMainAction();
         fabOnClick();
+        check = checkIfAutor();
     }
 
     @Override
@@ -244,22 +247,16 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
     }
 
     private boolean checkIfAutor(){
-        final Query checkPermission =  dbRefAutores.orderByChild("autor").equalTo(true);
-        checkPermission.addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRefAutores.orderByChild("emailIndicado").equalTo(mAuth.getCurrentUser().getEmail())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dS: dataSnapshot.getChildren()){
-                    if(dS.child("emailIndicado").getValue().toString().equals(mAuth.getCurrentUser().getEmail())) {
-                        check = true;
-                    }else{
-                        check = false;
-                    }
-                }
+                check = true;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                check = false;
             }
         });
         return check;

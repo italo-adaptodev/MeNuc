@@ -2,12 +2,13 @@ package prototipo.italoluis.com.menuc.MainActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,8 +32,6 @@ public class LoginSalvoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
-
-
         btnLoggin = findViewById(R.id.login_button);
         loginProgressB = findViewById(R.id.login_progressbar);
         loginProgressB.setVisibility(View.INVISIBLE);
