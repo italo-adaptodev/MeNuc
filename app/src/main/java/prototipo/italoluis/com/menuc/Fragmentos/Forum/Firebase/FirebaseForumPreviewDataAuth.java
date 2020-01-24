@@ -2,49 +2,53 @@ package prototipo.italoluis.com.menuc.Fragmentos.Forum.Firebase;
 
 public class FirebaseForumPreviewDataAuth {
 
-    private String _forumPreviewTitulo, _forumPreviewData, _forumPreviewAutor, _forumPreviewQtdRespostas;
+    private String fTitulo, fDataPostagem, fAutor,key;
+    private int fQtdComentarios;
 
     public FirebaseForumPreviewDataAuth(String forumPreviewTitulo, String forumPreviewData,
-                                        String forumPreviewAutor, String forumPreviewQtdRespostas) {
-        this._forumPreviewTitulo = forumPreviewTitulo;
-        this._forumPreviewData = forumPreviewData;
-        this._forumPreviewAutor = forumPreviewAutor;
-        this._forumPreviewQtdRespostas = forumPreviewQtdRespostas;
+                                        String forumPreviewAutor, int forumPreviewQtdRespostas) {
+        this.fTitulo = forumPreviewTitulo;
+        this.fDataPostagem = forumPreviewData;
+        this.fAutor = forumPreviewAutor;
+        this.fQtdComentarios = forumPreviewQtdRespostas;
     }
 
     public FirebaseForumPreviewDataAuth() {
     }
 
-    public String get_forumPreviewTitulo() {
-        return _forumPreviewTitulo;
+
+    public String getfTitulo() {
+        return fTitulo;
     }
 
-    public void set_forumPreviewTitulo(String _forumPreviewTitulo) {
-        this._forumPreviewTitulo = _forumPreviewTitulo;
+    public void setfTitulo(String fTitulo) {
+        this.fTitulo = fTitulo;
     }
 
-    public String get_forumPreviewData() {
-        return _forumPreviewData;
+    public String getfDataPostagem() {
+        return fDataPostagem;
     }
 
-    public void set_forumPreviewData(String _forumPreviewData) {
-        this._forumPreviewData = _forumPreviewData;
+    public void setfDataPostagem(String fDataPostagem) {
+        this.fDataPostagem = fDataPostagem;
     }
 
-    public String get_forumPreviewAutor() {
-        return _forumPreviewAutor;
+    public String getfAutor() {
+        return fAutor;
     }
 
-    public void set_forumPreviewAutor(String _forumPreviewAutor) {
-        this._forumPreviewAutor = _forumPreviewAutor;
+    public void setfAutor(String fAutor) {
+        this.fAutor = fAutor;
     }
 
-    public String get_forumPreviewQtdRespostas() {
-        return _forumPreviewQtdRespostas;
+    public int getfQtdComentarios() {
+        return fQtdComentarios;
     }
 
-    public void set_forumPreviewQtdRespostas(String _forumPreviewQtdRespostas) {
-        this._forumPreviewQtdRespostas = _forumPreviewQtdRespostas;
+    public void setfQtdComentarios(int fQtdComentarios) {
+        this.fQtdComentarios = fQtdComentarios;
     }
+
+    public String getKey(){return key;}
 }
 

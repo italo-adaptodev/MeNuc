@@ -4,16 +4,29 @@ import java.util.List;
 
 public class PostagemForum {
 
-    private String fAutor, fTitulo, fCorpoDaPostagem;
-    private List<Resposta> fRespostas;
+    private String fAutor;
+    private String fTitulo;
+    private String fCorpoDaPostagem;
+    private String key;
+    private String fDataPostagem;
+    private int fQtdComentarios;
 
     public PostagemForum(){ }
 
-    public PostagemForum (String autor, String corpoDaPostagem, List<Resposta> respostas, String titulo){
+    public PostagemForum(String autor, String titulo, String corpoDaPostagem, int QtdComentarios, String dataPostagem){
         this.fAutor = autor;
         this.fCorpoDaPostagem = corpoDaPostagem;
-        this.fRespostas = respostas;
         this.fTitulo = titulo;
+        this.fQtdComentarios = QtdComentarios;
+        this.fDataPostagem = dataPostagem;
+    }
+
+    public String getfDataPostagem() {
+        return fDataPostagem;
+    }
+
+    public void setfDataPostagem(String fDataPostagem) {
+        this.fDataPostagem = fDataPostagem;
     }
 
     public String getfAutor() {
@@ -32,12 +45,12 @@ public class PostagemForum {
         this.fCorpoDaPostagem = fCorpoDaPostagem;
     }
 
-    public List<Resposta> getfRespostas() {
-        return fRespostas;
+    public int getfQtdComentarios() {
+        return fQtdComentarios;
     }
 
-    public void setfRespostas(List<Resposta> fRespostas) {
-        this.fRespostas = fRespostas;
+    public void setfQtdComentarios(int fQtdComentarios) {
+        this.fQtdComentarios = fQtdComentarios;
     }
 
     public String getfTitulo() {
@@ -46,5 +59,13 @@ public class PostagemForum {
 
     public void setfTitulo(String fTitulo) {
         this.fTitulo = fTitulo;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

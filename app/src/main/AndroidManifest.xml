@@ -2,13 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="prototipo.italoluis.com.menuc"
-    tools:ignore="ExtraText"
-    >
+    tools:ignore="ExtraText">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,31 +16,46 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.ListadorPosts" android:screenOrientation="portrait"/>
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.TelaInicialActivity" android:screenOrientation="portrait"/>
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.ListaAutoresActivity" android:screenOrientation="portrait"/>
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.AutorizacaoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivities.DetalharPostagemForumActivity"></activity>
+        <activity android:name=".MainActivities.CriarPostagemForumActivity" />
         <activity
-            android:name="prototipo.italoluis.com.menuc.MainActivities.EnviarConviteActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait"/>
-        <activity android:name="prototipo.italoluis.com.menuc.WebViewConfig" />
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.SplashScreenActivity" android:screenOrientation="portrait">
+            android:name=".BloggerStructure.ListadorPosts"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivities.TelaInicialActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivities.ListaAutoresActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivities.AutorizacaoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivities.EnviarConviteActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".WebViewConfig" />
+        <activity
+            android:name=".MainActivities.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.CriarLoginActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivities.CriarLoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.DetalhesPosts" />
-        <activity android:name="prototipo.italoluis.com.menuc.BloggerStructure.QuestionariosPosts" />
+        <activity android:name=".BloggerStructure.DetalhesPosts" />
+        <activity android:name=".BloggerStructure.QuestionariosPosts" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -51,7 +64,9 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name="prototipo.italoluis.com.menuc.MainActivities.LoginSalvoActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivities.LoginSalvoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

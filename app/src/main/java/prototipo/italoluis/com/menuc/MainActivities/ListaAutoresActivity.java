@@ -24,7 +24,7 @@ import prototipo.italoluis.com.menuc.R;
 
 public class ListaAutoresActivity extends AppCompatActivity {
 
-    private SparseBooleanArray itemStateArray= new SparseBooleanArray();
+    private SparseBooleanArray itemStateArray = new SparseBooleanArray();
     private RecyclerView recyclerView;
     private ArrayList<FirebaseDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseDataAuth> options;

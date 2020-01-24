@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <Button
+        android:id="@+id/add_forum_cancelar"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/arrendondado_button_cancelar"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905" />
+
+    <Button
+        android:id="@+id/add_forum_enviar"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="136dp"
+        android:background="@drawable/arrendondado_textview"
+        android:text="Enviar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+
+    <EditText
+        android:background="@drawable/arredondado_searchbar"
+        android:id="@+id/add_forum_titulo"
+        android:layout_width="315dp"
+        android:layout_height="49dp"
+        android:hint="Titulo "
+        android:ems="10"
+        android:gravity="start|top"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:inputType="textCapSentences"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13"
+        android:imeOptions="actionDone"
+        />
+
+    <EditText
+    android:id="@+id/add_forum_texto"
+    android:layout_width="315dp"
+    android:layout_height="236dp"
+    android:layout_marginTop="52dp"
+    android:background="@drawable/arredondado_searchbar"
+    android:ems="10"
+    android:gravity="start"
+    android:hint="Escreva seu texto aqui"
+    android:inputType="textMultiLine|textCapSentences"
+    android:padding="10dp"
+    android:textAlignment="textStart"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/add_forum_titulo"
+    app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

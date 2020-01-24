@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import prototipo.italoluis.com.menuc.R;
 import prototipo.italoluis.com.menuc.WebViewConfig;
@@ -54,7 +56,7 @@ public class CriarLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                Toast.makeText(CriarLoginActivity.this, "Logout", Toast.LENGTH_LONG).show();
+                Toast.makeText(CriarLoginActivity.this, "Logout realizado", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -66,9 +68,9 @@ public class CriarLoginActivity extends AppCompatActivity {
                 final String userEmail = email.getText().toString();
                 final String password = senha.getText().toString();
                 final String userName = nome.getText().toString();
-                saveUsernameEmail(userName, userEmail);
-                if (!TextUtils.isEmpty(userName) || !TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(password)) {
-                    CriarContaFirebase(userEmail, password, view);
+                if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(password)) {
+                    saveUsernameEmail(userName, userEmail);
+                    CriarContaFirebase(userEmail, password, view, userName);
                 } else {
                     Toast.makeText(CriarLoginActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
@@ -87,12 +89,15 @@ public class CriarLoginActivity extends AppCompatActivity {
         });
     }
 
-    private void CriarContaFirebase(String userEmail, String password, final View view) {
+    private void CriarContaFirebase(String userEmail, String password, final View view, final String userName) {
         mAuth.createUserWithEmailAndPassword(userEmail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
+                            user.updateProfile(profileUpdates);
                             Toast.makeText(CriarLoginActivity.this, "Conta criada", Toast.LENGTH_LONG).show();
                             showAlertDialogButtonClicked(view);
                         } else {

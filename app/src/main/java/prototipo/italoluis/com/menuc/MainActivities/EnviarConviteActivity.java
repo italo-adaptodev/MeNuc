@@ -56,7 +56,6 @@ public class EnviarConviteActivity extends AppCompatActivity {
                     Toast.makeText(EnviarConviteActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 }
                 else {
-
                     indicados = new Indicados(nome.getText().toString().trim(), email.getText().toString().trim(), user.getEmail(), false );
                     reference.push().setValue(indicados);
                     Toast.makeText(EnviarConviteActivity.this, "Solicitação Enviada!", Toast.LENGTH_LONG).show();

@@ -10,7 +10,7 @@ import prototipo.italoluis.com.menuc.R;
 
 public class FirebaseForumPreviewViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView forum_preview_titulo, forum_preview_autor,
+    public TextView forum_preview_titulo, forum_preview_autor,
             forum_preview_data, forum_preview_qtdRespostas;
 
     public FirebaseForumPreviewViewHolder(@NonNull View itemView) {

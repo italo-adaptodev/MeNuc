@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="prototipo.italoluis.com.menuc.Fragmentos.MenuPostagemFragment">
+    tools:context="prototipo.italoluis.com.menuc.Fragmentos.MenuPostagemFragment"
+    android:fitsSystemWindows="true"
+    android:windowSoftInputMode="adjustPan">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -267,6 +269,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -282,8 +285,9 @@
                     android:id="@+id/cv_legislacao"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardElevation="2dp"
                     app:cardMaxElevation="0dp"
@@ -317,8 +321,8 @@
                     android:id="@+id/cv_outros"
                     android:layout_width="110dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardElevation="2dp"
                     app:cardMaxElevation="0dp"
@@ -349,6 +353,12 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ScrollView>
+
             </LinearLayout>
 
 
@@ -369,12 +379,12 @@
             android:text="Autorização"
             android:textColor="#FFFAFA"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/txt_questionario"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fab4"
-            app:layout_constraintHorizontal_bias="0.818"
+            app:layout_constraintHorizontal_bias="0.814"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.607" />
+            app:layout_constraintVertical_bias="0.384" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab4"
@@ -414,19 +424,17 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:background="@drawable/arrendondado_textview_verde"
             android:padding="8dp"
             android:text="@string/autores"
             android:textColor="#FFFAFA"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/txt_questionario"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fab3"
-            app:layout_constraintHorizontal_bias="0.818"
+            app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_autorizacao"
-            app:layout_constraintVertical_bias="0.226" />
+            app:layout_constraintVertical_bias="0.097" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab3"
@@ -458,29 +466,6 @@
             app:pressedTranslationZ="12dp"
             app:srcCompat="@drawable/autores"
             tools:targetApi="lollipop" />
-
-        <TextView
-            android:id="@+id/txt_indicacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/arrendondado_textview_verde"
-            android:padding="8dp"
-            android:text="@string/convidar"
-            android:textColor="#ffffff"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/txt_questionario"
-            app:layout_constraintEnd_toEndOf="@+id/fab2"
-            app:layout_constraintHorizontal_bias="0.813"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.924" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab2"
@@ -531,10 +516,10 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fab1"
-            app:layout_constraintHorizontal_bias="0.797"
+            app:layout_constraintHorizontal_bias="0.812"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.711" />
+            app:layout_constraintVertical_bias="0.689" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
@@ -616,23 +601,44 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/searchtext"
             app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
-            app:layout_constraintVertical_bias="0.022"
+            app:layout_constraintVertical_bias="0.058"
             app:srcCompat="@drawable/ic_loupe" />
 
         <EditText
             android:id="@+id/searchtext"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:background="@drawable/arredondado_searchbar"
-            android:inputType="text"
+            android:ems="10"
             android:hint="Pesquisar por palavra-chave"
+            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
-            app:layout_constraintVertical_bias="0.024" />
+            app:layout_constraintVertical_bias="0.058"
+            android:windowSoftInputMode="adjustPan"
+            />
+
+        <TextView
+            android:id="@+id/txt_indicacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/arrendondado_textview_verde"
+            android:padding="8dp"
+            android:text="@string/convidar"
+            android:textColor="#ffffff"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fab2"
+            app:layout_constraintHorizontal_bias="0.818"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

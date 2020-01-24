@@ -75,9 +75,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
         send_author = findViewById(R.id.send_author);
         Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
         final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
-
         createAdapter(clipboardManager);
-
         recyclerView.setAdapter(adapter);
 
     }
