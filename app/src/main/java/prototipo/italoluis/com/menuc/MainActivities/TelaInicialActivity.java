@@ -28,6 +28,9 @@ public class TelaInicialActivity extends AppCompatActivity {
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.stl_tabs);
         viewPager = findViewById(R.id.vp_pagina);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.tabAccent));
+        slidingTabLayout.setBackgroundColor(getColor(R.color.colorPrimary));
+        slidingTabLayout.setOutlineAmbientShadowColor(getColor(R.color.tabAccent));
+        slidingTabLayout.setOutlineSpotShadowColor(getColor(R.color.tabAccent));
         slidingTabLayout.setDistributeEvenly(true);
 
 

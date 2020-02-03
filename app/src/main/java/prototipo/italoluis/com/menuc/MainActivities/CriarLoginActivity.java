@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,11 +36,11 @@ public class CriarLoginActivity extends AppCompatActivity {
 
     private EditText nome, senha, email;
     private String URL = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
-
-
+    private ImageView atom;
     private FirebaseAuth mAuth;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +52,12 @@ public class CriarLoginActivity extends AppCompatActivity {
         TextView textologin = findViewById(R.id.textView4);
         Button logoutbtn = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
+        atom = findViewById(R.id.imageView);
         btnLogout(logoutbtn);
         btncriarConta(criarlogin);
         loginConectado(textologin);
     }
+
 
     private void btnLogout(Button btnLogout) {
         btnLogout.setOnClickListener(new View.OnClickListener() {

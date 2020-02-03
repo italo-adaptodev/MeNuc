@@ -1,14 +1,18 @@
 package prototipo.italoluis.com.menuc.MainActivities;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +30,7 @@ public class LoginSalvoActivity extends AppCompatActivity {
     private EditText userLogin, userSenha;
     private FirebaseAuth mAuth;
     private Intent tabs;
+    private ImageView atom;
 
 
     @Override
@@ -33,11 +38,13 @@ public class LoginSalvoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
         btnLoggin = findViewById(R.id.login_button);
-        loginProgressB = findViewById(R.id.login_progressbar);
-        loginProgressB.setVisibility(View.INVISIBLE);
+//        loginProgressB = findViewById(R.id.login_progressbar);
+//        loginProgressB.setVisibility(View.INVISIBLE);
         userLogin = findViewById(R.id.login_email_space);
         userSenha = findViewById(R.id.senha_space);
         mAuth = FirebaseAuth.getInstance();
+        atom = findViewById(R.id.atom);
+        atom.setVisibility(View.INVISIBLE);
         tabs = new Intent(this, TelaInicialActivity.class);
 
 
@@ -48,21 +55,17 @@ public class LoginSalvoActivity extends AppCompatActivity {
         btnLoggin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnLoggin.setVisibility(View.INVISIBLE);
-                loginProgressB.setVisibility(View.VISIBLE);
-
+                atom.setVisibility(View.VISIBLE);
+                animate(atom);
                 final String loginStr = userLogin.getText().toString();
                 final String senhaStr = userSenha.getText().toString();
 
                 if (loginStr.isEmpty() || senhaStr.isEmpty()){
                     Toast.makeText(LoginSalvoActivity.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
-                    btnLoggin.setVisibility(View.VISIBLE);
-                    loginProgressB.setVisibility(View.INVISIBLE);
-
+                    atom.setVisibility(View.INVISIBLE);
                 }
                 else{
                     singIn(loginStr,senhaStr);
-
                 }
 
 
@@ -71,24 +74,33 @@ public class LoginSalvoActivity extends AppCompatActivity {
         });
     }
 
+    public void animate(View view) {
+        ImageView v = (ImageView) view;
+        Drawable d = v.getDrawable();
+        if (d instanceof AnimatedVectorDrawable) {
+            AnimatedVectorDrawable avd = (AnimatedVectorDrawable) d;
+            avd.start();
+        } else if (d instanceof AnimatedVectorDrawableCompat) {
+            AnimatedVectorDrawableCompat avd = (AnimatedVectorDrawableCompat) d;
+            avd.start();
+        }
+    }
 
     private void singIn(String loginStr, String senhaStr) {
-
+        btnLoggin.setVisibility(View.INVISIBLE);
         mAuth.signInWithEmailAndPassword(loginStr,senhaStr).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete( Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+//                        loginProgressB.setVisibility(View.INVISIBLE);
+                        updateUI();
+                    }
+                    else{
+                        btnLoggin.setVisibility(View.VISIBLE);
+                        loginProgressB.setVisibility(View.INVISIBLE);
+                        showMessage(task.getException().getMessage());
 
-                if (task.isSuccessful()){
-                    loginProgressB.setVisibility(View.INVISIBLE);
-                    btnLoggin.setVisibility(View.VISIBLE);
-                    updateUI();
-                }
-                else{
-                    btnLoggin.setVisibility(View.VISIBLE);
-                    loginProgressB.setVisibility(View.INVISIBLE);
-                    showMessage(task.getException().getMessage());
-
-                }
+                    }
             }
         });
 

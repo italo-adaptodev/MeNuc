@@ -105,16 +105,17 @@
         app:layout_constraintVertical_bias="0.809"
         tools:targetApi="lollipop" />
 
-    <ProgressBar
-        android:id="@+id/login_progressbar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="41dp"
-        android:layout_height="33dp"
-        app:layout_constraintBottom_toBottomOf="@+id/login_button"
-        app:layout_constraintEnd_toEndOf="@+id/login_button"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@+id/login_button"
-        app:layout_constraintTop_toTopOf="@+id/login_button" />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/login_progressbar"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="41dp"-->
+<!--        android:layout_height="33dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/login_button"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/login_button"-->
+<!--        app:layout_constraintHorizontal_bias="0.501"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/login_button"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/login_button" />-->
 
     <EditText
         android:id="@+id/senha_space"
@@ -136,6 +137,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.673"
         tools:targetApi="lollipop" />
+
+    <ImageView
+        android:id="@+id/atom"
+        android:layout_width="82dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/login_button"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/login_button"
+        app:layout_constraintTop_toTopOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avd_anim_atomo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
