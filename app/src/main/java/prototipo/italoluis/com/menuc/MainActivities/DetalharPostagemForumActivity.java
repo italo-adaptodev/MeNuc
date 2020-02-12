@@ -55,6 +55,9 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
     private EditText comentario;
     private ImageButton btnEnviarComentario;
     private int qtdComentarios;
+    private Boolean check = false;
+
+
 
     @Override
     protected void onStart() {
@@ -136,8 +139,13 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<FirebaseForumComentarioDataAuth, FirebaseForumComentarioViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FirebaseForumComentarioViewHolder holder, int i, @NonNull FirebaseForumComentarioDataAuth model) {
-                holder.detalhar_resposta_nome.setText(model.getComentarioNomeUsuario());
+                String nomeUsuarioComentario = model.getComentarioNomeUsuario();
+
+                if(checkIfAutor())
+                    nomeUsuarioComentario = model.getComentarioNomeUsuario() + " (Autor neste aplicativo)";
+                holder.detalhar_resposta_nome.setText(nomeUsuarioComentario);
                 holder.detalhar_resposta_texto.setText(model.getComentarioTexto());
+
             }
 
             @NonNull
@@ -169,5 +177,21 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
                 // Log.e(TAG, "onCancelled", databaseError.toException());
             }
         });
+    }
+
+    private boolean checkIfAutor(){
+        dbAutor.orderByChild("emailIndicado").equalTo(user.getEmail())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        check = true;
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        check = false;
+                    }
+                });
+        return check;
     }
 }
