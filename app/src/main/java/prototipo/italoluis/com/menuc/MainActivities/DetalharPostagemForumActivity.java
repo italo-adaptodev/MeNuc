@@ -1,6 +1,7 @@
 package prototipo.italoluis.com.menuc.MainActivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,8 @@ import prototipo.italoluis.com.menuc.MainActivities.DetalharFirebase.FirebaseFor
 import prototipo.italoluis.com.menuc.MainActivities.DetalharFirebase.FirebaseForumComentarioViewHolder;
 import prototipo.italoluis.com.menuc.R;
 
+
+
 public class DetalharPostagemForumActivity extends AppCompatActivity {
 
     private ArrayList<FirebaseForumComentarioDataAuth> arrayList;
@@ -50,12 +54,13 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
     private TextView postagemDetalhadaAutor, postagemDetalhadaData, postagemDetalhadaTitulo, postagemDetalhadaTexto;
     private RecyclerView detalharRespostas;
     private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child("Forum");
-    private DatabaseReference dbAutor = FirebaseDatabase.getInstance().getReference().child("Autores");
+    private Query dbAutor = FirebaseDatabase.getInstance().getReference().child("Autores");
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private EditText comentario;
     private ImageButton btnEnviarComentario;
     private int qtdComentarios;
     private Boolean check = false;
+    private String nome = user.getDisplayName();
 
 
 
@@ -84,6 +89,9 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
         btnEnviarComentario = findViewById(R.id.forum_btn_enviar_comentario);
         Intent intent = getIntent();
         final String postagemKey = intent.getStringExtra("postagemKey");
+        dbAutor.keepSynced(true);
+        checkIfAutor();
+
 
         //region RECUPERANDO DADOS DA POSTAGEM ESCOLHIDA
         final Query getDadosPostagemForum = dadosPostagem.orderByChild("key").equalTo(postagemKey);
@@ -124,7 +132,9 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(comentario.getText())) {
                     comentario.requestFocus();
                 } else {
-                    enviarComentario(new FirebaseForumComentarioDataAuth(user.getDisplayName(), comentario.getText().toString(), postagemKey));
+                    if(checkIfAutor())
+                        nome += " (Autor)";
+                    enviarComentario(new FirebaseForumComentarioDataAuth(nome, comentario.getText().toString(), postagemKey));
                     finish();
                     startActivity(getIntent());
                 }
@@ -139,13 +149,8 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<FirebaseForumComentarioDataAuth, FirebaseForumComentarioViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FirebaseForumComentarioViewHolder holder, int i, @NonNull FirebaseForumComentarioDataAuth model) {
-                String nomeUsuarioComentario = model.getComentarioNomeUsuario();
-
-                if(checkIfAutor())
-                    nomeUsuarioComentario = model.getComentarioNomeUsuario() + " (Autor neste aplicativo)";
-                holder.detalhar_resposta_nome.setText(nomeUsuarioComentario);
+                holder.detalhar_resposta_nome.setText(model.getComentarioNomeUsuario());
                 holder.detalhar_resposta_texto.setText(model.getComentarioTexto());
-
             }
 
             @NonNull
@@ -180,18 +185,24 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
     }
 
     private boolean checkIfAutor(){
-        dbAutor.orderByChild("emailIndicado").equalTo(user.getEmail())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        final Query checkQ = dbAutor.orderByChild("emailIndicado");
+                checkQ.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String emailuser = user.getEmail();
+                for(DataSnapshot dS: dataSnapshot.getChildren()){
+                    String teste = dS.child("emailIndicado").getValue().toString();
+                    if(teste.equals(emailuser))
                         check = true;
-                    }
+                }
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        check = false;
-                    }
-                });
-        return check;
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                check = false;
+            }
+        });
+
+                        return check;
     }
 }

@@ -78,7 +78,8 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fabConfig();
         fabMainAction();
         fabOnClick();
-        check = checkIfAutor();
+        dbRefAutores.keepSynced(true);
+        checkIfAutor();
     }
 
     @Override
@@ -248,11 +249,16 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
     }
 
     private boolean checkIfAutor(){
-        dbRefAutores.orderByChild("emailIndicado").equalTo(mAuth.getCurrentUser().getEmail())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+        final Query checkQ = dbRefAutores.orderByChild("emailIndicado");
+        checkQ.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                check = true;
+                String emailuser = mAuth.getCurrentUser().getEmail();
+                for(DataSnapshot dS: dataSnapshot.getChildren()){
+                    String teste = dS.child("emailIndicado").getValue().toString();
+                    if(teste.equals(emailuser))
+                        check = true;
+                }
             }
 
             @Override
@@ -260,6 +266,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
                 check = false;
             }
         });
+
         return check;
     }
 

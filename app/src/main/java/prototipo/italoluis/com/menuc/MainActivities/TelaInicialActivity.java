@@ -1,10 +1,12 @@
 package prototipo.italoluis.com.menuc.MainActivities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import prototipo.italoluis.com.menuc.R;
@@ -17,6 +19,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,16 +27,19 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("MeNuc");
+        toolbar.setTitleTextColor(getColor(R.color.tabAccent));
         setSupportActionBar(toolbar);
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.stl_tabs);
         viewPager = findViewById(R.id.vp_pagina);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.tabAccent));
         slidingTabLayout.setBackgroundColor(getColor(R.color.colorPrimary));
-        slidingTabLayout.setOutlineAmbientShadowColor(getColor(R.color.tabAccent));
-        slidingTabLayout.setOutlineSpotShadowColor(getColor(R.color.tabAccent));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            slidingTabLayout.setOutlineAmbientShadowColor(getColor(R.color.tabAccent));
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            slidingTabLayout.setOutlineSpotShadowColor(getColor(R.color.tabAccent));
+        }
         slidingTabLayout.setDistributeEvenly(true);
-
-
 
         //Configuração do adapter
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
@@ -41,5 +47,10 @@ public class TelaInicialActivity extends AppCompatActivity {
         slidingTabLayout.setViewPager(viewPager);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
