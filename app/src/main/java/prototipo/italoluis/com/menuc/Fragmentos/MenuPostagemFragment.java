@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import prototipo.italoluis.com.menuc.BloggerStructure.ListadorPosts;
 import prototipo.italoluis.com.menuc.BloggerStructure.QuestionariosPosts;
 import prototipo.italoluis.com.menuc.LabelKeyController;
@@ -69,9 +70,9 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         getView().findViewById(R.id.cv_legislacao).setOnClickListener(this);
         getView().findViewById(R.id.cv_outros).setOnClickListener(this);
         getView().findViewById(R.id.search_button_menu).setOnClickListener(this);
-        txt_quest =  getView().findViewById(R.id.txt_questionario);
-        txt_invite =  getView().findViewById(R.id.txt_indicacao);
-        txt_author =  getView().findViewById(R.id.txt_autores);
+        txt_quest = getView().findViewById(R.id.txt_questionario);
+        txt_invite = getView().findViewById(R.id.txt_indicacao);
+        txt_author = getView().findViewById(R.id.txt_autores);
         txt_autorizacao = getView().findViewById(R.id.txt_autorizacao);
         searchbar = getView().findViewById(R.id.searchtext);
         searchbar.setEnabled(true);
@@ -84,7 +85,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.cv_bases_fisicas:
                 startPostListLoader(labelKeyController.getLabelKeyBaseFisica());
                 break;
@@ -118,7 +119,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.search_button_menu:
-                if(!TextUtils.isEmpty(searchbar.getText())) {
+                if (!TextUtils.isEmpty(searchbar.getText())) {
                     startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getText().toString()));
                 }
                 break;
@@ -126,20 +127,21 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
     }
 
     private void startPostListLoader(String labelkeyurl) {
-        Intent intent =  new Intent(getContext(), ListadorPosts.class);
+        Intent intent = new Intent(getContext(), ListadorPosts.class);
         intent.putExtra("urlCompletaBlogger", labelkeyurl);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-        }else{
+        } else {
             startActivity(intent);
         }
 
     }
 
-    private void fabOnClick(){
+    private void fabOnClick() {
         fab1_quest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityWAnimation(QuestionariosPosts.class);            }
+                startActivityWAnimation(QuestionariosPosts.class);
+            }
         });
 
         fab2_invite.setOnClickListener(new View.OnClickListener() {
@@ -156,20 +158,21 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
 
         fab4_autorizacao.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(checkIfAutor())
+                if (checkIfAutor())
                     startActivityWAnimation(AutorizacaoActivity.class);
-                else Toast.makeText(getContext(),"Permissão negada. Você não é um autor!", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getContext(), "Permissão negada. Você não é um autor!", Toast.LENGTH_LONG).show();
 
             }
         });
     }
 
-    private void startActivityWAnimation(Class nextActivity){
+    private void startActivityWAnimation(Class nextActivity) {
         Intent intent = new Intent(getContext(), nextActivity);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             closeFloatActionButton();
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-        }else{
+        } else {
             closeFloatActionButton();
             startActivity(intent);
 
@@ -177,7 +180,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
 
     }
 
-    private void fabConfig(){
+    private void fabConfig() {
         fab_main = getView().findViewById(R.id.fabmain);
         fab1_quest = getView().findViewById(R.id.fab1);
         fab2_invite = getView().findViewById(R.id.fab2);
@@ -189,7 +192,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fab_anticlock = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotacao1);
     }
 
-    private void fabMainAction(){
+    private void fabMainAction() {
         fab_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,7 +205,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         });
     }
 
-    private void openFloatActionButton(){
+    private void openFloatActionButton() {
         startAnimationFab(fab1_quest, fab_open, fab2_invite, fab3_author, fab4_autorizacao, fab_open);
         fab_main.startAnimation(fab_clock);
         isFabClickable(true);
@@ -227,7 +230,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fab_main.startAnimation(fab_anticlock);
     }
 
-    private void closeFloatActionButton(){
+    private void closeFloatActionButton() {
         startAnimationFab(fab1_quest, fab_close, fab2_invite, fab3_author, fab4_autorizacao, fab_close);
         isFabClickable(false);
         txt_author.setVisibility(View.INVISIBLE);
@@ -248,15 +251,15 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fab4_autorizacao.setClickable(b);
     }
 
-    private boolean checkIfAutor(){
+    private boolean checkIfAutor() {
         final Query checkQ = dbRefAutores.orderByChild("emailIndicado");
         checkQ.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String emailuser = mAuth.getCurrentUser().getEmail();
-                for(DataSnapshot dS: dataSnapshot.getChildren()){
+                for (DataSnapshot dS : dataSnapshot.getChildren()) {
                     String teste = dS.child("emailIndicado").getValue().toString();
-                    if(teste.equals(emailuser))
+                    if (teste.equals(emailuser))
                         check = true;
                 }
             }
@@ -270,14 +273,16 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         return check;
     }
 
-    private void toggleFab(){
+    private void toggleFab() {
         getView().findViewById(R.id.layoutPrincipal).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(!isOpen)
+                if (!isOpen)
                     closeFloatActionButton();
                 return false;
             }
         });
     }
+
+
 }

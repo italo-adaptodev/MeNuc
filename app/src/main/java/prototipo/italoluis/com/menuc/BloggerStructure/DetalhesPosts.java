@@ -1,6 +1,8 @@
 package prototipo.italoluis.com.menuc.BloggerStructure;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -28,9 +30,8 @@ public class DetalhesPosts extends AppCompatActivity {
     webView = findViewById(R.id.detalhestela);
     webView.setVisibility(View.INVISIBLE);
     webView.getSettings().setJavaScriptEnabled(true);
+    webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
     webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
-    webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-    webView.getSettings().setAppCacheEnabled(true);
     webView.getSettings().setDomStorageEnabled(true);
     webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
     webView.getSettings().setUseWideViewPort(true);
@@ -53,6 +54,17 @@ public class DetalhesPosts extends AppCompatActivity {
         webView.setVisibility(View.VISIBLE);
         Toast.makeText(DetalhesPosts.this, "Tela carregada com sucesso", Toast.LENGTH_SHORT).show();
 
+      }
+
+      @Override
+      public boolean shouldOverrideUrlLoading(WebView view, String url)
+      {
+        if ("nuclearmedifba.blogspot.com".equals(Uri.parse(url).getHost())) {
+          return false;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+        return true;
       }
     });
     webView.loadUrl(getIntent().getStringExtra("url"));

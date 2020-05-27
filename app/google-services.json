@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:600320456886:android:5e76a5185a05c840",
         "android_client_info": {
-          "package_name": "prototipo.italoluis.com.fireprot3"
+          "package_name": "prototipo.italoluis.com.menuc"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "600320456886-gdq291gll1kuavh61do9kl36pt0m2hu9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "prototipo.italoluis.com.fireprot3",
+            "package_name": "prototipo.italoluis.com.menuc",
             "certificate_hash": "8d725dcfdbb350dba1771b63f0e7ae947fcd35f5"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "600320456886-rlnit010of9iua22g9edc51co8jc5bce.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "prototipo.italoluis.com.fireprot3",
+            "package_name": "prototipo.italoluis.com.menuc",
             "certificate_hash": "1c4bcb0d8704e793098aa96bcff3c24e9de958f3"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "600320456886-sv097mj0dp5qheklu1fa129b3e8pma14.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "prototipo.italoluis.com.fireprot3",
+            "package_name": "prototipo.italoluis.com.menuc",
             "certificate_hash": "dfc30523d2d8701bacdf19bae209a1e43e0e74b7"
           }
         },

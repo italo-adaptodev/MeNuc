@@ -52,5 +52,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finishAffinity(); // or finish();
     }
 }

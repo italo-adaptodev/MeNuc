@@ -3,15 +3,15 @@ package prototipo.italoluis.com.menuc;
 public class LabelKeyController {
 
     public String getLabelKeyBaseFisica() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=BASE+FÍSICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=BASES+FÍSICAS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKey2Radiofarmacia() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=RADIOFARMACIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=RADIOFARMÁCIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKeyRadionuclideos() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=RADIONUCLIDEOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=RADIONUCLÍDEOS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKeyEquips() {
@@ -19,19 +19,19 @@ public class LabelKeyController {
     }
 
     public String getLabelKeyDiagnoTerapia() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=DIAGNOSTICO+E+TERAPIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=DIAGNÓSTICO+E+TERAPIA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKeyRadioProtec() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=PROTECAO+RADIOLOGICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=PROTECÃO+RADIOLÓGICA&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKeyLegisl() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=LEGISLACAO&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=LEGISLAÇÃO&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getLabelKeyOutros() {
-        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
+        return "https://www.googleapis.com/blogger/v3/blogs/537701014572510680/posts?labels=OUTROS&key=AIzaSyC3QWpASkuWTURfubDhYDRfFAh-0S4nQLY";
     }
 
     public String getQueryParameterPesquisa(String keyword){
