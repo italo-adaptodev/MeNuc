@@ -364,6 +364,40 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageButton
+            android:id="@+id/search_button_menu"
+            android:layout_width="34dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="64dp"
+
+            android:layout_marginRight="64dp"
+            android:background="#00000000"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/searchtext"
+            app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
+            app:layout_constraintVertical_bias="0.058"
+            app:srcCompat="@drawable/ic_loupe" />
+
+        <EditText
+            android:id="@+id/searchtext"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/arredondado_searchbar"
+            android:ems="10"
+            android:hint="Pesquisar por palavra-chave"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
+            app:layout_constraintVertical_bias="0.058"
+            android:windowSoftInputMode="adjustPan"
+            />
+
         <TextView
             android:id="@+id/txt_autorizacao"
             android:layout_width="wrap_content"
@@ -385,6 +419,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.384" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab4"
@@ -467,6 +502,25 @@
             app:srcCompat="@drawable/autores"
             tools:targetApi="lollipop" />
 
+        <TextView
+            android:id="@+id/txt_indicacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/arrendondado_textview_verde"
+            android:padding="8dp"
+            android:text="@string/convidar"
+            android:textColor="#ffffff"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fab2"
+            app:layout_constraintHorizontal_bias="0.818"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
@@ -497,6 +551,7 @@
             app:pressedTranslationZ="12dp"
             app:srcCompat="@drawable/invite"
             tools:targetApi="lollipop" />
+
 
         <TextView
             android:id="@+id/txt_questionario"
@@ -587,58 +642,7 @@
             tools:targetApi="lollipop" />
 
 
-        <ImageButton
-            android:id="@+id/search_button_menu"
-            android:layout_width="34dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="64dp"
 
-            android:layout_marginRight="64dp"
-            android:background="#00000000"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/searchtext"
-            app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
-            app:layout_constraintVertical_bias="0.058"
-            app:srcCompat="@drawable/ic_loupe" />
-
-        <EditText
-            android:id="@+id/searchtext"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/arredondado_searchbar"
-            android:ems="10"
-            android:hint="Pesquisar por palavra-chave"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
-            app:layout_constraintVertical_bias="0.058"
-            android:windowSoftInputMode="adjustPan"
-            />
-
-        <TextView
-            android:id="@+id/txt_indicacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/arrendondado_textview_verde"
-            android:padding="8dp"
-            android:text="@string/convidar"
-            android:textColor="#ffffff"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/fab2"
-            app:layout_constraintHorizontal_bias="0.818"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.59" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

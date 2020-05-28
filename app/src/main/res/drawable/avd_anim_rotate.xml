@@ -155,6 +155,7 @@
                 android:valueFrom="0"
                 android:valueTo="360"
                 android:valueType="floatType"
+                android:startOffset="500"
                 android:interpolator="@android:interpolator/linear_out_slow_in"/>
         </aapt:attr>
     </target>

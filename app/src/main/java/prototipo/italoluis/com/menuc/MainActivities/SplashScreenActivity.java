@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_splash_screen);
+      setContentView(R.layout.activity_splash_screen);
     atom = findViewById(R.id.atom_anim);
     titulo = findViewById(R.id.titulo);
     Handler handler = new Handler();

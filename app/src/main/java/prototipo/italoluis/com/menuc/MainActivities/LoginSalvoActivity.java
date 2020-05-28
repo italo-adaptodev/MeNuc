@@ -3,6 +3,7 @@ package prototipo.italoluis.com.menuc.MainActivities;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
@@ -53,6 +55,7 @@ public class LoginSalvoActivity extends AppCompatActivity {
 
     private void btnLogin() {
         btnLoggin.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 atom.setVisibility(View.VISIBLE);
@@ -74,6 +77,7 @@ public class LoginSalvoActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void animate(View view) {
         ImageView v = (ImageView) view;
         Drawable d = v.getDrawable();
@@ -97,7 +101,6 @@ public class LoginSalvoActivity extends AppCompatActivity {
                     }
                     else{
                         btnLoggin.setVisibility(View.VISIBLE);
-                        loginProgressB.setVisibility(View.INVISIBLE);
                         showMessage(task.getException().getMessage());
 
                     }

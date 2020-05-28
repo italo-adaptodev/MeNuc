@@ -27,17 +27,17 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("MeNuc");
-        toolbar.setTitleTextColor(getColor(R.color.tabAccent));
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tabAccent));
         setSupportActionBar(toolbar);
         slidingTabLayout = (SlidingTabLayout) findViewById(R.id.stl_tabs);
         viewPager = findViewById(R.id.vp_pagina);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.tabAccent));
-        slidingTabLayout.setBackgroundColor(getColor(R.color.colorPrimary));
+        slidingTabLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            slidingTabLayout.setOutlineAmbientShadowColor(getColor(R.color.tabAccent));
+            slidingTabLayout.setOutlineAmbientShadowColor(ContextCompat.getColor(this, R.color.tabAccent));
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            slidingTabLayout.setOutlineSpotShadowColor(getColor(R.color.tabAccent));
+            slidingTabLayout.setOutlineSpotShadowColor(ContextCompat.getColor(this, R.color.tabAccent));
         }
         slidingTabLayout.setDistributeEvenly(true);
 
