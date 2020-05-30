@@ -19,7 +19,7 @@
         <activity android:name=".MainActivities.DetalharPostagemForumActivity"></activity>
         <activity android:name=".MainActivities.CriarPostagemForumActivity" />
         <activity
-            android:name=".BloggerStructure.ListadorPosts"
+            android:name=".BloggerStructure.ListarPostagens"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivities.TelaInicialActivity"
@@ -54,7 +54,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".BloggerStructure.DetalhesPosts" />
+        <activity android:name=".BloggerStructure.DetalharPostagem" />
         <activity android:name=".BloggerStructure.QuestionariosPosts" />
 
         <meta-data

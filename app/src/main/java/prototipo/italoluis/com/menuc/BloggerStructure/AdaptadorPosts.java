@@ -56,7 +56,7 @@ public class AdaptadorPosts extends RecyclerView.Adapter<AdaptadorPosts.PostView
         postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetalhesPosts.class);
+                Intent intent = new Intent(context, DetalharPostagem.class);
                 intent.putExtra("url", item.getUrl());
                 context.startActivity(intent);
             }

@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,18 +14,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import prototipo.italoluis.com.menuc.BloggerStructure.DetalhesPosts;
 import prototipo.italoluis.com.menuc.MainActivities.TelaInicialActivity;
 
 
 public class WebViewConfig extends AppCompatActivity {
   private Context mContext;
   private Activity mActivity;
-  private String URL = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
-
   private WebView mWebView;
-
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +61,9 @@ public class WebViewConfig extends AppCompatActivity {
 
       }
     });
+
+    Intent intent = getIntent();
+    String URL = intent.getStringExtra("URL");
 
     mWebView.loadUrl(URL);
 

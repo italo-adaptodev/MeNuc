@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -29,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import prototipo.italoluis.com.menuc.BloggerStructure.ListadorPosts;
+import prototipo.italoluis.com.menuc.BloggerStructure.ListarPostagens;
 import prototipo.italoluis.com.menuc.BloggerStructure.QuestionariosPosts;
 import prototipo.italoluis.com.menuc.LabelKeyController;
 import prototipo.italoluis.com.menuc.MainActivities.AutorizacaoActivity;
@@ -127,7 +126,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
     }
 
     private void startPostListLoader(String labelkeyurl) {
-        Intent intent = new Intent(getContext(), ListadorPosts.class);
+        Intent intent = new Intent(getContext(), ListarPostagens.class);
         intent.putExtra("urlCompletaBlogger", labelkeyurl);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());

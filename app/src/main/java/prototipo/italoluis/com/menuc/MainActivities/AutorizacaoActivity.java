@@ -148,7 +148,7 @@ public class AutorizacaoActivity extends AppCompatActivity {
 
                         Intent intent_webview = new Intent(AutorizacaoActivity.this, WebViewConfig.class);
                         String url = "https://www.blogger.com/blogger.g?blogID=537701014572510680#basicsettings";
-                        intent_webview.putExtra("url", url);
+                        intent_webview.putExtra("URL", url);
                         startActivity(intent_webview);
                     }
 
