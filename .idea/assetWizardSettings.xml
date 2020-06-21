@@ -178,9 +178,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="opacityPercent" value="92" />
-                            <entry key="outputName" value="ic_comment" />
-                            <entry key="sourceFile" value="C:\Users\itlac\Pictures\icones\comment.svg" />
+                            <entry key="outputName" value="ic_register" />
+                            <entry key="sourceFile" value="C:\Users\itlac\Pictures\icones\novos\register.svg" />
                           </map>
                         </option>
                       </PersistentState>

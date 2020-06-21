@@ -9,15 +9,17 @@
     <string name="email_indicado">Email do indicado</string>
     <string name="todo">TODO</string>
     <string name="hint_nome">Nome e sobrenome</string>
-    <string name="hint_email">exemplo@gmail.com (somente gmail!)</string>
+    <string name="hint_email">exemplo@gmail.com (somente GMAIL!)</string>
     <string name="aviso_hint">Aviso!</string>
     <string name="indicado_por">Indicado por</string>
     <string name="quem_indicou">Quem indicou</string>
     <string name="aviso_convite">Nesta tela você irá indicar uma pessoa ao cargo de <b>Autor</b>. A candidatura será revisada pelo Administrador do aplicativo.
-        Importante que o email seja do domínio GMAIL, do contrário será necessário que o indicado crie um Gmail para receber autorização</string>
+        Importante que o email seja do domínio <b>GMAIL</b>, do contrário será necessário que o indicado crie um GMAIL para receber autorização</string>
     <string name="title_activity_principal">PrincipalActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="info_faleconosco">Este canal foi criado para falar diretamente com a equipe administradora do aplicativo. Evidencie sua dúvida ou sugestão
+    no espaço abaixo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

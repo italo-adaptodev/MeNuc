@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF3F3F3"
     android:orientation="vertical">
 
   <LinearLayout
@@ -34,6 +35,7 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="0.7"
+      android:background="#FFF3F3F3"
       tools:listitem="@layout/cardview_solicitacao">
 
   </androidx.recyclerview.widget.RecyclerView>
@@ -51,7 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:text="Autorizar " />
+        android:backgroundTint="@color/verde_escuro_daora"
+        android:text="Autorizar "
+        tools:targetApi="lollipop" />
   </LinearLayout>
 
 

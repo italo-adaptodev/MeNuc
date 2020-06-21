@@ -7,13 +7,15 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/add_forum_cancelar"
         android:layout_width="130dp"
         android:layout_height="45dp"
+        app:strokeColor="#FF0C0C"
         android:layout_marginBottom="136dp"
-        android:background="@drawable/arrendondado_button_cancelar"
         android:text="Cancelar"
+        android:textColor="#9F0808"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
@@ -21,13 +23,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.905" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/add_forum_enviar"
         android:layout_width="130dp"
         android:layout_height="45dp"
+        app:strokeColor="@color/verde_escuro_daora"
         android:layout_marginBottom="136dp"
-        android:background="@drawable/arrendondado_textview"
         android:text="Enviar"
+        android:textColor="#1E6718"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
@@ -35,15 +39,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.903" />
 
-    <EditText
-        android:background="@drawable/arredondado_searchbar"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:id="@+id/add_forum_titulo"
         android:layout_width="315dp"
         android:layout_height="49dp"
-        android:hint="Titulo "
         android:ems="10"
+        app:boxStrokeColor="#FFD700"
         android:gravity="start|top"
-        android:padding="10dp"
         android:textAlignment="textStart"
         android:inputType="textCapSentences"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,24 +55,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.13"
-        android:imeOptions="actionDone"
-        />
+        android:imeOptions="actionDone">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:hint="Titulo da postagem"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/add_forum_texto"
     android:layout_width="315dp"
     android:layout_height="236dp"
     android:layout_marginTop="52dp"
-    android:background="@drawable/arredondado_searchbar"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    app:boxStrokeColor="#FFD700"
     android:ems="10"
     android:gravity="start"
-    android:hint="Escreva seu texto aqui"
     android:inputType="textMultiLine|textCapSentences"
-    android:padding="10dp"
-    android:textAlignment="textStart"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/add_forum_titulo"
-    app:layout_constraintVertical_bias="0.0" />
+    app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:gravity="start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+             />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

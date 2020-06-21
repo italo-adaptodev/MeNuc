@@ -5,149 +5,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#FFF3F3F3"
     android:padding="3dp"
-    tools:context="prototipo.italoluis.com.menuc.MainActivities.EnviarConviteActivity"
+    tools:context="prototipo.adapto.com.menuc.MainActivities.EnviarConviteActivity"
     android:fitsSystemWindows="false">
 
     <TextView
         android:id="@+id/convite_expli"
-        android:layout_width="328dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/arrendondado_textview"
-        android:padding="10sp"
+        android:layout_width="388dp"
+        android:layout_height="127dp"
+        android:background="@drawable/borda"
+        android:gravity="center_horizontal"
+        android:padding="15dp"
         android:scrollbars="vertical"
         android:text="@string/aviso_convite"
         android:textColor="#00a800"
-        android:textSize="17sp"
+        android:textSize="14sp"
         app:fontFamily="@font/font_akuma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aviso_invite"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.035" />
 
-    <TextView
-        android:id="@+id/nome_invite"
-        android:layout_width="234dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFAFA"
-        android:text="@string/nome_indicado"
-        android:textColor="#00a800"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:fontFamily="@font/font_akuma"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/indicado2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="15sp"
+        app:boxStrokeColor="@color/verde_escuro_daora"
+        app:helperText="@string/hint_email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/convite_expli"
-        app:layout_constraintVertical_bias="0.196" />
-
-    <TextView
-        android:id="@+id/email_invite"
-        android:layout_width="234dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFAFA"
-        android:text="@string/email_indicado"
-        android:textColor="#00a800"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:fontFamily="@font/font_akuma"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/indicado1"
-        app:layout_constraintVertical_bias="0.141" />
+        app:layout_constraintVertical_bias="0.264">
 
-    <EditText
-        android:id="@+id/indicado2"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:hint="Email do Indicado">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/indicado1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="328dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:autofillHints=""
-        android:background="@drawable/arrendondado_textview"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/hint_email"
         android:inputType="textPersonName"
-        android:padding="10sp"
-        android:textSize="15sp"
+        android:textSize="14sp"
+        app:boxStrokeColor="@color/verde_escuro_daora"
+        app:helperText="@string/hint_nome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_invite"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/convite_expli"
+        app:layout_constraintVertical_bias="0.233"
+        >
 
-    <EditText
-        android:id="@+id/indicado1"
-        android:layout_width="328dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:autofillHints=""
-        android:background="@drawable/arrendondado_textview"
-        android:ems="10"
-        android:hint="@string/hint_nome"
-        android:inputType="textPersonName"
-        android:padding="10sp"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_invite"
-        app:layout_constraintVertical_bias="0.0"
-        tools:targetApi="o" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:hint="Nome do Indicado">
 
-    <ImageButton
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_send"
-        android:layout_width="92dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/todo"
-        android:scaleType="fitCenter"
-        android:tint="#00FFFFFF"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#DFE4C208"
+        android:paddingLeft="30dp"
+        android:paddingRight="20dp"
+        android:text="Enviar"
+        android:textSize="14sp"
+        app:icon="@drawable/button_enviar_preto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/indicado2"
-        app:srcCompat="@drawable/button_enviar"
-        />
+        app:layout_constraintVertical_bias="0.145" />
 
     <TextView
         android:id="@+id/aviso_invite"

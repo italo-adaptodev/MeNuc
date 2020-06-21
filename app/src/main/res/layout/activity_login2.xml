@@ -5,87 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_app"
-    tools:context="prototipo.italoluis.com.menuc.MainActivities.LoginSalvoActivity">
+    tools:context="prototipo.adapto.com.menuc.MainActivities.LoginSalvoActivity">
 
 
-    <TextView
-        android:id="@+id/login_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textColor="#000"
-        app:layout_constraintBottom_toTopOf="@+id/senha_textview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_email_space"
-        style="@style/Widget.AppCompat.EditText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="310dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        app:boxBackgroundColor="#FFFFFF"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#000"
         android:ems="10"
+        app:boxStrokeColor="@color/verde_escuro_daora"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48"
-        tools:targetApi="lollipop" />
+        app:layout_constraintVertical_bias="0.48">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginInput"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:hint="Email">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/senha_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha"
-        android:textColor="#000"
-        app:layout_constraintBottom_toTopOf="@+id/senha_space"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="108dp"
-        android:background="@drawable/button_white_login"
-        android:text="Entrar"
-        android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/login_email_space"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/login_email_space"
-        app:layout_constraintTop_toBottomOf="@+id/senhaText"
-        app:layout_constraintVertical_bias="0.0"
-        tools:targetApi="lollipop" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="124dp"
-        android:layout_height="103dp"
+        android:layout_width="152dp"
+        android:layout_height="121dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.169"
+        app:layout_constraintVertical_bias="0.144"
         app:srcCompat="@drawable/ic_atom" />
 
     <TextView
@@ -96,59 +61,74 @@
         android:layout_marginTop="204dp"
         android:text="Menuc"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#000000"
+        android:textColor="@color/verde_escuro_daora"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/nomeText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.809"
         tools:targetApi="lollipop" />
 
-
-<!--    <ProgressBar-->
-<!--        android:id="@+id/login_progressbar"-->
-<!--        style="?android:attr/progressBarStyle"-->
-<!--        android:layout_width="41dp"-->
-<!--        android:layout_height="33dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/login_button"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/login_button"-->
-<!--        app:layout_constraintHorizontal_bias="0.501"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/login_button"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/login_button" />-->
-
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/senha_space"
-        style="@style/Widget.AppCompat.EditText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="310dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#000"
         android:ems="10"
         android:inputType="textPassword"
+        app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673"
-        tools:targetApi="lollipop" />
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintTop_toBottomOf="@+id/login_email_space"
+        tools:targetApi="lollipop">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/senhaInput"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:hint="Senha">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/atom"
-        android:layout_width="82dp"
-        android:layout_height="65dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="@+id/login_button"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/login_button"
         app:layout_constraintTop_toTopOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/avd_anim_rotate" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="310dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="108dp"
+        android:backgroundTint="@color/verde_escuro_daora"
+        android:text="Entrar"
+        android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
+        android:textColor="#F2F2F2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/login_email_space"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/login_email_space"
+        app:layout_constraintTop_toBottomOf="@+id/senha_space"
+        app:layout_constraintVertical_bias="0.903" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

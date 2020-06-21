@@ -1,130 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
     android:layout_height="145dp"
-    app:cardBackgroundColor="#6FFFD700"
+    style="@style/Widget.MaterialComponents.CardView"
     app:cardElevation="5dp"
-    android:layout_gravity="center_horizontal"
-    android:layout_margin="10dp"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
     >
 
-    <LinearLayout
-        android:layout_width="342dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="#C9F8F6F6">
 
 
-
-        <TextView
-            android:layout_width="50dp"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nome_auth"
+            android:text="Nome do autor"
+            android:gravity="center"
+            android:layout_width="150dp"
+            android:textSize="20sp"
+            android:textColor="@color/verde_escuro_daora"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Nome"
-            android:textColor="#FF029E02" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="28dp">
-
-            <TextView
-                android:id="@+id/nome_auth"
-                android:layout_width="206dp"
-                android:layout_height="22dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="176dp"
-                android:layout_marginRight="176dp"
-                android:layout_marginBottom="3dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/arrendondado_textview"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="fill"
-                android:paddingLeft="10sp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+        </com.google.android.material.textview.MaterialTextView>
 
 
-        </RelativeLayout>
-
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/email_auth"
-            android:layout_width="190dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="182dp"
-            android:layout_marginRight="182dp"
-            android:layout_marginBottom="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
-            android:background="@drawable/arrendondado_textview"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="fill"
-            android:paddingLeft="10sp"
-            android:text="Email do indicado"
+            android:text="Email do autor"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.335">
 
+        </com.google.android.material.textview.MaterialTextView>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="28dp">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Indicado por"
+            android:textColor="@color/verde_escuro_daora"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.694">
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="26dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="228dp"
-                android:layout_marginRight="228dp"
-                android:layout_marginBottom="0dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="bottom"
-                android:lines="1"
-                android:text="@string/indicado_por"
-                android:textColor="#FF029E02" />
+        </com.google.android.material.textview.MaterialTextView>
 
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/padrinho_auth"
-            android:layout_width="200dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_padrinho_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
-            android:background="@drawable/arrendondado_textview"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="fill"
-            android:paddingStart="10sp"
-            android:paddingLeft="10sp"
-            android:text="@string/quem_indicou"
+            android:text="Email do autor"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
+            app:layout_constraintVertical_bias="0.0">
 
+        </com.google.android.material.textview.MaterialTextView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

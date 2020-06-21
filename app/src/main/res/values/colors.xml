@@ -2,7 +2,12 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#2130b1</color>
+    <color name="colorAccent">#000000</color>
     <color name="tabAccent">#FAFAFA</color>#
+    <color name="verdetextbox">#00a800</color>
+    <color name="verde_escuro">#00085002</color>
+    <color name="verde_escuro_daora">#3C9F34</color>
+    <color name="dourado">#FFD700</color>
+    <color name="brancogelo">#FFFAFA</color>
 
 </resources>

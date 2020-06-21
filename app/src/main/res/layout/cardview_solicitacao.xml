@@ -1,184 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
     android:layout_height="145dp"
-    app:cardBackgroundColor="#6FFFD700"
+    style="@style/Widget.MaterialComponents.CardView"
     app:cardElevation="5dp"
-
-    android:layout_margin="10dp"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
     >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="#C9F8F6F6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Candidato"
+            android:textColor="@color/verde_escuro_daora"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/nome_auth"
+            app:layout_constraintEnd_toEndOf="@+id/nome_auth"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/nome_auth"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.923">
+
+        </TextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nome_auth"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nome do autor"
+            android:textAllCaps="true"
+            android:autoSizeTextType="uniform"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/email_auth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.185"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.967">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="uniform"
+            android:text="Email do autor"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/nome_auth"
+            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintStart_toStartOf="@+id/nome_auth"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Indicado por"
+            android:textColor="@color/verde_escuro_daora"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.185"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.687">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email_padrinho_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="uniform"
+            android:text="Email do autor"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
+            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
+            app:layout_constraintVertical_bias="0.0">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <ImageButton
+            android:id="@+id/denied_btn"
+            android:layout_width="45dp"
+            android:layout_height="27dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/materialTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/accept_btn"
+            app:layout_constraintVertical_bias="0.406"
+            app:srcCompat="@drawable/ic_cancel" />
+
+        <ImageButton
+            android:id="@+id/accept_btn"
+            android:layout_width="45dp"
+            android:layout_height="27dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top|end"
+            android:background="#00411919"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nome_auth"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.228"
+            app:srcCompat="@drawable/ic_checked" />
 
         <TextView
             android:id="@+id/onhold"
-            android:layout_width="199dp"
-            android:layout_height="20dp"
-            android:layout_gravity="top|end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="152dp"
+            android:layout_height="17dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:gravity="end"
-            android:padding="-20sp"
+            android:gravity="center"
             android:text="Aguardando confirmação!"
             android:textColor="#00A800"
-            android:textStyle="bold"
-            android:visibility="invisible" />
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="-20dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="Nome"
-            android:textColor="#FF029E02" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="28dp">
-
-            <TextView
-                android:id="@+id/nome_auth"
-                android:layout_width="206dp"
-                android:layout_height="22dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="176dp"
-                android:layout_marginRight="176dp"
-                android:layout_marginBottom="3dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/arrendondado_textview"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-smallcaps"
-                android:gravity="fill"
-                android:paddingLeft="10sp"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <ImageButton
-                android:id="@+id/accept_btn"
-                android:layout_width="88dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="top|end"
-                android:layout_marginStart="252dp"
-                android:layout_marginLeft="252dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="52dp"
-                android:layout_marginRight="52dp"
-                android:layout_marginBottom="0dp"
-                android:background="#00411919"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_checked"
-                />
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/email_auth"
-            android:layout_width="190dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="182dp"
-            android:layout_marginRight="182dp"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/arrendondado_textview"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="fill"
-            android:paddingLeft="10sp"
-            android:text="Email do indicado"
-            android:textColor="#000000"
             android:textSize="12sp"
-            android:autoSizeTextType="uniform"/>
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="28dp">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="26dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="228dp"
-                android:layout_marginRight="228dp"
-                android:layout_marginBottom="0dp"
-                android:fontFamily="sans-serif-smallcaps"
-                android:lines="1"
-                android:text="@string/indicado_por"
-                android:textColor="#FF029E02"
-                android:gravity="bottom"/>
-
-            <ImageButton
-                android:id="@+id/denied_btn"
-                android:layout_width="87dp"
-                android:layout_height="29dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="253dp"
-                android:layout_marginLeft="253dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="52dp"
-                android:layout_marginRight="52dp"
-                android:layout_marginBottom="0dp"
-                android:background="#00FFFFFF"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_cancel" />
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/padrinho_auth"
-            android:layout_width="200dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/arrendondado_textview"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="fill"
-            android:paddingStart="10sp"
-            android:paddingLeft="10sp"
-            android:text="@string/quem_indicou"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:autoSizeTextType="uniform"/>
-
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

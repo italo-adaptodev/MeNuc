@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,5 +21,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextBoxOutlinedBoxBlack" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/textboxblack</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColorSecondary">@color/tabAccent</item>
+    </style>
 
 </resources>

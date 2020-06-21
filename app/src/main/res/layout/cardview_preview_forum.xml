@@ -1,103 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#6FFFD700"
+    style="@style/Widget.MaterialComponents.CardView"
+    app:strokeColor="@color/dourado"
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="@color/brancogelo"
     android:layout_gravity="center_horizontal"
     android:layout_margin="10dp"
    >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_margin="3dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
-        <TextView
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/forum_preview_titulo"
-            android:layout_width="249dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="start|center"
-            android:maxLines="2"
-            android:minLines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Titulo"
-            android:textColor="#FF029E02"
+            android:textColor="@color/verde_escuro_daora"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1">
 
-        <TextView
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/forum_preview_autor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginRight="124dp"
+            android:text="Autor"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forum_preview_data"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forum_preview_titulo"
+            app:layout_constraintVertical_bias="0.0">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/forum_preview_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:text="Data"
-            android:textColor="#000"
-            android:textSize="15sp" />
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forum_preview_qtdRespostas"
+            app:layout_constraintHorizontal_bias="0.702"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
+        </com.google.android.material.textview.MaterialTextView>
 
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_gravity="bottom"
-        android:layout_margin="3dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/forum_preview_autor"
-            android:layout_width="214dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="170dp"
-            android:layout_marginRight="170dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="start|center"
-            android:maxLines="1"
-            android:text="Autor "
-            android:textColor="#000"
-            android:textSize="15sp" />
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/forum_preview_qtdRespostas"
-            android:layout_width="119dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="top|center|right"
-            android:layout_marginStart="226dp"
-            android:layout_marginLeft="226dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginRight="43dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="right"
-            android:text="Respostas"
-            android:textColor="#000"
-            android:textSize="15sp"
-            android:drawableRight="@drawable/ic_comment"
-            android:drawablePadding="2dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_comment"
+            android:drawablePadding="3dp"
+            android:gravity="bottom"
+            android:text="Res  "
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-        </TextView>
+        </com.google.android.material.textview.MaterialTextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
