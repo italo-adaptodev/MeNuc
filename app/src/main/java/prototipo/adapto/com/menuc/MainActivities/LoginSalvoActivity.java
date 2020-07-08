@@ -1,6 +1,7 @@
 package prototipo.adapto.com.menuc.MainActivities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -18,6 +20,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -35,6 +38,7 @@ public class LoginSalvoActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Intent tabs;
     private ImageView atom;
+    private TextView txtCadastro;
 
 
     @Override
@@ -48,7 +52,8 @@ public class LoginSalvoActivity extends AppCompatActivity {
         atom = findViewById(R.id.atom);
         atom.setVisibility(View.INVISIBLE);
         tabs = new Intent(this, TelaInicialActivity.class);
-
+        txtCadastro = findViewById(R.id.txtCadastro);
+        cadastro(txtCadastro);
 
         btnLogin();
     }
@@ -64,7 +69,8 @@ public class LoginSalvoActivity extends AppCompatActivity {
                 final String senhaStr = userSenha.getEditText().getText().toString();
 
                 if (loginStr.isEmpty() || senhaStr.isEmpty()){
-                    Toast.makeText(LoginSalvoActivity.this, "Preencha todos os campos!!", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Preencha todos os campos!!", Snackbar.LENGTH_SHORT)
+                            .show();
                     atom.setVisibility(View.INVISIBLE);
                 }
                 else{
@@ -96,13 +102,12 @@ public class LoginSalvoActivity extends AppCompatActivity {
             @Override
             public void onComplete( Task<AuthResult> task) {
                     if (task.isSuccessful()){
-//                        loginProgressB.setVisibility(View.INVISIBLE);
                         updateUI();
                     }
                     else{
                         btnLoggin.setVisibility(View.VISIBLE);
-                        showMessage(task.getException().getMessage());
-
+                        Snackbar.make(getView(), "Ocorreu um erro! Tente novamente", Snackbar.LENGTH_SHORT)
+                                .show();
                     }
             }
         });
@@ -132,7 +137,18 @@ public class LoginSalvoActivity extends AppCompatActivity {
 
     }
 
+    private void cadastro(TextView txtLogin) {
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginSalvoActivity.this, CriarLoginActivity.class);
+                startActivity(intent);
 
+            }
+        });
+    }
 
-
+    public View getView() {
+        return findViewById(android.R.id.content);
+    }
 }

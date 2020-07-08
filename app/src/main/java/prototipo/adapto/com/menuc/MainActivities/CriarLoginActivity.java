@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -48,23 +49,8 @@ public class CriarLoginActivity extends AppCompatActivity {
         email = findViewById(R.id.emailText);
         senha = findViewById(R.id.senhaText);
         Button criarlogin = findViewById(R.id.button);
-        TextView textologin = findViewById(R.id.textView4);
-        Button logoutbtn = findViewById(R.id.loggout);
         mAuth = FirebaseAuth.getInstance();
-        btnLogout(logoutbtn);
         btncriarConta(criarlogin);
-        loginConectado(textologin);
-    }
-
-
-    private void btnLogout(Button btnLogout) {
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                Toast.makeText(CriarLoginActivity.this, "Logout realizado", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     private void btncriarConta(Button btnCriarLogin) {
@@ -78,19 +64,9 @@ public class CriarLoginActivity extends AppCompatActivity {
                     saveUsernameEmail(userName, userEmail);
                     CriarContaFirebase(userEmail, password, view, userName);
                 } else {
-                    Toast.makeText(CriarLoginActivity.this, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getView(), "Preencha todos os campos!!", Snackbar.LENGTH_SHORT)
+                            .show();
                 }
-            }
-        });
-    }
-
-    private void loginConectado(TextView txtLogin) {
-        txtLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CriarLoginActivity.this, LoginSalvoActivity.class);
-                startActivity(intent);
-
             }
         });
     }
@@ -104,10 +80,12 @@ public class CriarLoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
                             user.updateProfile(profileUpdates);
-                            Toast.makeText(CriarLoginActivity.this, "Conta criada", Toast.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "Conta criada com sucesso", Snackbar.LENGTH_SHORT)
+                                    .show();
                             showAlertDialogButtonClicked(view);
                         } else {
-                            Toast.makeText(CriarLoginActivity.this, "Ocorreu um erro. Tente novamente" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Snackbar.make(getView(), "Ocorreu um erro. Tente novamente" + task.getException().getMessage(), Snackbar.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });
@@ -141,5 +119,7 @@ public class CriarLoginActivity extends AppCompatActivity {
 
     }
 
-
+    public View getView() {
+        return findViewById(android.R.id.content);
+    }
 }

@@ -2,8 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#6FFFD700"
+    android:backgroundTint="#F4F2F2"
     android:layout_gravity="center"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
@@ -18,7 +17,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
             android:layout_gravity="top">
 
             <TextView
@@ -28,7 +29,6 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
                 android:background="#00635A5A"
                 android:gravity="start"
                 android:inputType="none"
@@ -45,19 +45,21 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
             android:gravity="start"
-            android:layout_marginTop="5dp">
+            >
 
             <TextView
                 android:id="@+id/forum_resposta_texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="0dp"
-                android:padding="5dp"
+                android:paddingLeft="2dp"
+                android:paddingBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="0dp"

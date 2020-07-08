@@ -61,6 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:inputType="textEmailSubject"
             android:textColor="#000000"
             android:textColorHint="#000000" />
@@ -85,6 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Assunto"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
             android:inputType="textEmailSubject"
             android:textColor="#000000"
             android:textColorHint="#000000" />

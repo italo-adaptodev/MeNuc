@@ -17,7 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import prototipo.adapto.com.menuc.Fragmentos.Forum.Model.PostagemForum;
 import prototipo.adapto.com.menuc.R;
@@ -29,6 +32,7 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRefForum = database.getReference().child("Forum");
+    public static final String DATE_FORMAT_1 = "dd MMM yyyy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,7 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_LONG).show();
             titulo.requestFocus();
         }else{
-            PostagemForum postagemForum = new PostagemForum(user.getDisplayName(), strTitulo, strConteudo, 0, DateFormat.getDateInstance().format(new Date()));
+            PostagemForum postagemForum = new PostagemForum(user.getDisplayName(), strTitulo, strConteudo, 0, getCurrentDate());
             postagemForum.setKey(dbRefForum.push().getKey());
             dbRefForum.child(postagemForum.getKey()).setValue(postagemForum);
             Toast.makeText(getApplicationContext(), "Postagem Enviada!", Toast.LENGTH_LONG).show();
@@ -70,6 +74,13 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("BRT"));
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
     }
 
 

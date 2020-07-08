@@ -11,6 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import prototipo.adapto.com.menuc.R;
 import prototipo.adapto.com.menuc.SlidingTabLayout;
@@ -21,13 +24,15 @@ public class TelaInicialActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
+    private FirebaseAuth mAuth;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
-
+        mAuth = FirebaseAuth.getInstance();
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("MeNuc");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tabAccent));
@@ -73,6 +78,11 @@ public class TelaInicialActivity extends AppCompatActivity {
                 break;
             case R.id.item2:
                 startActivity(new Intent(this, FaleConoscoActivity.class));
+                break;
+            case R.id.item3:
+                mAuth.signOut();
+                Toast.makeText(TelaInicialActivity.this, "Logout realizado", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this, LoginSalvoActivity.class));
                 break;
             default:
                 return super.onOptionsItemSelected(item);

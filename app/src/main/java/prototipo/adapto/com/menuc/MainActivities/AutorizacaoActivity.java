@@ -29,6 +29,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import prototipo.adapto.com.menuc.FirebaseDataAuth;
 import prototipo.adapto.com.menuc.FirebaseViewHolder;
@@ -43,10 +44,10 @@ public class AutorizacaoActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<FirebaseDataAuth, FirebaseViewHolder> adapter;
     private Query dbRefIndicados = FirebaseDatabase.getInstance().getReference().child("Indicados");
     private DatabaseReference dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
-    public SharedPreferences pref;
     private Button send_author;
     private String emailAuth, provEmail;
     private RecyclerView recyclerView;
+    private HashMap<Integer, String> emailsGeral = new HashMap<>();
 
     @Override
     protected void onStart() {
@@ -64,7 +65,6 @@ public class AutorizacaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacao);
-        pref = getSharedPreferences("Autorizados", MODE_PRIVATE);
         recyclerView = findViewById(R.id.lista_autorizacao1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,8 +75,11 @@ public class AutorizacaoActivity extends AppCompatActivity {
         send_author = findViewById(R.id.send_author);
         Object clipboardService = getSystemService(CLIPBOARD_SERVICE);
         final ClipboardManager clipboardManager = (ClipboardManager)clipboardService;
+        ClipData data = ClipData.newPlainText("", "");
+        clipboardManager.setPrimaryClip(data);
         createAdapter(clipboardManager);
         recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -88,18 +91,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
                 holder.txt_emailIndicado.setText(model.getEmailIndicado());
                 holder.txt_padrinho.setText(model.getEmailPadrinho());
                 provEmail = model.getEmailIndicado();
+                emailsGeral.put(holder.getAdapterPosition(), provEmail);
 
-                if(emailAuth == null){
-                    emailAuth = " " + provEmail;
-                }else {
-                    emailAuth = provEmail + " " + emailAuth;
-                }
+                sendAuthors(holder, clipboardManager);
 
-               sendAuthors(holder, clipboardManager);
+                accept(holder, model);
 
-               accept(holder, model);
-
-               deny(holder, model);
+                deny(holder, model);
 
             }
 
@@ -132,18 +130,17 @@ public class AutorizacaoActivity extends AppCompatActivity {
                                         int which)
                     {
                         if (itemStateArray.get((holder.getAdapterPosition()-1) , false)) {
-                            pref.edit().clear().apply();
+                            emailAuth = "";
                         } else {
                             if(holder.accept.getVisibility() == View.INVISIBLE) {
-                                pref.edit().putString("Lista_email", emailAuth).apply();
-                                showText(pref.getString("Lista_email", ""));
+                                showText(emailAuth);
                             }
                         }
 
                         cleanIndicados();
                         setAutoresTrue();
 
-                        ClipData clipData = ClipData.newPlainText("Source Text", pref.getString("Lista_email", ""));
+                        ClipData clipData = ClipData.newPlainText("Source Text", emailAuth);
                         clipboardManager.setPrimaryClip(clipData);
 
                         Intent intent_webview = new Intent(AutorizacaoActivity.this, WebViewConfig.class);
@@ -225,7 +222,13 @@ public class AutorizacaoActivity extends AppCompatActivity {
                     }
                 });
 
+                if(emailAuth == null){
+                    emailAuth = " " + emailsGeral.get(holder.getAdapterPosition());
+                }else{
+                    emailAuth = emailsGeral.get(holder.getAdapterPosition()) + " " + emailAuth;
+                }
 
+                showText(emailAuth);
             }
         });
 

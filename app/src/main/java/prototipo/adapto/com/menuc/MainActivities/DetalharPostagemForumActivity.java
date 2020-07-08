@@ -107,7 +107,10 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
 
         //region PREENCHENDO RECYCLERVIEW COM RESPOSTAS
         detalharRespostas.setHasFixedSize(true);
-        detalharRespostas.setLayoutManager(new LinearLayoutManager(this));
+        detalharRespostas.setLayoutManager(new LinearLayoutManager(this){
+
+
+        });
         arrayList = new ArrayList<>();
         queryRespostas.keepSynced(true);
         options = new FirebaseRecyclerOptions.Builder<FirebaseForumComentarioDataAuth>()

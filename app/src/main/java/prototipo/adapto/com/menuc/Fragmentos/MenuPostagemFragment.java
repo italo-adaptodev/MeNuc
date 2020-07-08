@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +71,6 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         getView().findViewById(R.id.cv_protec_radio).setOnClickListener(this);
         getView().findViewById(R.id.cv_legislacao).setOnClickListener(this);
         getView().findViewById(R.id.cv_outros).setOnClickListener(this);
-        getView().findViewById(R.id.search_button_menu).setOnClickListener(this);
         txt_quest = getView().findViewById(R.id.txt_questionario);
         txt_invite = getView().findViewById(R.id.txt_indicacao);
         txt_author = getView().findViewById(R.id.txt_autores);
@@ -81,6 +82,21 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         fabOnClick();
         dbRefAutores.keepSynced(true);
         checkIfAutor();
+
+        searchbar.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    if (!TextUtils.isEmpty(searchbar.getEditText().getText())) {
+                        startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getEditText().getText().toString()));
+                        searchbar.getEditText().setText("");
+                        searchbar.clearFocus();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -118,10 +134,8 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
                 startPostListLoader(labelKeyController.getLabelKeyOutros());
                 break;
 
-            case R.id.search_button_menu:
-                if (!TextUtils.isEmpty(searchbar.getEditText().getText())) {
-                    startPostListLoader(labelKeyController.getQueryParameterPesquisa(searchbar.getEditText().getText().toString()));
-                }
+            case R.id.searchtext:
+
                 break;
         }
     }
@@ -283,6 +297,4 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
             }
         });
     }
-
-
 }
