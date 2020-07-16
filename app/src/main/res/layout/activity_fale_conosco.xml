@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3F3F3"
-    tools:context="prototipo.adapto.com.menuc.MainActivities.FaleConoscoActivity"
+    tools:context="adapto.com.menuc.MainActivities.FaleConoscoActivity"
     android:fitsSystemWindows="true"
     android:windowSoftInputMode="adjustPan">
 
@@ -13,10 +13,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textView7"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/borda"
         android:gravity="center_horizontal"
-        android:padding="15dp"
+        android:padding="10dp"
+        android:textSize="14sp"
         android:text="@string/info_faleconosco"
         android:textAlignment="center"
         android:textColor="#000000"

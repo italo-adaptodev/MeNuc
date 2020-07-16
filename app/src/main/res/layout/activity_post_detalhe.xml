@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="prototipo.adapto.com.menuc.prototipo.italoluis.com.menuc.BloggerStructure.DetalhesPosts">
+    tools:context="adapto.com.menuc.prototipo.italoluis.com.menuc.BloggerStructure.DetalhesPosts">
 
 
     <WebView

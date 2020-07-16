@@ -18,9 +18,21 @@
     <string name="title_activity_principal">PrincipalActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    <string name="info_faleconosco">Este canal foi criado para falar diretamente com a equipe administradora do aplicativo. Evidencie sua dúvida ou sugestão
-    no espaço abaixo</string>
+    <string name="info_faleconosco">Criamos esse canal para comunicação direta com a equipe administradora do aplicativo. Entre em contato para sanar sua dúvida, enviar uma sugestão ou caso queira contribuir com o nosso aplicativo (usuário autor).</string>
+    <string name="sobreoprojeto">O aplicativo tem como objetivo geral contribuir para a difusão do conhecimento sobre
+Medicina Nuclear e criar uma interação em rede social entre os interessados no tema. Tendo
+como objetivos específicos:\n\n
+I. Disponibilizar informações relevantes sobre Medicina Nuclear, de forma confiável e
+organizada, servindo tanto para especialistas da área tanto para pessoas que estão iniciando
+interesse na área.\n\n
+II. Garantir a integração entre os usuários acerca de Medicina Nuclear, utilizando rede social de
+coautoria e confiança.\n\n
+III. Ser um aplicativo dinâmico, através de questionários, fóruns de discussões e perguntas e
+respostas referentes aos temas.\n\n
+Tendo como público-alvo estudantes, docentes, profissionais e demais interessados
+na área de Medicina Nuclear.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="equipe">Equipe participante do projeto: \n - JAQUELINE DE SANTANA FIGUEREDO \n - WILSON OTTO GOMES BATISTA \n - ANTÔNIO CARLOS DOS SANTOS SOUZA \n - ÍTALO LUÍS GOMES LACERDA DOS SANTOS</string>
 </resources>

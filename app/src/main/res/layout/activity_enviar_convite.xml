@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFF3F3F3"
     android:padding="3dp"
-    tools:context="prototipo.adapto.com.menuc.MainActivities.EnviarConviteActivity"
+    tools:context="adapto.com.menuc.MainActivities.EnviarConviteActivity"
     android:fitsSystemWindows="false">
 
     <TextView
