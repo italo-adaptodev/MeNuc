@@ -30,7 +30,7 @@ import adapto.com.menuc.WebViewConfig;
 
 public class CriarLoginActivity extends AppCompatActivity {
 
-    private TextInputLayout nome, senha, email;
+    private TextInputLayout nome, senha, email, sobrenome;
     private String URL = "https://docs.google.com/forms/d/e/1FAIpQLSfPsLCEnxMQXaKZQrQuxGXO1uK3VO9lHgakIYJh3yJeQcSuSA/viewform";
     private ImageView atom;
     private FirebaseAuth mAuth;
@@ -42,6 +42,7 @@ public class CriarLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
         nome = findViewById(R.id.nomeText);
+        sobrenome = findViewById(R.id.sobrenomeText);
         email = findViewById(R.id.emailText);
         senha = findViewById(R.id.senhaText);
         Button criarlogin = findViewById(R.id.button);
@@ -56,8 +57,9 @@ public class CriarLoginActivity extends AppCompatActivity {
                 final String userEmail = email.getEditText().getText().toString();
                 final String password = senha.getEditText().getText().toString();
                 final String userName = nome.getEditText().getText().toString();
-                if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(password)) {
-                    saveUsernameEmail(userName, userEmail);
+                final String userSobrenome = sobrenome.getEditText().getText().toString();
+                if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(userSobrenome)) {
+                    saveUsernameEmail(userName + " " + userSobrenome, userEmail);
                     CriarContaFirebase(userEmail, password, view, userName);
                 } else {
                     Snackbar.make(getView(), "Preencha todos os campos!!", Snackbar.LENGTH_SHORT)

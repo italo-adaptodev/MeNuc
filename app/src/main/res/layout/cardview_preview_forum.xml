@@ -37,8 +37,8 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/forum_preview_autor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="124dp"
             android:layout_marginRight="124dp"

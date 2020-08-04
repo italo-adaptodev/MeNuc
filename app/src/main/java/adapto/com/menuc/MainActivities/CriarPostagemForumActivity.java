@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +29,7 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
     TextInputLayout titulo, conteudo;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference dbRefForum = database.getReference().child("Forum-Teste");
     DatabaseReference dbRefForum = database.getReference().child("Forum");
     public static final String DATE_FORMAT_1 = "dd MMM yyyy";
 
@@ -58,14 +60,16 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
     }
 
     private void criarPostagemForum(String strTitulo, String strConteudo) {
-        if(TextUtils.isEmpty(strTitulo) && TextUtils.isEmpty(strConteudo)) {
-            Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_LONG).show();
+        if(TextUtils.isEmpty(strTitulo) || TextUtils.isEmpty(strConteudo)) {
+            Snackbar.make(getView(), "Preencha todos os campos!!", Snackbar.LENGTH_SHORT)
+                    .show();
             titulo.requestFocus();
         }else{
             PostagemForum postagemForum = new PostagemForum(user.getDisplayName(), strTitulo, strConteudo, 0, getCurrentDate());
             postagemForum.setKey(dbRefForum.push().getKey());
             dbRefForum.child(postagemForum.getKey()).setValue(postagemForum);
-            Toast.makeText(getApplicationContext(), "Postagem Enviada!", Toast.LENGTH_LONG).show();
+            Snackbar.make(getView(), "Postagem enviada!", Snackbar.LENGTH_SHORT)
+                    .show();
             finish();
             onBackPressed();
         }
@@ -81,4 +85,7 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
     }
 
 
+    public View getView() {
+        return findViewById(android.R.id.content);
+    }
 }

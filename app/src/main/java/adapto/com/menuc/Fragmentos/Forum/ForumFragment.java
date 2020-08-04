@@ -30,6 +30,7 @@ import adapto.com.menuc.R;
 public class ForumFragment extends Fragment {
 
     private FirebaseRecyclerAdapter<FirebaseForumPreviewDataAuth, FirebaseForumPreviewViewHolder> forumPreviewAdapter;
+    //private Query dbForum = FirebaseDatabase.getInstance().getReference().child("Forum-Teste");
     private Query dbForum = FirebaseDatabase.getInstance().getReference().child("Forum");
     private DatabaseReference dbRespostas = FirebaseDatabase.getInstance().getReference().child("Respostas");
     RecyclerView recyclerViewForum;

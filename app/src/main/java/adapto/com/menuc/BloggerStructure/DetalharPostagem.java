@@ -17,7 +17,7 @@ import adapto.com.menuc.R;
 
 public class DetalharPostagem extends AppCompatActivity {
 
-  public static final String MENUCEDUCADIONAL_BLOGSPOT_COM = "menuceducadional.blogspot.com";
+  public static final String MENUCEDUCADIONAL_BLOGSPOT_COM = "menuceducacional.blogspot.com";
   public static final String QUESTIONARIOIFBA_BLOGSPOT_COM = "menucquestionarios.blogspot.com";
   public static final String FORMS_GLE = "forms.gle";
   public static final String DOCS_GOOGLE = "docs.google.com";

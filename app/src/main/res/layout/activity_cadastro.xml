@@ -43,6 +43,40 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sobrenomeText"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:boxBackgroundColor="#FFFFFF"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:boxStrokeColor="@color/verde_escuro_daora"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sobrenomeTextInput"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:hint="Sobrenome"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="14sp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailText"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="310dp"
@@ -60,7 +94,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/nomeText"
         app:layout_constraintTop_toBottomOf="@+id/nomeText"
-        app:layout_constraintVertical_bias="0.10"
+        app:layout_constraintVertical_bias="0.29"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailInput"
@@ -87,12 +121,13 @@
         android:ems="10"
         app:boxStrokeColor="@color/verde_escuro_daora"
         android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/emailText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/emailText"
         app:layout_constraintTop_toBottomOf="@+id/emailText"
-        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintVertical_bias="0.10"
 >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -100,6 +135,7 @@
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:hint="Senha"
+            android:inputType="textPassword"
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:textSize="14sp">
@@ -113,7 +149,7 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="Criar conta"
         android:textColor="@android:color/black"
         app:backgroundTint="#FFFFFF"

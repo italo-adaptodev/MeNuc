@@ -45,6 +45,7 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
     private Query queryRespostas = dbRespostas;
     private TextView postagemDetalhadaAutor, postagemDetalhadaData, postagemDetalhadaTitulo, postagemDetalhadaTexto;
     private RecyclerView detalharRespostas;
+    //private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child("Forum-Teste");
     private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child("Forum");
     private Query dbAutor = FirebaseDatabase.getInstance().getReference().child("Autores");
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
