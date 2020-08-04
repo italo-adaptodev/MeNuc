@@ -60,7 +60,7 @@ public class CriarLoginActivity extends AppCompatActivity {
                 final String userSobrenome = sobrenome.getEditText().getText().toString();
                 if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(userSobrenome)) {
                     saveUsernameEmail(userName + " " + userSobrenome, userEmail);
-                    CriarContaFirebase(userEmail, password, view, userName);
+                    CriarContaFirebase(userEmail, password, view, userName + " " + userSobrenome);
                 } else {
                     Snackbar.make(getView(), "Preencha todos os campos!!", Snackbar.LENGTH_SHORT)
                             .show();
