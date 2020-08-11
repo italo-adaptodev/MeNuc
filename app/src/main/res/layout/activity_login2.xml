@@ -89,7 +89,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintTop_toBottomOf="@+id/login_email_space"
         tools:targetApi="lollipop">
 
@@ -120,7 +120,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.805" />
 
     <ImageView
         android:id="@+id/atom"
@@ -146,9 +146,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtCadastro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha_space" />
+        app:layout_constraintTop_toBottomOf="@+id/senha_space"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,13 +17,15 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
->
+            android:layout_marginTop="40dp">
+
             <TextView
                 android:id="@+id/detalhar_forum_titulo"
                 android:layout_width="326dp"
@@ -46,7 +48,7 @@
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.028" />
+                app:layout_constraintVertical_bias="0.027" />
 
             <TextView
                 android:id="@+id/detalhar_forum_texto"
@@ -142,12 +144,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_detalhar_respostas_forum"
                 android:layout_width="354dp"
-                android:layout_height="468dp"
+                android:layout_height="440dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="@id/ConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/relative"
+                app:layout_constraintVertical_bias="1.0"
                 tools:listitem="@layout/cardview_resposta_forum" />
 
 
