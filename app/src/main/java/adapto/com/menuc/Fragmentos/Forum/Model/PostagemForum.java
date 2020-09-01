@@ -8,15 +8,17 @@ public class PostagemForum {
     private String key;
     private String fDataPostagem;
     private int fQtdComentarios;
+    private String fEmailAutor;
 
     public PostagemForum(){ }
 
-    public PostagemForum(String autor, String titulo, String corpoDaPostagem, int QtdComentarios, String dataPostagem){
+    public PostagemForum(String autor, String titulo, String corpoDaPostagem, int QtdComentarios, String dataPostagem, String emailAutor){
         this.fAutor = autor;
         this.fCorpoDaPostagem = corpoDaPostagem;
         this.fTitulo = titulo;
         this.fQtdComentarios = QtdComentarios;
         this.fDataPostagem = dataPostagem;
+        this.fEmailAutor = emailAutor;
     }
 
     public String getfDataPostagem() {
@@ -66,4 +68,8 @@ public class PostagemForum {
     public void setKey(String key) {
         this.key = key;
     }
+
+    public String getfEmailAutor(){return fEmailAutor;}
+
+    public void setfEmailAutor(String emailAutor) { this.fEmailAutor = emailAutor;}
 }

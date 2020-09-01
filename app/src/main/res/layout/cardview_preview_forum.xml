@@ -35,22 +35,21 @@
 
         </com.google.android.material.textview.MaterialTextView>
 
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/forum_preview_autor"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="124dp"
-            android:layout_marginRight="124dp"
             android:text="Autor"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forum_preview_data"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forum_preview_titulo"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.166">
 
         </com.google.android.material.textview.MaterialTextView>
 
@@ -63,8 +62,7 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/forum_preview_qtdRespostas"
-            app:layout_constraintHorizontal_bias="0.702"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/forum_preview_autor"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
 
@@ -82,14 +80,28 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias=".95"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="1.0"
+            >
 
         </com.google.android.material.textview.MaterialTextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/cargoAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="bottom"
+        android:text=" "
+        android:textColor="#FF0000"
+        android:textSize="12sp">
+
+    </com.google.android.material.textview.MaterialTextView>
 
 
 </com.google.android.material.card.MaterialCardView>

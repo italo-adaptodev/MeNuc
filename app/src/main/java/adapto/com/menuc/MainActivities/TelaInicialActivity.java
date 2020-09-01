@@ -1,12 +1,15 @@
 package adapto.com.menuc.MainActivities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +17,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import adapto.com.menuc.R;
 import adapto.com.menuc.SlidingTabLayout;
@@ -25,6 +38,8 @@ public class TelaInicialActivity extends AppCompatActivity {
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
     private FirebaseAuth mAuth;
+    private DatabaseReference dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
+    private Set<String> listaAutoresDB;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -53,8 +68,8 @@ public class TelaInicialActivity extends AppCompatActivity {
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabAdapter);
         slidingTabLayout.setViewPager(viewPager);
-
-
+        listaAutoresDB = new HashSet<>();
+        listarAutores();
     }
 
     @Override
@@ -72,7 +87,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.item1:
                 startActivity(new Intent(this, SobreOProjetoActivity.class));
                 break;
@@ -89,5 +104,30 @@ public class TelaInicialActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void listarAutores() {
+        final Query checkQ = dbRefAutores.orderByChild("nomeIndicado");
+        if(listaAutoresDB.isEmpty()) {
+            checkQ.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        listaAutoresDB.add(postSnapshot.child("emailIndicado").getValue().toString());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+
+
+            });
+        }
+        SharedPreferences sharedPref = this.getSharedPreferences("LISTA_AUTORES_MENUC", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet("LISTA_AUTORES_TELAINICIAL", listaAutoresDB);
+        editor.commit();
+
     }
 }

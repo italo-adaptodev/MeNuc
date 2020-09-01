@@ -2,15 +2,16 @@ package adapto.com.menuc.Fragmentos.Forum.Firebase;
 
 public class FirebaseForumPreviewDataAuth {
 
-    private String fTitulo, fDataPostagem, fAutor,key;
+    private String fTitulo, fDataPostagem, fAutor,key, fEmailAutor;
     private int fQtdComentarios;
 
     public FirebaseForumPreviewDataAuth(String forumPreviewTitulo, String forumPreviewData,
-                                        String forumPreviewAutor, int forumPreviewQtdRespostas) {
+                                        String forumPreviewAutor, int forumPreviewQtdRespostas, String forumPreviewEmailAutor) {
         this.fTitulo = forumPreviewTitulo;
         this.fDataPostagem = forumPreviewData;
         this.fAutor = forumPreviewAutor;
         this.fQtdComentarios = forumPreviewQtdRespostas;
+        this.fEmailAutor = forumPreviewEmailAutor;
     }
 
     public FirebaseForumPreviewDataAuth() {
@@ -50,5 +51,7 @@ public class FirebaseForumPreviewDataAuth {
     }
 
     public String getKey(){return key;}
+
+    public String getfEmailAutor(){return fEmailAutor;}
 }
 

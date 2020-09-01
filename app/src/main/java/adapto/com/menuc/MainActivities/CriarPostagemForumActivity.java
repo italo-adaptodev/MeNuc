@@ -65,13 +65,14 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
                     .show();
             titulo.requestFocus();
         }else{
-            PostagemForum postagemForum = new PostagemForum(user.getDisplayName(), strTitulo, strConteudo, 0, getCurrentDate());
+            PostagemForum postagemForum = new PostagemForum(user.getDisplayName(), strTitulo, strConteudo, 0, getCurrentDate(), user.getEmail());
             postagemForum.setKey(dbRefForum.push().getKey());
             dbRefForum.child(postagemForum.getKey()).setValue(postagemForum);
-            Snackbar.make(getView(), "Postagem enviada!", Snackbar.LENGTH_SHORT)
-                    .show();
+
             finish();
             onBackPressed();
+            Snackbar.make(getView(), "Postagem enviada!", Snackbar.LENGTH_SHORT)
+                    .show();
         }
 
 
