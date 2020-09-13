@@ -38,44 +38,55 @@
         app:strokeColor="@color/verde_escuro_daora" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:id="@+id/add_forum_titulo"
-        android:layout_width="315dp"
-        android:layout_height="49dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
-        app:boxStrokeColor="#FFD700"
         android:gravity="start|top"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
         android:textAlignment="textStart"
-        android:inputType="textCapSentences"
+        app:boxStrokeColor="#FFD700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13"
-        android:imeOptions="actionDone">
+        app:layout_constraintVertical_bias="0.13">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoSizeTextType="uniform"
             android:hint="Titulo da postagem"
-            android:layout_height="wrap_content" />
+            android:maxLength="200" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/add_forum_texto"
-    android:layout_width="315dp"
-    android:layout_height="236dp"
-    android:layout_marginTop="52dp"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-    app:boxStrokeColor="#FFD700"
-    android:ems="10"
-    android:gravity="start"
-    android:inputType="textMultiLine|textCapSentences"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/add_forum_titulo"
-    app:layout_constraintVertical_bias="0.0">
+        android:id="@+id/add_forum_texto"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="236dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:gravity="start"
+        android:inputType="textMultiLine|textCapSentences"
+        app:boxStrokeColor="#FFD700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_forum_titulo"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

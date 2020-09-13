@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import adapto.com.menuc.DevelopmentVariables;
 import adapto.com.menuc.MainActivities.DetalharFirebase.FirebaseForumComentarioDataAuth;
 import adapto.com.menuc.MainActivities.DetalharFirebase.FirebaseForumComentarioViewHolder;
 import adapto.com.menuc.R;
@@ -41,12 +42,11 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
     private ArrayList<FirebaseForumComentarioDataAuth> arrayList;
     private FirebaseRecyclerOptions<FirebaseForumComentarioDataAuth> options;
     private FirebaseRecyclerAdapter<FirebaseForumComentarioDataAuth, FirebaseForumComentarioViewHolder> adapter;
-    private DatabaseReference dbRespostas = FirebaseDatabase.getInstance().getReference().child("Respostas");
+    private DatabaseReference dbRespostas = FirebaseDatabase.getInstance().getReference().child(DevelopmentVariables.RESPOSTAS.toString());
     private Query queryRespostas = dbRespostas;
     private TextView postagemDetalhadaAutor, postagemDetalhadaData, postagemDetalhadaTitulo, postagemDetalhadaTexto;
     private RecyclerView detalharRespostas;
-    //private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child("Forum-Teste");
-    private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child("Forum");
+    private DatabaseReference dadosPostagem = FirebaseDatabase.getInstance().getReference().child(DevelopmentVariables.FORUM.toString());
     private Query dbAutor = FirebaseDatabase.getInstance().getReference().child("Autores");
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private EditText comentario;
@@ -139,6 +139,9 @@ public class DetalharPostagemForumActivity extends AppCompatActivity {
             }
         });
         //endregion
+
+        if(postagemDetalhadaTexto.getText().toString().trim().isEmpty())
+            postagemDetalhadaTexto.setHeight(0);
 
 
     }

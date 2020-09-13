@@ -1,6 +1,6 @@
 package adapto.com.menuc.Fragmentos.Forum;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,9 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import adapto.com.menuc.DevelopmentVariables;
+import adapto.com.menuc.FirebaseDataAuth;
+import adapto.com.menuc.FirebaseViewHolder;
 import adapto.com.menuc.Fragmentos.Forum.Firebase.FirebaseForumPreviewDataAuth;
 import adapto.com.menuc.Fragmentos.Forum.Firebase.FirebaseForumPreviewViewHolder;
 import adapto.com.menuc.MainActivities.CriarPostagemForumActivity;
@@ -40,9 +43,8 @@ import adapto.com.menuc.R;
 public class ForumFragment extends Fragment {
 
     private FirebaseRecyclerAdapter<FirebaseForumPreviewDataAuth, FirebaseForumPreviewViewHolder> forumPreviewAdapter;
-    //private Query dbForum = FirebaseDatabase.getInstance().getReference().child("Forum-Teste");
-    private Query dbForum = FirebaseDatabase.getInstance().getReference().child("Forum");
-    private DatabaseReference dbRespostas = FirebaseDatabase.getInstance().getReference().child("Respostas");
+    private Query dbForum = FirebaseDatabase.getInstance().getReference().child(DevelopmentVariables.FORUM.toString());
+    private DatabaseReference dbRespostas = FirebaseDatabase.getInstance().getReference().child(DevelopmentVariables.RESPOSTAS.toString());
     private DatabaseReference dbRefAutores = FirebaseDatabase.getInstance().getReference().child("Autores");
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     RecyclerView recyclerViewForum;
@@ -135,6 +137,15 @@ public class ForumFragment extends Fragment {
                 holder.forum_preview_titulo.setText(model.getfTitulo());
                 if(checkifAutor(model.getfEmailAutor()))
                     holder.forum_preview_cargo.setText("MODERADOR");
+
+                if(checkifAutor(mAuth.getCurrentUser().getEmail())) {
+                    holder.btn_deletar_postagem.setVisibility(View.VISIBLE);
+                    holder.btn_deletar_postagem.setClickable(true);
+                }else{
+                    holder.btn_deletar_postagem.setClickable(false);
+                }
+
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -143,6 +154,8 @@ public class ForumFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                deny(holder, model);
 
             }
 
@@ -171,7 +184,70 @@ public class ForumFragment extends Fragment {
         return nomeFormatado = (nomes.length > 1) ?  nomes[0] + " "+ nomes[1] :  nomes[0];
     }
 
+    void deny(@NonNull final FirebaseForumPreviewViewHolder holder, @NonNull final FirebaseForumPreviewDataAuth model){
+        holder.btn_deletar_postagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialogExcluirPostagem(model, v, holder);
+            }
+        });
+    }
 
+    public void showAlertDialogExcluirPostagem(@NonNull final FirebaseForumPreviewDataAuth model, View v, final FirebaseForumPreviewViewHolder holder) {
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("ATENÇÃO!");
+        builder.setMessage("Você tem certeza que deseja excluir esta postagem?");
+        // add a button
+        builder.setPositiveButton("Prosseguir",new DialogInterface
+                .OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog,
+                                int which)
+            {
+                final Query excludePostagem =  dbForum.orderByChild("key").equalTo(model.getKey());
+                excludePostagem.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                            dataSnapshot1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Log.e(TAG, "onCancelled", databaseError.toException());
+
+                    }
+                });
+
+                final Query excludeRespostas = dbRespostas.orderByChild("postagemKey").equalTo(model.getKey());
+                excludeRespostas.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dS1: dataSnapshot.getChildren()){
+                            dS1.getRef().removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+            }
+        });
+        builder.setNegativeButton("Voltar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 
 }

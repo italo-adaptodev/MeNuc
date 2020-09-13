@@ -97,6 +97,17 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
                 return false;
             }
         });
+
+        searchbar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    searchbar.requestFocus();
+                } else {
+                    searchbar.clearFocus();
+                }
+            }
+        });
     }
 
     @Override
@@ -315,6 +326,7 @@ public class MenuPostagemFragment extends Fragment implements View.OnClickListen
         searchbar.clearFocus();
         super.onPause();
     }
+
 
 
 }

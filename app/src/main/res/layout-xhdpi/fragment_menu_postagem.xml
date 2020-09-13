@@ -9,6 +9,10 @@
     android:fitsSystemWindows="true"
     android:windowSoftInputMode="adjustPan">
 
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,32 +25,32 @@
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="visible"
             android:id="@+id/layoutPrincipal"
-            android:layout_width="375dp"
-            android:layout_height="398dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:descendantFocusability="blocksDescendants"
             android:foregroundGravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/searchtext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.061">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayout2"
-                android:layout_width="362dp"
-                android:layout_height="83dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.05">
+                app:layout_constraintVertical_bias="0.0">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_bases_fisicas"
@@ -153,19 +157,19 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
-                android:layout_width="362dp"
-                android:layout_height="107dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintHorizontal_bias="0.461"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.447">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_equipamento"
@@ -271,9 +275,9 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayout"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -283,8 +287,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.883">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_legislacao"
@@ -364,41 +367,42 @@
 
                 </ScrollView>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--region FLOATING ACTION BUTTON-->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            app:boxStrokeColor="#FFD700"
             android:id="@+id/searchtext"
-            android:layout_width="250dp"
-            android:layout_height="51dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="16dp"
             android:ems="10"
             android:hint="Pesquisar por palavra-chave"
             android:inputType="text"
             android:padding="3dp"
-            app:boxStrokeWidth="2dp"
             android:paddingLeft="4dp"
             android:windowSoftInputMode="adjustPan"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:boxStrokeColor="#FFD700"
+            app:boxStrokeWidth="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/fabmain"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutPrincipal"
-            app:layout_constraintVertical_bias="0.058">
+            app:layout_constraintTop_toBottomOf="@+id/fab1"
+            app:layout_constraintVertical_bias="0.924">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:singleLine="true"
-                android:imeOptions="actionSearch"
                 android:layout_width="240dp"
                 android:layout_height="40dp"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:textSize="14sp">
 
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
@@ -507,7 +511,7 @@
             android:clickable="true"
             android:elevation="16dp"
             android:focusable="true"
-            android:src="@drawable/invite_auth"
+            app:srcCompat="@drawable/invite_auth"
             android:visibility="invisible"
             app:backgroundTint=" #FFD700"
             app:borderWidth="3dp"
@@ -650,7 +654,11 @@
             app:pressedTranslationZ="12dp"
             app:srcCompat="@drawable/ic_list"
             app:tint="@null"
-            app:useCompatPadding="false" />
+            app:useCompatPadding="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp" />
+        <!--endregion-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

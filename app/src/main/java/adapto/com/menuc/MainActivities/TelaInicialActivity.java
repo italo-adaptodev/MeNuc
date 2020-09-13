@@ -10,10 +10,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import adapto.com.menuc.R;
@@ -52,7 +58,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         toolbar.setTitle("MeNuc");
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.tabAccent));
         setSupportActionBar(toolbar);
-        slidingTabLayout = (SlidingTabLayout) findViewById(R.id.stl_tabs);
+        slidingTabLayout = findViewById(R.id.stl_tabs);
         viewPager = findViewById(R.id.vp_pagina);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.tabAccent));
         slidingTabLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -74,7 +80,6 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         finishAffinity(); // or finish();
     }
 
@@ -129,5 +134,22 @@ public class TelaInicialActivity extends AppCompatActivity {
         editor.putStringSet("LISTA_AUTORES_TELAINICIAL", listaAutoresDB);
         editor.commit();
 
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 }

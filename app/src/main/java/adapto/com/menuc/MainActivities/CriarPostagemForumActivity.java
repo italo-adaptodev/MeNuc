@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import adapto.com.menuc.DevelopmentVariables;
 import adapto.com.menuc.Fragmentos.Forum.Model.PostagemForum;
 import adapto.com.menuc.R;
 
@@ -29,8 +30,7 @@ public class CriarPostagemForumActivity extends AppCompatActivity {
     TextInputLayout titulo, conteudo;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference dbRefForum = database.getReference().child("Forum-Teste");
-    DatabaseReference dbRefForum = database.getReference().child("Forum");
+    DatabaseReference dbRefForum = database.getReference().child(DevelopmentVariables.FORUM.toString());
     public static final String DATE_FORMAT_1 = "dd MMM yyyy";
 
     @Override

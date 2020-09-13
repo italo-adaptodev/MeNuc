@@ -81,36 +81,35 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
         app:boxBackgroundColor="#FFFFFF"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintTop_toBottomOf="@+id/login_email_space"
+        app:passwordToggleEnabled="true"
         tools:targetApi="lollipop">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/senhaInput"
-            android:imeOptions="actionDone"
-            android:singleLine="true"
-            android:inputType="textPassword"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
-            android:hint="Senha">
+            android:hint="Senha"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:singleLine="true">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtCadastro"
-        android:layout_width="256dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:gravity="center|top"
         android:padding="5dp"
         android:text="Ou clique aqui para realizar o Cadastro"
         android:textColor="#FFFFFF"
@@ -118,9 +117,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/atom"
@@ -138,17 +138,16 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="310dp"
         android:layout_height="54dp"
+        android:layout_marginBottom="152dp"
         android:backgroundTint="@color/verde_escuro_daora"
         android:text="Entrar"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
         android:textColor="#F2F2F2"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtCadastro"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha_space"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
